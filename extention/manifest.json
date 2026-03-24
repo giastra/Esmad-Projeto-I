@@ -1,0 +1,12 @@
+{
+  "name": "Action popup demo",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_title": "Click to view a popup",
+    "default_popup": "./index.html",
+    "default_icon": {              
+      "16": "./Group-9.png"
+        }
+    }
+}

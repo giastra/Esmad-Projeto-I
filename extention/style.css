@@ -1,0 +1,13 @@
+body{
+    background-color: aquamarine;
+}
+
+#escondido{
+    color: aquamarine;
+    font-size: 0.001%;
+}
+
+.tasks{
+    display: flex;
+    flex-direction: row;
+}
