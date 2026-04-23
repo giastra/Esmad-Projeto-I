@@ -1,166 +1,222 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const User = require("../Models/UserModel");
+const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
-const saltRounds = 10;
-
-require("dotenv").config(); 
-
-// Gerar token
-const generateToken = (userId) => {
-  return jwt.sign(
-    { id: userId },
-    process.env.JWT_SECRET,
-    { expiresIn: "1d" }
-  );
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN || '7d'
+  });
 };
 
-module.exports = {
-  // registar
-register: async (req, res) => {
+const register = async (req, res) => {
   try {
-    const { email, password, name } = req.body;
-
-    if (!email || !password || !name) {
-      return res.status(400).json({ message: "Preencha nome, email e password" });
-    }
-
-    // ✅ validar email com "@"
-    if (!email.includes("@")) {
-      return res.status(400).json({ message: "Email inválido (tem de conter @)" });
-    }
+    const { name, email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: "Email já registrado" });
+      return res.status(409).json({
+        success: false,
+        message: 'Email já está em uso'
+      });
     }
 
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = await User.create({
+    const user = await User.create({
+      name,
       email,
-      password: hashedPassword,
-      name
+      password: hashedPassword
     });
+
+    const token = generateToken(user._id);
 
     res.status(201).json({
-      message: "Utilizador registrado com sucesso",
-      user: {
-        id: newUser._id,
-        name: newUser.name,
-        email: newUser.email,
-        token: generateToken(newUser._id),
-      },
+      success: true,
+      message: 'Utilizador criado com sucesso',
+      token,
+      data: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        Admin: user.Admin
+      }
     });
-
   } catch (error) {
-    res.status(500).json({ message: "Erro no servidor", error: error.message });
+    if (error.name === 'ValidationError') {
+      const messages = Object.values(error.errors).map(e => e.message);
+      return res.status(400).json({
+        success: false,
+        message: 'Erro de validação',
+        errors: messages
+      });
+    }
+
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao registar utilizador',
+      error: error.message
+    });
   }
-},
-  // login
-  login: async (req, res) => {
-    try {
-      const { email, password } = req.body;
+};
 
-      if (!email || !password) {
-        return res.status(400).json({ message: "Preencha email e password" });
-      }
 
-      const user = await User.findOne({ email });
-      if (!user) {
-        return res.status(400).json({ message: "Email ou password inválidos" });
-      }
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (!isMatch) {
-        return res.status(400).json({ message: "Email ou password inválidos" });
-      }
-
-      res.status(200).json({
-        message: "Login realizado com sucesso",
-        user: {
-          id: user._id,
-          name: user.name,
-          email: user.email,
-          token: generateToken(user._id),
-        },
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: 'Credenciais inválidas'
       });
-    } catch (error) {
-      res.status(500).json({ message: "Erro no servidor", error: error.message });
     }
-  },
 
-  // update nome
-  updateName: async (req, res) => {
-    try {
-      const userId = req.user.id;
-      const { name } = req.body;
-
-      if (!name) {
-        return res.status(400).json({ message: "Nome é obrigatório" });
-      }
-
-      const user = await User.findByIdAndUpdate(
-        userId,
-        { name },
-        { new: true }
-      );
-
-      res.status(200).json({
-        message: "Nome atualizado com sucesso",
-        user: {
-          id: user._id,
-          name: user.name,
-          email: user.email,
-        },
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: 'Credenciais inválidas'
       });
-    } catch (error) {
-      res.status(500).json({ message: "Erro no servidor", error: error.message });
     }
-  },
 
-  // update pwd
-  updatePassword: async (req, res) => {
-    try {
-      const userId = req.user.id;
-      const { oldPassword, newPassword } = req.body;
+    const token = generateToken(user._id);
 
-      if (!oldPassword || !newPassword) {
-        return res.status(400).json({ message: "Preencha passwords" });
+    res.status(200).json({
+      success: true,
+      message: 'Login efetuado com sucesso',
+      token,
+      data: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        Admin: user.Admin
       }
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao fazer login',
+      error: error.message
+    });
+  }
+};
 
-      const user = await User.findById(userId);
 
-      const isMatch = await bcrypt.compare(oldPassword, user.password);
-      if (!isMatch) {
-        return res.status(400).json({ message: "Password atual incorreta" });
-      }
+const getUsers = async (req, res) => {
+  try {
+    const users = await User.find().select('-password').sort({ name: 1 });
 
-      const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+    res.status(200).json({
+      success: true,
+      count: users.length,
+      data: users
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao buscar utilizadores',
+      error: error.message
+    });
+  }
+};
 
-      user.password = hashedPassword;
-      await user.save();
 
-      res.status(200).json({
-        message: "Password atualizada com sucesso",
+const getUserById = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select('-password');
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'Utilizador não encontrado'
       });
-    } catch (error) {
-      res.status(500).json({ message: "Erro no servidor", error: error.message });
     }
-  },
 
-  // delete user
-  deleteUser: async (req, res) => {
-    try {
-      const userId = req.user.id;
+    res.status(200).json({
+      success: true,
+      data: user
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao buscar utilizador',
+      error: error.message
+    });
+  }
+};
 
-      await User.findByIdAndDelete(userId);
+const updateUser = async (req, res) => {
+  try {
+    if (req.body.password) {
+      req.body.password = await bcrypt.hash(req.body.password, 10);
+    }
 
-      res.status(200).json({
-        message: "Utilizador eliminado com sucesso",
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true, runValidators: true }
+    ).select('-password');
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'Utilizador não encontrado'
       });
-    } catch (error) {
-      res.status(500).json({ message: "Erro no servidor", error: error.message });
     }
-  },
+
+    res.status(200).json({
+      success: true,
+      message: 'Utilizador atualizado com sucesso',
+      data: user
+    });
+  } catch (error) {
+    if (error.name === 'ValidationError') {
+      const messages = Object.values(error.errors).map(e => e.message);
+      return res.status(400).json({
+        success: false,
+        message: 'Erro de validação',
+        errors: messages
+      });
+    }
+
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao atualizar utilizador',
+      error: error.message
+    });
+  }
+};
+
+const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'Utilizador não encontrado'
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Utilizador eliminado com sucesso'
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Erro ao eliminar utilizador',
+      error: error.message
+    });
+  }
+};
+
+module.exports = {
+  register,
+  login,
+  getUsers,
+  getUserById,
+  updateUser,
+  deleteUser
 };
