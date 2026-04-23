@@ -1,4 +1,4 @@
-const Color = require('../models/Color');
+const Color = require('../models/ColorModel');
 
 
 const getColors = async (req, res) => {
