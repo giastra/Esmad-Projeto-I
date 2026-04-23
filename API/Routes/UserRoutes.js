@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {register,login,getUsers,getUserById,updateUser,deleteUser} = require('../controllers/userController');
+const {register,login,getUsers,getUserById,updateUser,deleteUser} = require('../controllers/UserController');
 
 const { protect, isAdmin } = require('../middlewares/authMiddleware');
 

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const User = require('../models/UserModel');
 
 // Verifica se o token JWT é válido e injeta req.user
 const protect = async (req, res, next) => {
