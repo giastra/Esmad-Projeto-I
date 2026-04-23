@@ -37,6 +37,11 @@ const taskSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'TaskCategory',
     required: true
+  },
+    status: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'status',
+    required: true
   }
 
 }, {
