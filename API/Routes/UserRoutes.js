@@ -20,7 +20,7 @@ const {
   validateUpdateUser,
   validateUserId
 } = require('../middlewares/userValidation');
-
+ 
 // PUBLIC
 router.post('/register', validateRegister, register);
 router.post('/login', validateLogin, login);
