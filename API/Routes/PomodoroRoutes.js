@@ -1,19 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const ctrl = require('../controllers/pomodoroController');
+const { getDefault,
+     getMeus, 
+     criar, 
+     atualizar, 
+     apagar, 
+     ativar, 
+     atualizarDefault } = require('../controllers/pomodoroController');
+
 const { protect, isAdmin } = require('../middleware/authMiddleware');
-
+ 
 // Público
-router.get('/default',           ctrl.getDefault);
-
-// Admin
-router.put('/admin/default',     protect, isAdmin, ctrl.atualizarDefault);
-
+router.get('/default', getDefault);
+ 
+// Admin 
+router.put('/admin/default', protect, isAdmin, atualizarDefault);
+ 
 // Autenticado
-router.get('/',                  protect, ctrl.getMeus);
-router.post('/',                 protect, ctrl.criar);
-router.put('/:id/ativar',        protect, ctrl.ativar);
-router.put('/:id',               protect, ctrl.atualizar);
-router.delete('/:id',            protect, ctrl.apagar);
-
+router.get('/', protect, getMeus);
+router.post('/', protect, criar);
+router.put('/:id/ativar', protect, ativar);
+router.put('/:id', protect, atualizar);
+router.delete('/:id', protect, apagar);
+ 
 module.exports = router;
