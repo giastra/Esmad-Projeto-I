@@ -16,11 +16,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-
   roles: {
     type: [String],
     enum: ['user', 'admin'],
     default: ['user']
+  },
+  activePomodoro: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Pomodoro',
+    default: null
   }
 });
 
