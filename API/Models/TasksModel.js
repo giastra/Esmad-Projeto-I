@@ -23,8 +23,15 @@ const taskSchema = new mongoose.Schema({
   },
 
   status: {
-    type: Boolean,
-    default: false
+    type: String,
+    enum: ['por_fazer', 'concluida'],
+    default: 'por_fazer'
+  },
+
+  priority: {
+    type: String,
+    enum: ['alta', 'normal', 'baixa'],
+    default: 'normal'
   },
 
   user: {
@@ -36,11 +43,6 @@ const taskSchema = new mongoose.Schema({
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'TaskCategory',
-    required: true
-  },
-    status: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'status',
     required: true
   }
 
