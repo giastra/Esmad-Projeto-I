@@ -1,13 +1,9 @@
-require('dotenv').config(); // Carrega variáveis de ambiente primeiro
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
 
-// Teste rápido do .env
-console.log("MONGO_URI:", process.env.MONGO_URI);
-
-// Verificar variável de ambiente
 if (!process.env.MONGO_URI) {
   console.error("MONGO_URI não definido. Confirma teu .env!");
   process.exit(1);
@@ -16,12 +12,19 @@ if (!process.env.MONGO_URI) {
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static('uploads'));
 
 // Rotas
-const userRoutes = require("./Routes/UserRoutes");
-app.use("/api/users", userRoutes);
+app.use('/api/users',           require('./Routes/UserRoutes'));
+app.use('/api/pomodoro',        require('./Routes/PomodoroRoutes'));
+app.use('/api/diary',           require('./Routes/DiaryRoutes'));
+app.use('/api/colors',          require('./Routes/ColorRoutes'));
+app.use('/api/props',           require('./Routes/PropRoutes'));
+app.use('/api/game',            require('./Routes/GameRoutes'));
+app.use('/api/task-categories', require('./Routes/TaskCategoryRoutes'));
+app.use('/api/tasks',           require('./Routes/TaskRoutes'));
 
-// Conexão MongoDB Atlas (Mongoose 6+ NÃO precisa de useNewUrlParser/useUnifiedTopology)
+// MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB conectado!'))
   .catch(err => {
@@ -30,23 +33,20 @@ mongoose.connect(process.env.MONGO_URI)
   });
 
 // Rota base
-app.get("/", (req, res) => {
-  res.send("API da ESMAD está operacional.");
-});
-
-// Middleware de erro
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: "Erro interno do servidor" });
+app.get('/', (req, res) => {
+  res.send('API da ESMAD está operacional.');
 });
 
 // 404
 app.use((req, res) => {
-  res.status(404).json({ message: "Rota não encontrada" });
+  res.status(404).json({ success: false, message: 'Rota não encontrada.' });
 });
 
-// Servidor
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Servidor a correr em: http://localhost:${PORT}`);
+// Erro global
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ success: false, message: 'Erro interno do servidor.' });
 });
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Servidor a correr em: http://localhost:${PORT}`));
