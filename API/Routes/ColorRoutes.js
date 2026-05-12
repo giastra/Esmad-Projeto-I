@@ -1,25 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const colorController = require('../Controllers/ColorController');
+const { protect, isAdmin } = require('../Middlewares/authMiddleware');
 
-const {
-  getColors,
-  getColorById,
-  createColor,
-  updateColor,
-  deleteColor
-} = require('../controllers/ColorController');
-
-const { protect, isAdmin } = require('../middlewares/authMiddleware');
-
-const {validateCreateColor,validateUpdateColor,validateColorId} = require('../middlewares/colorValidation');
-
-// Rotas públicas (leitura)
-router.get('/', getColors);
-router.get('/:id', validateColorId, getColorById);
-
-// Rotas protegidas (admin only)
-router.post('/', protect, isAdmin, validateCreateColor, createColor);
-router.put('/:id', protect, isAdmin, validateUpdateColor, updateColor);
-router.delete('/:id', protect, isAdmin, validateColorId, deleteColor);
+router.get('/',       protect, colorController.getColors);
+router.get('/:id',    protect, colorController.getColorById);
+router.post('/',      protect, isAdmin, colorController.createColor);
+router.put('/:id',    protect, isAdmin, colorController.updateColor);
+router.delete('/:id', protect, isAdmin, colorController.deleteColor);
 
 module.exports = router;

@@ -1,7 +1,7 @@
-const User = require('../models/UserModel');
+const User = require('../Models/UserModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const Blacklist = require('../models/TokenBlacklistModel');
+const Blacklist = require('../Models/TokenBlacklistModel');
 
 
 const generateToken = (id) => {
@@ -11,17 +11,14 @@ const generateToken = (id) => {
 };
 
 
-const register = async (req, res) => {
+// POST /api/auth/register
+exports.register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
     const exists = await User.findOne({ email });
-    if (exists) {
-      return res.status(409).json({
-        success: false,
-        message: 'Email já existe'
-      });
-    }
+    if (exists)
+      return res.status(409).json({ success: false, message: 'Email já existe.' });
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -44,32 +41,28 @@ const register = async (req, res) => {
         roles: user.roles
       }
     });
-
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
   }
 };
 
 
-const login = async (req, res) => {
+// POST /api/auth/login
+exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-
-    if (!user) {
-      return res.status(401).json({ message: 'Credenciais inválidas' });
-    }
+    if (!user)
+      return res.status(401).json({ success: false, message: 'Credenciais inválidas.' });
 
     const match = await bcrypt.compare(password, user.password);
-
-    if (!match) {
-      return res.status(401).json({ message: 'Credenciais inválidas' });
-    }
+    if (!match)
+      return res.status(401).json({ success: false, message: 'Credenciais inválidas.' });
 
     const token = generateToken(user._id);
 
-    res.status(200).json({
+    res.json({
       success: true,
       token,
       data: {
@@ -79,14 +72,14 @@ const login = async (req, res) => {
         roles: user.roles
       }
     });
-
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
   }
 };
 
 
-const logout = async (req, res) => {
+// POST /api/auth/logout
+exports.logout = async (req, res) => {
   try {
     const token = req.token;
 
@@ -97,53 +90,49 @@ const logout = async (req, res) => {
       expiresAt: new Date(decoded.exp * 1000)
     });
 
-    res.json({
-      success: true,
-      message: 'Logout efetuado com sucesso'
-    });
-
-  } catch (error) {
-    return res.status(401).json({
-      message: 'Token inválido'
-    });
+    res.json({ success: true, message: 'Logout efetuado com sucesso.' });
+  } catch (err) {
+    res.status(401).json({ success: false, message: 'Token inválido.' });
   }
 };
 
 
-const getUsers = async (req, res) => {
-  const users = await User.find().select('-password');
-
-  res.json({
-    success: true,
-    data: users
-  });
-};
-
-
-const getUserById = async (req, res) => {
-  const user = await User.findById(req.params.id).select('-password');
-
-  if (!user) {
-    return res.status(404).json({
-      message: 'Utilizador não encontrado'
-    });
+// GET /api/users
+// ADMIN
+exports.getUsers = async (req, res) => {
+  try {
+    const users = await User.find().select('-password');
+    res.json({ success: true, data: users });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
   }
-
-  res.json({
-    success: true,
-    data: user
-  });
 };
 
 
-const updateUserSelf = async (req, res) => {
+// GET /api/users/:id
+// ADMIN
+exports.getUserById = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).select('-password');
+    if (!user)
+      return res.status(404).json({ success: false, message: 'Utilizador não encontrado.' });
+
+    res.json({ success: true, data: user });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+
+// PUT /api/users/me
+exports.updateUserSelf = async (req, res) => {
   try {
     delete req.body.roles;
     delete req.body._id;
+    delete req.body.email;
 
-    if (req.body.password) {
+    if (req.body.password)
       req.body.password = await bcrypt.hash(req.body.password, 10);
-    }
 
     const user = await User.findByIdAndUpdate(
       req.user._id,
@@ -151,44 +140,66 @@ const updateUserSelf = async (req, res) => {
       { new: true }
     ).select('-password');
 
-    res.json({
-      success: true,
-      data: user
-    });
-
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ success: true, data: user });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
   }
 };
 
 
-const deleteOwnUser = async (req, res) => {
-  await User.findByIdAndDelete(req.user._id);
+// PUT /api/users/me/email
+exports.updateEmail = async (req, res) => {
+  try {
+    const { email, password } = req.body;
 
-  res.json({
-    success: true,
-    message: 'Conta eliminada com sucesso'
-  });
+    if (!email || !password)
+      return res.status(400).json({ success: false, message: 'Email e password são obrigatórios.' });
+
+    const user = await User.findById(req.user._id);
+    if (!user)
+      return res.status(404).json({ success: false, message: 'Utilizador não encontrado.' });
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match)
+      return res.status(401).json({ success: false, message: 'Password incorreta.' });
+
+    const exists = await User.findOne({ email });
+    if (exists)
+      return res.status(409).json({ success: false, message: 'Email já está em uso.' });
+
+    user.email = email;
+    await user.save();
+
+    res.json({ success: true, message: 'Email atualizado com sucesso.', data: { email: user.email } });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
 };
 
 
-const updateUserRole = async (req, res) => {
+// DELETE /api/users/me
+exports.deleteOwnUser = async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.user._id);
+    res.json({ success: true, message: 'Conta eliminada com sucesso.' });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+
+// PUT /api/users/:id/roles
+// ADMIN
+exports.updateUserRole = async (req, res) => {
   try {
     const { roles } = req.body;
 
-    if (!Array.isArray(roles)) {
-      return res.status(400).json({
-        message: 'roles deve ser um array'
-      });
-    }
+    if (!Array.isArray(roles))
+      return res.status(400).json({ success: false, message: 'roles deve ser um array.' });
 
     const allowed = ['user', 'admin'];
-
-    if (!roles.every(r => allowed.includes(r))) {
-      return res.status(400).json({
-        message: 'roles inválidas'
-      });
-    }
+    if (!roles.every(r => allowed.includes(r)))
+      return res.status(400).json({ success: false, message: 'roles inválidas.' });
 
     const user = await User.findByIdAndUpdate(
       req.params.id,
@@ -196,29 +207,11 @@ const updateUserRole = async (req, res) => {
       { new: true }
     ).select('-password');
 
-    if (!user) {
-      return res.status(404).json({
-        message: 'Utilizador não encontrado'
-      });
-    }
+    if (!user)
+      return res.status(404).json({ success: false, message: 'Utilizador não encontrado.' });
 
-    res.json({
-      success: true,
-      data: user
-    });
-
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({ success: true, data: user });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
   }
-};
-
-module.exports = {
-  register,
-  login,
-  logout,
-  getUsers,
-  getUserById,
-  updateUserSelf,
-  deleteOwnUser,
-  updateUserRole
 };

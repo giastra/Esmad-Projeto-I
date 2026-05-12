@@ -1,5 +1,5 @@
-const Pomodoro = require('../models/PomodoroModel');
-const User = require('../models/UserModel');
+const Pomodoro = require('../Models/PomodoroModel');
+const User = require('../Models/UserModel');
 
 
 // GET /api/pomodoro/default

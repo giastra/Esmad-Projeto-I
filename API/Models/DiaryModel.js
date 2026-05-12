@@ -9,8 +9,7 @@ const diarySchema = new mongoose.Schema({
 
   note: {
     type: String,
-    required: true,
-    trim: true
+    required: true
   },
 
   eventDate: {
@@ -22,16 +21,12 @@ const diarySchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
-  },
-
-  category: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'DiaryCategory',
-    required: true
   }
 
 }, {
   timestamps: true
 });
+
+diarySchema.index({ user: 1, eventDate: 1 }, { unique: true });
 
 module.exports = mongoose.model('Diary', diarySchema);
