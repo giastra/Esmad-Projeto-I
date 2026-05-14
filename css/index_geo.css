@@ -1,0 +1,214 @@
+/*TEXTOS*/
+
+/* TÍTULO (maior e bold) */
+.shape-rect-big .t1 {
+    font-family: 'HelveticaCustom';
+    font-size: 50px;      /* maior */
+    font-weight: 700;     /* bold */
+    margin: 5px;
+    line-height: 1.1;
+}
+
+/* SUBTÍTULO (médio) */
+.shape-rect-big .p1 {
+    font-family: 'HelveticaCustom';
+    font-size: 30px;      /* médio */
+    font-weight: 400;
+    margin: 8pxpx;
+    opacity: 0.9;
+}
+
+/* TEXTO FINAL (mais pequeno) */
+.shape-rect-big .p2 {
+    font-family: 'HelveticaCustom';
+    font-size: 20px;      /* mais pequeno */
+    font-weight: 300;
+    margin: 8px;
+    opacity: 0.8;
+}
+
+
+/*FORMAS À ESQUERDA*/
+
+/* Retângulo pequeno */
+.shape-left-rect {
+    width: 90px;
+    height: 45px;
+    border: 3px solid black;
+    background: transparent;
+    position: absolute;
+    top: 450px;
+    left: 5%; 
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+/* Triângulo */
+.shape-left-triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 70px solid transparent;
+    position: absolute;
+    top: 1200px;
+    left: 4.7%; 
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+.shape-left-triangle::before {
+    content: "";
+    position: absolute;
+    left: -50px;
+    top: -70px;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 70px solid black;
+}
+
+/*FORMAS CENTRAIS (DIREITA)*/
+
+/* Círculo */
+.shape-circle {
+    width: 120px;
+    height: 120px;
+    border: 3px solid black;
+    border-radius: 50%;
+    background: transparent;
+    position: absolute;
+    top: 1670px;
+    left: 74%; 
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+/* Retângulo grande */
+.shape-rect-big {
+    width: 600px;
+    height: 300px;
+    border: 3px solid black;
+    background: transparent;
+    position: absolute;
+    top: 2310px;
+    left: 61.5%; 
+    transform: translateX(-50%);
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Retângulo pequeno final */
+.shape-rect-small {
+    width: 180px;
+    height: 60px;
+    border: 3px solid black;
+    border-radius: 12px;
+    background: transparent;
+    position: absolute;
+    top: 2740px;
+    left: 72.5%; 
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+/*LINHAS DE LIGAÇÃO*/
+
+/* Linha vertical retângulo pequeno → triângulo */
+.line-left-1 {
+    width: 3px;
+    height: 450px;
+    background: black;
+    position: absolute;
+    top: 0px;
+    left: 7.3%; /* eixo da esquerda */
+    transform: translateX(-50%);
+}
+
+/* Linha diagonal triângulo → círculo */
+.line-left-2 {
+    width: 3px;
+    height: 650px;
+    background: black;
+    position: absolute;
+    top: 492px;
+    left: 7.3%; 
+    transform: rotate(22deg);
+    transform-origin: top;
+}
+
+.line-left-3 {
+    width: 3px;
+    height: 583px;
+    background: black;
+    position: absolute;
+    top: 1150px;
+    left: 7.3%; 
+    transform: rotate(22deg);
+    transform-origin: top;
+}
+
+/* Linha vertical retangulo grande → retângulo pequeno final */
+.line-center-1 {
+    width: 3px;
+    height: 130px;
+    background: black;
+    position: absolute;
+    top: 2610px;
+    left: 77%;
+    transform: translateX(-50%);
+}
+
+/* Linha vertical retângulo pequeno →  final */
+.line-center-2 {
+    width: 3px;
+    height: 200px;
+    background: black;
+    position: absolute;
+    top: 2800px;
+    left: 77%; 
+    transform: translateX(-50%);
+}
+/* Linha vertical circulo → retangulo grande */
+.middle-line {
+    width: 3px;
+    height: 520px;
+    background: black;
+    position: absolute;
+    top: 1790px;
+    left: 77%; 
+    transform: translateX(-50%);
+    z-index: 1;
+}
+/* Linha horiaontal */
+.line-horizontal {
+    width: 1271px;      
+    height: 3px;
+    background: black;
+    position: absolute;
+    top: 1730px;        
+    left: 7.4%;         
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+
+/*ANIMAÇÃO*/
+
+.reveal-geo {
+    opacity: 0;
+    transform: translateY(80px);
+    transition: all 0.45s ease-out;
+}
+
+.reveal-geo.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+

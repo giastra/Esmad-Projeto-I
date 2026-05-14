@@ -1,0 +1,354 @@
+/* SquareFont */
+@font-face {
+    font-family: 'SquareFont';
+    src: url('../fonts/Square.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Helvetica Normal */
+@font-face {
+    font-family: 'HelveticaCustom';
+    src: url('../fonts/Helvetica.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Helvetica Light */
+@font-face {
+    font-family: 'HelveticaLight';
+    src: url('../fonts/Helvetica\ Light\ Regular.otf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+/*----------------------------------------------------------------*/
+
+body {
+    margin: 0;
+    font-family: 'HelveticaCustom';
+}
+
+/* HERO COM IMAGEM EXTERNA */
+.hero {
+    height: 100vh;
+    background-image: url('../images/hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+@media screen and (max-width: 768px) {
+  .hero {
+    height: fit-content;
+  }
+}
+
+/* Overlay */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+
+    text-align: left;
+    margin-left: 12%;      
+    width: 60%;            
+}
+
+/* LOGO */
+.logo {
+    opacity: 0.9;
+    width: 200px;         
+}
+
+/* TÍTULO */
+.hero h1 {
+    font-family: 'SquareFont';
+    font-size: 90px;       
+    line-height: 1.05;
+    font-weight: 700;
+}
+
+.hero h2 {
+    font-family: 'HelveticaLight';
+    font-size: 40px;
+}
+
+/* DESCRIÇÃO */
+.hero p {
+    font-size: 20px;       
+    margin-top: 25px;
+    margin-bottom: 40px;
+    width: 100%;           /* SEM limite de largura */
+}
+
+/* BOTÕES */
+.botoes{
+    margin-top: 40px;
+}
+
+.botoes a {
+    padding: 10px 25px;   
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 26px;       
+    margin: 10px 20px 0 0;
+    border-radius: 30px;   
+}
+
+/* LOGIN */
+.btn-login {
+    background-color: #ff7b00;
+    color: white;
+    border: 2px solid #ff7b00;
+    transition: 0.2s;
+}
+
+.btn-login:hover {
+    background-color: #ffffff;
+    color: #ff7b00;
+}
+
+/* REGISTO */
+.btn-registo {
+    background-color: white;
+    color: #ff7b00;
+    border: 2px solid #ff7b00;
+    transition: 0.2s;
+}
+
+.btn-registo:hover {
+    background-color: #ff7b00;
+    color: white;
+}
+
+
+/* ============================
+   SECÇÃO MIDDLE
+============================ */
+.middle {
+    position: relative;  
+    height: 3000px;
+    padding: 120px 0;
+    background-image: url('../images/Homepage-meio.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+
+/* ============================
+   EXTENSÃO
+============================ */
+
+.extension {
+    min-height: 650px;
+    display: flex;
+    padding-left: 10%;
+    background-image: url('../images/extensão.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    color: white;
+}
+
+.extension-content h2 {
+    text-transform: uppercase;
+    font-size: 68px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    padding-top: 100px;
+    max-width: 800px;
+}
+
+.extension-content p {
+    font-size: 20px;
+    opacity: 0.85;
+    line-height: 1.5;
+    margin-bottom: 30px;
+    max-width: 700px;
+}
+
+.btn-extensao {
+    display: inline-block;
+    background-color: #ff7b00;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: 2px solid #ff7b00;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.btn-extensao:hover {
+    background-color: #ffffff;
+    color: #ff7b00;
+}
+
+/* ============================
+   FOOTER
+============================ */
+
+.footer {
+    width: 100%;
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 80px;
+    font-family: 'HelveticaCustom';
+}
+
+.footer-center a {
+    margin-left: 50px;
+    color: black;
+}
+
+/* ============================
+   RESPONSIVIDADE GERAL
+============================ */
+
+@media (max-width: 1024px) {
+
+    /* HERO */
+    .hero h1 {
+        font-size: 60px;
+    }
+
+    .hero h2 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 18px;
+    }
+
+    .botoes a {
+        font-size: 20px;
+        padding: 8px 20px;
+    }
+
+    .logo {
+        width: 150px;
+    }
+
+    /* EXTENSÃO */
+    .extension-content h2 {
+        font-size: 48px;
+    }
+
+    .extension-content p {
+        font-size: 18px;
+    }
+
+    .btn-extensao {
+        font-size: 18px;
+        padding: 10px 25px;
+    }
+}
+
+
+/* ============================
+   TELEMÓVEL
+============================ */
+
+@media (max-width: 768px) {
+
+    /* HERO */
+    .hero {
+        height: auto;
+        padding: 60px 20px;
+        background-position: top;
+    }
+
+    .hero .container {
+        margin-left: 0;
+        width: 100%;
+        text-align: left;
+    }
+
+    .logo {
+        width: 120px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero h2 {
+        font-size: 22px;
+    }
+
+    .hero p {
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .botoes a {
+        font-size: 18px;
+        padding: 8px 12px;
+        margin-right: 10px;
+    }
+
+    /*MIDDLE*/
+    .middle {
+        background: none !important;
+        height: auto;
+        padding: 60px 0;
+    }
+
+    /* EXTENSÃO */
+    .extension {
+        padding: 40px 20px;
+        min-height: auto;
+        background-position: top;
+    }
+
+    .extension-content h2 {
+        font-size: 32px;
+        padding-top: 40px;
+        color: black;
+    }
+
+    .extension-content p {
+        font-size: 16px;
+        color: black !important;
+    }
+
+    .btn-extensao {
+        font-size: 16px;
+        padding: 8px 20px;
+    }
+}
+/*FOOTER*/
+
+@media (max-width: 768px) {
+
+    .footer {
+        padding: 0 30px;
+        height: 60px;
+    }
+
+    .footer a,
+    .footer-center a {
+        color: black !important;   /* Mantém sempre preto */
+        font-size: 10px;           /* Diminui a letra */
+        margin-left: 20px;         /* Ajusta espaçamento */
+    }
+    .footer span {
+        font-size: 12px
+    }
+}

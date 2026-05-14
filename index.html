@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS externo -->
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/index_geo.css">
+</head>
+<body>
+     <!-- HERO SECTION -->
+    <section class="hero d-flex align-items-center justify-content-center text-center">
+        <div class="container">
+
+            <!-- LOGO -->
+            <img src="images/logo principal.png" alt="Logo STD" class="logo mb-4">
+
+            <!-- TÍTULO -->
+            <h2 class="fw-bold text-white">
+                BEM VINDO AO
+            </h2>
+
+            <h1 class="fw-bold text-white">
+                STAD TO DO
+            </h1>
+
+            <!-- DESCRIÇÃO -->
+            <p class="lead text-white-50 mt-3">
+                Uma ferramenta de organização minimalista que transforma tarefas em conquistas visuais.<br>
+                Começa hoje a edificar a tua cidade mental.
+            </p>
+
+            <!-- BOTÕES -->
+            <div class="mt-4 botoes">
+                <a href="#" class="btn-login">LOGIN</a>
+                <a href="#" class="btn-registo">REGISTO</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!--MEIO-->
+
+    <section class="middle">
+
+     <div class="geo-wrapper">
+
+        <div class="shape-left-rect reveal-geo"></div>
+        <div class="shape-left-triangle reveal-geo"></div>
+
+        <div class="line-left-1 reveal-geo"></div>
+        <div class="line-left-2 reveal-geo"></div>
+        <div class="line-left-3 reveal-geo"></div>
+
+        <div class="shape-circle reveal-geo"></div>
+
+        <div class="middle-line reveal-geo"></div>
+
+        <div class="shape-rect-big reveal-geo">
+            <div class="middle-content">
+                <p class="t1">POMODORO</p>
+                <p class="p1">Foca-te por blocos de tempo</p>
+                <p class="p2">Trabalha 25 minutos, faz uma pausa de 5.</p>
+            </div>
+        </div>
+
+        <div class="line-center-1 reveal-geo"></div>
+        <div class="line-center-2 reveal-geo"></div>
+
+        <div class="shape-rect-small reveal-geo"></div>
+
+        <div class="line-horizontal reveal-geo"></div>
+
+     </div>
+
+
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const elements = document.querySelectorAll('.reveal-geo');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.2 });
+    
+        elements.forEach(el => observer.observe(el));
+    });
+
+    </script>
+
+
+
+    </section>
+
+    <!--EXTENSAO-->
+
+    <section class="extension">
+        <div class="extension-content">
+            <h2>Melhora o teu foco com 1 clique</h2>
+
+            <p>
+                Instala a nossa extensão e recebe lembretes suaves, timers inteligentes e ferramentas 
+                de organização que te ajudam a manter o foco, gerir o tempo e simplificar o teu dia.
+            </p>
+
+            <a href="#" class="btn-extensao">Instalar Extensão</a>
+        </div>
+    </section>
+
+
+    <!--FOOTER-->
+
+    <footer class="footer">
+        <div class="footer-left">
+            <span>© 2026 GRUPO 2</span>
+        </div>
+
+        <div class="footer-center">
+            <a href="#">SOBRE NÓS</a>
+            <a href="https://www.esmad.ipp.pt/">ESMAD</a>
+            <a href="https://www.esmad.ipp.pt/cursos/licenciatura/663">CURSO</a>
+            <a href="#">CONTACTOS</a>
+        </div>
+
+        <div class="footer-right">
+          <img src="images/logo fother.png" alt="Logo">
+        </div>
+    </footer>
+
+</body>
+</html>
