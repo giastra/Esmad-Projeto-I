@@ -122,7 +122,15 @@ exports.getUserById = async (req, res) => {
     res.status(500).json({ success: false, message: err.message });
   }
 };
-
+// GET /api/users/me
+exports.getMe = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).select('-password');
+    res.json({ success: true, data: user });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
 
 // PUT /api/users/me
 exports.updateUserSelf = async (req, res) => {
