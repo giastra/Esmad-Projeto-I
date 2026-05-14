@@ -10,6 +10,7 @@ router.post('/logout',   protect, userController.logout);
 router.get('/me',           protect, userController.updateUserSelf);
 router.put('/me',           protect, userController.updateUserSelf);
 router.put('/me/email',     protect, userController.updateEmail);
+router.put('/me/password', protect, userController.updatePassword);
 router.delete('/me',        protect, userController.deleteOwnUser);
 
 router.get('/',             protect, isAdmin, userController.getUsers);

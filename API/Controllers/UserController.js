@@ -175,7 +175,28 @@ exports.updateEmail = async (req, res) => {
     res.status(500).json({ success: false, message: err.message });
   }
 };
+// PUT /api/users/me/password
+exports.updatePassword = async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
 
+    if (!currentPassword || !newPassword)
+      return res.status(400).json({ success: false, message: 'Password atual e nova password são obrigatórias.' });
+
+    const user = await User.findById(req.user._id);
+
+    const match = await bcrypt.compare(currentPassword, user.password);
+    if (!match)
+      return res.status(401).json({ success: false, message: 'Password atual incorreta.' });
+
+    user.password = await bcrypt.hash(newPassword, 10);
+    await user.save();
+
+    res.json({ success: true, message: 'Password atualizada com sucesso.' });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
 
 // DELETE /api/users/me
 exports.deleteOwnUser = async (req, res) => {
