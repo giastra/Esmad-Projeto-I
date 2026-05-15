@@ -1,0 +1,119 @@
+/* SquareFont */
+@font-face {
+    font-family: 'SquareFont';
+    src: url('../fonts/Square.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Helvetica Normal */
+@font-face {
+    font-family: 'HelveticaCustom';
+    src: url('../fonts/Helvetica.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Helvetica Light */
+@font-face {
+    font-family: 'HelveticaLight';
+    src: url('../fonts/Helvetica\ Light\ Regular.otf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+
+/* ============================
+   NAVBAR
+============================ */
+.navbar {
+  position: fixed;     
+  top: 30px;            
+  left: 50%;            
+  transform: translateX(-50%); 
+  
+  width: 85%;           
+  max-width: 1300px;    
+  
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  background-color: rgba(50, 50, 50, 0.9);
+  padding: 10px 30px;
+  border-radius: 50px;  
+  backdrop-filter: blur(8px); 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  align-items: center;
+  margin: 0 ; 
+}
+.link {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 8px 10px;     
+  border-radius: 50px;   
+  transition: background 0.3s ease;
+}
+.link:hover, .link.active {
+  background-color: #a36a2e; 
+  color: white;
+}
+
+
+/* Buttons */
+.btn {
+  padding: 8px 25px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn-login {
+  background-color: #ff8c00;
+  color: white;
+}
+
+.btn-registo {
+  background-color: white;
+  color: #ff8c00;
+}
+
+.logo {
+  display: flex;       
+  align-items: center;   
+  justify-content: flex-start; 
+  gap: 10px;           
+}
+
+.logo img {
+  height: 40px;       
+  width: auto;
+  display: block;        
+  margin: 0;            
+}
+
+.logo-link {
+  display: flex;         
+  align-items: center;   
+  text-decoration: none; 
+  border: none;          
+  outline: none;
+}
+
+.logo-text {
+  font-family: 'SquareFont';
+  font-size: 30px;
+  color: white;          
+  white-space: nowrap;   
+  margin-left: 15px;    
+  text-decoration: none; 
+}
