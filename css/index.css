@@ -222,21 +222,38 @@ body {
   text-decoration: none; 
 }
 
-
-
-/* ============================
-   SECÇÃO MIDDLE
-============================ */
-.middle {
-    position: relative;  
-    height: 3000px;
-    padding: 120px 0;
-    background-image: url('../images/Homepage-meio.png');
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
+/* Ícone hambúrguer */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
 }
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+}
+
+@media (max-width: 950px) {
+
+    /* Esconder links da navbar */
+    .nav-links {
+      display: none !important;
+    }
+    .logo-text {
+      display: none;
+    }
+
+    /* Mostrar hambúrguer */
+    .hamburger {
+      display: flex !important;
+    }
+}
+
+
 
 
 /* ============================
@@ -316,7 +333,7 @@ body {
    RESPONSIVIDADE GERAL
 ============================ */
 
-@media (max-width: 1024px) {
+@media (max-width: 950px) {
 
     /* HERO */
     .hero h1 {
@@ -343,10 +360,12 @@ body {
     /* EXTENSÃO */
     .extension-content h2 {
         font-size: 48px;
+        color: rgb(43, 42, 42);
     }
 
     .extension-content p {
         font-size: 18px;
+        color: rgb(43, 42, 42) !important;
     }
 
     .btn-extensao {
@@ -415,12 +434,10 @@ body {
     .extension-content h2 {
         font-size: 32px;
         padding-top: 40px;
-        color: black;
     }
 
     .extension-content p {
         font-size: 16px;
-        color: black !important;
     }
 
     .btn-extensao {
@@ -439,9 +456,9 @@ body {
 
     .footer a,
     .footer-center a {
-        color: black !important;   /* Mantém sempre preto */
-        font-size: 10px;           /* Diminui a letra */
-        margin-left: 20px;         /* Ajusta espaçamento */
+        color: black !important;  
+        font-size: 10px;         
+        margin-left: 20px;       
     }
     .footer span {
         font-size: 12px

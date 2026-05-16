@@ -22,6 +22,10 @@
     font-style: normal;
 }
 
+body {
+  margin: 0;
+  font-family: 'HelveticaCustom';
+}
 
 
 /* ============================
@@ -76,16 +80,32 @@
   text-decoration: none;
   font-weight: bold;
 }
-
+/* LOGIN */
 .btn-login {
-  background-color: #ff8c00;
-  color: white;
+    background-color: #ff7b00;
+    color: white;
+    border: 2px solid #ff7b00;
+    transition: 0.2s;
 }
 
-.btn-registo {
-  background-color: white;
-  color: #ff8c00;
+.btn-login:hover {
+    background-color: #ffffff;
+    color: #ff7b00;
 }
+
+/* REGISTO */
+.btn-registo {
+    background-color: white;
+    color: #ff7b00;
+    border: 2px solid #ff7b00;
+    transition: 0.2s;
+}
+
+.btn-registo:hover {
+    background-color: #ff7b00;
+    color: white;
+}
+
 
 .logo {
   display: flex;       
@@ -116,4 +136,136 @@
   white-space: nowrap;   
   margin-left: 15px;    
   text-decoration: none; 
+}
+
+/* Ícone hambúrguer */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+}
+
+@media (max-width: 950px) {
+
+    /* Esconder links da navbar */
+    .nav-links {
+      display: none !important;
+    }
+    .logo-text {
+      display: none;
+    }
+
+    /* Mostrar hambúrguer */
+    .hamburger {
+        display: flex !important;
+    }
+}
+
+
+/* ============================
+   CONTÉUDO
+============================ */
+.middle-section {
+  min-height: 100vh;
+  padding-top: 160px;
+  background: linear-gradient(135deg, #ff9a5a, #7b4bff);
+}
+
+.contact-form {
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: rgb(43, 43, 43);
+  background-color: #ffffff;
+  border-radius: 20px;
+  font-family: sans-serif;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.contact-form textarea {
+  height: 120px;
+}
+
+.contact-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ff6200, #4400ff);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background: linear-gradient(135deg, #ff7a26, #5a1aff);
+  box-shadow: 0 0 12px rgba(255, 98, 0, 0.6),
+              0 0 12px rgba(68, 0, 255, 0.6);
+}
+
+.contact-form button:focus,
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+/* ============================
+   FOOTER
+============================ */
+
+.footer {
+    width: 100%;
+    height: 20px;
+    margin-top: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 80px;
+    font-family: 'HelveticaCustom';
+}
+
+.footer-center a {
+    margin-left: 50px;
+    color: black;
+}
+/*FOOTER*/
+
+@media (max-width: 768px) {
+
+    .footer {
+        padding: 0 30px;
+        height: 60px;
+    }
+
+    .footer a,
+    .footer-center a {
+        color: black !important;   
+        font-size: 10px;           
+        margin-left: 20px;         
+    }
+    .footer span {
+        font-size: 12px
+    }
 }

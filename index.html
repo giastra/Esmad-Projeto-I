@@ -53,63 +53,117 @@
       <ul class="nav-links">
         <li><a href="html/Sobre_nós.html" class="link">Sobre nós</a></li>
         <li><a href="html/Contatos.html" class="link">Contactos</a></li>
-        <li><a href="#" class="btn-login">LOGIN</a></li>
-        <li><a href="#" class="btn-registo">REGISTO</a></li>
+        <li><a href="#" class="         btn btn-login">LOGIN</a></li>
+        <li><a href="#" class="btn btn-registo">REGISTO</a></li>
       </ul>
+
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </nav>
     
 
     <!--MEIO-->
 
-    <section class="middle">
+ <section class="middle">
 
-     <div class="geo-wrapper">
+    <div class="geo-scale">
 
-        <div class="shape-left-rect reveal-geo"></div>
-        <div class="shape-left-triangle reveal-geo"></div>
+        <div class="geo-wrapper">
 
-        <div class="line-left-1 reveal-geo"></div>
-        <div class="line-left-2 reveal-geo"></div>
-        <div class="line-left-3 reveal-geo"></div>
+            <!-- FORMAS ESQUERDA -->
+            <div class="shape-left-rect reveal-geo"></div>
+            <div class="shape-left-triangle reveal-geo"></div>
 
-        <div class="shape-circle reveal-geo"></div>
+            <!-- LINHAS ESQUERDA -->
+            <div class="line-left-1 reveal-geo"></div>
+            <div class="line-left-2 reveal-geo"></div>
+            <div class="line-left-3 reveal-geo"></div>
 
-        <div class="middle-line reveal-geo"></div>
+            <!-- CÍRCULO -->
+            <div class="shape-circle reveal-geo"></div>
 
-        <div class="shape-rect-big reveal-geo">
-            <div class="middle-content">
-                <p class="t1">POMODORO</p>
-                <p class="p1">Foca-te por blocos de tempo</p>
-                <p class="p2">Trabalha 25 minutos, faz uma pausa de 5.</p>
+            <!-- LINHA CENTRAL -->
+            <div class="middle-line reveal-geo"></div>
+
+            <!-- RETÂNGULO GRANDE -->
+            <div class="shape-rect-big reveal-geo">
+
+                <div class="middle-content">
+
+                    <p class="t1">POMODORO</p>
+
+                    <p class="p1">
+                        Foca-te por blocos de tempo
+                    </p>
+
+                    <p class="p2">
+                        Trabalha 25 minutos, faz uma pausa de 5.
+                    </p>
+
+                </div>
+
             </div>
+
+            <!-- LINHAS DIREITA -->
+            <div class="line-center-1 reveal-geo"></div>
+            <div class="line-center-2 reveal-geo"></div>
+
+            <!-- RETÂNGULO PEQUENO -->
+            <div class="shape-rect-small reveal-geo"></div>
+
+            <!-- LINHA HORIZONTAL -->
+            <div class="line-horizontal reveal-geo"></div>
+
         </div>
 
-        <div class="line-center-1 reveal-geo"></div>
-        <div class="line-center-2 reveal-geo"></div>
+    </div>
 
-        <div class="shape-rect-small reveal-geo"></div>
+   <script>
 
-        <div class="line-horizontal reveal-geo"></div>
+    function scaleGeo(){
 
-     </div>
+        const wrapper=document.querySelector('.geo-scale');
+
+        const baseWidth=1440;
+
+        const screenWidth=window.innerWidth;
+
+        const scale=Math.min(screenWidth/baseWidth,1);
+
+        wrapper.style.transform=`scale(${scale})`;
+
+        /* diminui espaço vertical proporcionalmente */
+        wrapper.style.height=`${2600*scale}px`;
+    }
+
+    window.addEventListener('resize',scaleGeo);
+
+    scaleGeo();
 
 
+    document.addEventListener("DOMContentLoaded",()=>{
 
+        const elements=document.querySelectorAll('.reveal-geo');
 
+        const observer=new IntersectionObserver((entries)=>{
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-        const elements = document.querySelectorAll('.reveal-geo');
+            entries.forEach(entry=>{
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if(entry.isIntersecting){
+
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.2 });
-    
-        elements.forEach(el => observer.observe(el));
+
+        },{
+        threshold:0.2
+        });
+
+        elements.forEach(el=>observer.observe(el));
+
     });
 
     </script>
