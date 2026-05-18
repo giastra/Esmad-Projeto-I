@@ -1,0 +1,29 @@
+body{
+    background-color: #F8F5F5;
+}
+
+#escondido{
+    color: #F8F5F5;
+    font-size: 0.001%;
+}
+
+.tasks{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+   
+}
+
+.linhaTxt{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+#parte{
+    background-color: rgb(255, 255, 255);
+  
+}
+ 
