@@ -1,0 +1,369 @@
+@font-face {
+    font-family: 'SquareFont';
+    src: url('../fonts/Square.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Helvetica Normal */
+@font-face {
+    font-family: 'HelveticaCustom';
+    src: url('../fonts/Helvetica.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Helvetica Light */
+@font-face {
+    font-family: 'HelveticaLight';
+    src: url('../fonts/Helvetica\ Light\ Regular.otf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+/*----------------------------------------------------------------*/
+
+body {
+    margin: 0;
+    font-family: 'HelveticaCustom';
+}
+
+/* ============================
+   NAVBAR
+============================ */
+.navbar {
+  position: fixed;     
+  top: 20px;            
+  left: 50%;            
+  transform: translateX(-50%); 
+  
+  width: 85%;           
+  max-width: 1100px;    
+  
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  background-color: rgb(255, 162, 0);
+  padding: 2px 30px;
+  border-radius: 50px;  
+  backdrop-filter: blur(8px); 
+  box-shadow: 0 10px 10px rgba(126, 126, 126, 0.3);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  align-items: center;
+  margin: 0 ; 
+}
+.link {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 8px 10px;     
+  border-radius: 50px;   
+  transition: background 0.3s ease;
+}
+.link:hover, .link.active {
+  background-color: #ffffff; 
+  color: rgb(0, 0, 0);
+}
+
+.logo {
+  display: flex;       
+  align-items: center;   
+  justify-content: flex-start; 
+  gap: 10px;           
+}
+
+.logo img {
+  height: 40px;       
+  width: auto;
+  display: block;        
+  margin: 0;            
+}
+
+.logo-link {
+  display: flex;         
+  align-items: center;   
+  text-decoration: none; 
+  border: none;          
+  outline: none;
+}
+
+.logo-text {
+  font-family: 'SquareFont';
+  font-size: 30px;
+  margin-top: 7px;
+  color: white;          
+  white-space: nowrap;   
+  margin-left: 15px;    
+  text-decoration: none; 
+}
+
+/* Ícone hambúrguer */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: white;
+    border-radius: 3px;
+}
+
+@media (max-width: 1130px) {
+
+    /* Esconder links da navbar */
+    .nav-links {
+      display: none !important;
+    }
+    .logo-text {
+      display: none;
+    }
+
+    /* Mostrar hambúrguer */
+    .hamburger {
+      display: flex !important;
+    }
+}
+
+/* GRID */
+.container {
+  display: grid;
+
+  grid-template-areas:
+    "tarefas categorias"
+    "ferramentas ferramentas";
+
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+
+  gap: 20px;
+  width: 85%;
+  max-width: 1100px;
+  margin-top: 75px;
+  margin-bottom: 100px;
+}
+
+/* Caixas gerais */
+.box {
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Botões gerais */
+.box button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: 400;
+  transition: 0.3s ease;
+}
+
+/* Áreas principais */
+.tarefas {
+  grid-area: tarefas;
+  background-color: #c6c6c6;
+  height: 400px;
+}
+
+.categorias {
+  grid-area: categorias;
+  background-color: #c6c6c6;
+}
+
+.btn-link {
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: #464646;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 400;
+  text-decoration: none;
+  display: inline-block;
+  transition: 0.3s ease;
+}
+
+.categorias .btn-link {
+  background-color: #d68fff;
+}
+
+.categorias .btn-link:hover {
+  background-color: #ffffff;
+  color: #d68fff;
+}
+
+.tarefas .btn-link:hover {
+  background-color: #ffffff;
+  color: #464646;
+}
+
+
+
+/* GRID das ferramentas */
+.ferramentas {
+  grid-area: ferramentas;
+  height: 130px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.ferramentas a {
+  text-decoration: none;
+}
+
+
+/* Classes individuais das ferramentas */
+.ferramenta-calendario {
+  background-image: url("../images/Calendário.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ferramenta-pomodoro {
+  background-image: url("../images/Pomodoro.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ferramenta-diario {
+  background-image: url("../images/Diário.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Botões das ferramentas*/
+.ferramenta-calendario button {
+  background: #ff8800;
+  color: #fff;
+}
+
+.ferramenta-pomodoro button {
+  background: #f74130;
+  color: #fff;
+}
+
+.ferramenta-diario button {
+  background: #b28dff;
+  color: #fff;
+}
+
+/* HOVER — só nas ferramentas */
+.ferramenta-calendario:hover button {
+  background: #ffffff;
+  color: #ff8800;
+}
+
+.ferramenta-pomodoro:hover button {
+  background: #ffffff;
+  color: #ff0000;
+}
+
+.ferramenta-diario:hover button {
+  background: #ffffff;
+  color: #b28dff;
+}
+
+/* Animação Box*/
+.ferramenta-calendario,
+.ferramenta-pomodoro,
+.ferramenta-diario {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ferramenta-calendario:hover,
+.ferramenta-pomodoro:hover,
+.ferramenta-diario:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+
+
+/* ============================
+   MAIN
+============================ */
+
+main {
+  min-height: 100vh;
+  padding-top: 120px;
+  padding-bottom: 30px;
+}
+
+.hero-sobre {
+  text-align: left;
+  width: 85%;            
+  max-width: 1100px;     
+  margin: 20px auto; 
+}
+.hero-sobre h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+/* ============================
+   FOOTER
+============================ */
+
+.footer {
+    width: 100%;
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 40px;
+    font-family: 'HelveticaCustom';
+}
+
+.footer-center a {
+    margin-left: 50px;
+    font-size: 15px;
+    color: black;
+}
+/*FOOTER*/
+
+@media (max-width: 768px) {
+
+    .footer {
+        padding: 0 30px;
+        height: 60px;
+    }
+
+    .footer a,
+    .footer-center a {
+        color: black !important;  
+        font-size: 10px;         
+        margin-left: 20px;       
+    }
+    .footer span {
+        font-size: 12px
+    }
+}
