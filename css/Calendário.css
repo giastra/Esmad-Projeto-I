@@ -1,31 +1,36 @@
+/* ============================
+   FONTES
+============================ */
 @font-face {
     font-family: 'SquareFont';
     src: url('../fonts/Square.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
 }
 
-/* Helvetica Normal */
 @font-face {
     font-family: 'HelveticaCustom';
     src: url('../fonts/Helvetica.ttf') format('truetype');
     font-weight: 400;
-    font-style: normal;
 }
 
-/* Helvetica Light */
 @font-face {
     font-family: 'HelveticaLight';
-    src: url('../fonts/Helvetica\ Light\ Regular.otf') format('truetype');
+    src: url('../fonts/Helvetica Light Regular.otf') format('truetype');
     font-weight: 300;
-    font-style: normal;
 }
 
-/*----------------------------------------------------------------*/
+/* ============================
+   BASE
+============================ */
+html, body {
+    height: 100%;
+    margin: 0;
+}
 
 body {
-    margin: 0;
     font-family: 'HelveticaCustom';
+    display: flex;
+    flex-direction: column;
+    background: #fff;
 }
 
 /* ============================
@@ -121,7 +126,6 @@ body {
 
 @media (max-width: 1130px) {
 
-    /* Esconder links da navbar */
     .nav-links {
       display: none !important;
     }
@@ -129,15 +133,143 @@ body {
       display: none;
     }
 
-    /* Mostrar hambúrguer */
     .hamburger {
       display: flex !important;
     }
 }
+
+
 /* ============================
-   FOOTER
+   MAIN
 ============================ */
 
+main {
+  flex: 1;                
+  padding-top: 120px;
+  padding-bottom: 20px;
+}
+
+.hero-sobre {
+  text-align: left;
+  width: 85%;            
+  max-width: 1100px;     
+  margin: 20px auto; 
+}
+.hero-sobre h1 {
+  font-size: 30px;
+  margin-top: 150px;
+}
+
+/* WRAPPER PRINCIPAL */
+.calendar-wrapper {
+    width: 85%;
+    max-width: 1100px;
+    margin: auto auto 60px auto;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 30px;
+}
+
+/* LATERAL ESQUERDA */
+.calendar-left {
+    background: #E0E0E0;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.day-box {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.day-box h3 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.divider {
+    width: 100%;
+    height: 1px;
+    background: black;
+    margin: 10px 0 15px 0;
+}
+
+/* CALENDÁRIO PRINCIPAL */
+.calendar-main {
+    background: #E0E0E0;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+/* BARRA SUPERIOR */
+.calendar-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 20px;
+}
+
+.arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid #4E4E4E;
+    background: transparent;
+}
+
+.arrow.left {
+    transform: rotate(180deg);
+}
+
+.month-display {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.month-name {
+    font-size: 35px;
+    color: #4E4E4E;
+    font-family: 'HelveticaLight';
+}
+
+.month-year {
+    font-size: 35px;
+    color: white;
+    background: #737373;
+    padding: 5px 20px;
+    border-radius: 20px;
+}
+
+/* GRELHA DO CALENDÁRIO */
+.calendar-grid {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.day {
+    background: #F5F5F5;
+    border-radius: 10px;
+    padding: 8px;
+    min-height: 90px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 16px;
+}
+
+
+/* ============================
+   FOOTER (mantido igual)
+============================ */
 .footer {
     width: 100%;
     height: 80px;
@@ -148,6 +280,8 @@ body {
 
     padding: 0 80px;
     font-family: 'HelveticaCustom';
+
+    margin-top: auto;
 }
 
 .footer-center a {
@@ -155,10 +289,8 @@ body {
     font-size: 15px;
     color: black;
 }
-/*FOOTER*/
 
 @media (max-width: 768px) {
-
     .footer {
         padding: 0 30px;
         height: 60px;
@@ -166,11 +298,12 @@ body {
 
     .footer a,
     .footer-center a {
-        color: black !important;  
-        font-size: 10px;         
-        margin-left: 20px;       
+        color: black !important;
+        font-size: 10px;
+        margin-left: 20px;
     }
+
     .footer span {
-        font-size: 12px
+        font-size: 12px;
     }
 }

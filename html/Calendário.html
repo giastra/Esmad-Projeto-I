@@ -1,40 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <!--Bootstrap-->
+    <title>Calendário</title>
+     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/Calendário.css">
 </head>
-<body>
-    <nav class="navbar">
-      <div class="logo">
-           <a href="../index.html" class="logo-link">
-             <img src="../images/logo principal.png" alt="STAD TO DO">
-            <span class="logo-text">STAD TO DO</span>
-           </a>
-       </div>
-  
-      <ul class="nav-links">
-          <li><a href="Home.html" class="link">Início</a></li>
-          <li><a href="Categorias.html" class="link">Categorias</a></li>
-          <li><a href="Tarefas.html" class="link">Tarefas</a></li>
-          <li><a href="Calendário.html" class="link active">Calendário</a></li>
-          <li><a href="Diário.html" class="link">Diário</a></li>
-          <li><a href="#" class="link">Pomodoro</a></li>
-          <li><a href="Perfil.html" class="link">Perfil</a></li>
-      </ul>
 
-      <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+<body>
+
+    <!-- ========================= -->
+    <!--          NAVBAR           -->
+    <!-- ========================= -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="../index.html" class="logo-link">
+                <img src="../images/logo principal.png" alt="STAD TO DO">
+                <span class="logo-text">STAD TO DO</span>
+            </a>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="Home.html" class="link">Início</a></li>
+            <li><a href="Categorias.html" class="link">Categorias</a></li>
+            <li><a href="Tarefas.html" class="link">Tarefas</a></li>
+            <li><a href="Calendário.html" class="link active">Calendário</a></li>
+            <li><a href="Diário.html" class="link">Diário</a></li>
+            <li><a href="#" class="link">Pomodoro</a></li>
+            <li><a href="Perfil.html" class="link">Perfil</a></li>
+        </ul>
+
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
 
+    <section class="hero-sobre">    
+        <h1>Calendário</h1>
+    </section>
+
+    <main class="calendar-wrapper">
+
+        <!-- LATERAL ESQUERDA -->
+        <aside class="calendar-left">
+            <div class="day-box">
+                <h3>Dia 03</h3>
+                <div class="divider"></div>
+            </div>
+        </aside>
+
+        <!-- CALENDÁRIO PRINCIPAL -->
+        <section class="calendar-main">
+
+            <!-- BARRA SUPERIOR -->
+            <div class="calendar-top">
+                <button class="arrow left"></button>
+
+                <div class="month-display">
+                    <span class="month-name">JUNHO</span>
+                    <span class="month-year">2026</span>
+                </div>
+
+                <button class="arrow right"></button>
+            </div>
+
+            <!-- GRELHA DO CALENDÁRIO -->
+            <div class="calendar-grid">
+                <div class="day">1</div>
+                    <div class="day">2</div>
+                <div class="day">3</div>
+                <div class="day">4</div>
+                <div class="day">5</div>
+                <div class="day">6</div>
+                <div class="day">7</div>
+                <div class="day">8</div>
+                <div class="day">9</div>
+                <div class="day">10</div>
+                <div class="day">11</div>
+                <div class="day">12</div>
+                <div class="day">13</div>
+                <div class="day">14</div>
+                <div class="day">15</div>
+                <div class="day">16</div>
+                <div class="day">17</div>
+                <div class="day">18</div>
+                <div class="day">19</div>
+                <div class="day">20</div>
+                <div class="day">22</div>
+                <div class="day">23</div>
+                <div class="day">24</div>
+                <div class="day">25</div>
+                <div class="day">26</div>
+                <div class="day">27</div>
+                <div class="day">28</div>
+                <div class="day">29</div>
+                <div class="day">30</div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ========================= -->
+    <!--           FOOTER          -->
+    <!-- ========================= -->
     <footer class="footer">
         <div class="footer-left">
             <span>© 2026 GRUPO 2</span>
@@ -48,8 +122,9 @@
         </div>
 
         <div class="footer-right">
-          <img src="../images/logo fother.png" alt="Logo">
+            <img src="../images/logo fother.png" alt="Logo">
         </div>
     </footer>
+
 </body>
 </html>

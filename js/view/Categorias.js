@@ -1,7 +1,18 @@
+/* ============================
+   BOTÕES E ELEMENTOS BASE
+============================ */
+
 const btnAdd = document.querySelector(".btn-add");
 const middle = document.getElementById("middle");
+const btnDeleteCategorias = document.querySelector(".btn-delete");
 
-// Abrir modal ao clicar no botão
+let modoEliminarCategoria = false;
+
+
+/* ============================
+   ABRIR MODAL DE CRIAR CATEGORIA
+============================ */
+
 btnAdd.addEventListener("click", () => {
     criarModal();
 });
@@ -24,7 +35,6 @@ function criarModal() {
     document.body.appendChild(modal);
     modal.style.display = "flex";
 
-    // Criar card ao clicar no botão da modal
     modal.querySelector("#criarCategoria").addEventListener("click", () => {
         const titulo = modal.querySelector("#tituloCategoria").value.trim();
         if (titulo === "") return;
@@ -33,11 +43,15 @@ function criarModal() {
         modal.remove();
     });
 
-    // Fechar modal
     modal.addEventListener("click", (e) => {
         if (e.target === modal) modal.remove();
     });
 }
+
+
+/* ============================
+   CRIAR CARD DE CATEGORIA
+============================ */
 
 function criarCard(titulo) {
     const card = document.createElement("div");
@@ -50,7 +64,7 @@ function criarCard(titulo) {
         <div class="d-flex align-items-center gap-2">
             <div class="progress flex-grow-1" style="height: 8px; border-radius: 10px;">
                 <div class="progress-bar" role="progressbar" style="width: 0%; background:#7b4bff;"></div>
-                </div>
+            </div>
             <span style="font-size: 12px; font-weight: 600;">0/10</span>
         </div>
     </div>
@@ -59,26 +73,34 @@ function criarCard(titulo) {
     middle.appendChild(card);
 }
 
-let modoEliminar = false;
 
-const btnDelete = document.querySelector(".btn-delete");
+/* ============================
+   MODO ELIMINAR CATEGORIAS
+============================ */
 
+btnDeleteCategorias.addEventListener("click", () => {
 
-// Ativar modo eliminar
-btnDelete.addEventListener("click", () => {
-    modoEliminar = true;
-    btnDelete.classList.add("ativo");
+    // Toggle
+    modoEliminarCategoria = !modoEliminarCategoria;
+
+    if (modoEliminarCategoria) {
+        btnDeleteCategorias.classList.add("ativo");
+    } else {
+        btnDeleteCategorias.classList.remove("ativo");
+    }
+
+    document.querySelectorAll(".modal").forEach(m => m.remove());
 });
 
-// Delegação de eventos para eliminar cards
 middle.addEventListener("click", (e) => {
-    if (!modoEliminar) return;
+    if (!modoEliminarCategoria) return;
 
     const card = e.target.closest(".category-card");
     if (!card) return;
 
     card.remove();
 
-    modoEliminar = false;
-    btnDelete.classList.remove("ativo");
+    modoEliminarCategoria = false;
+    btnDeleteCategorias.classList.remove("ativo");
 });
+

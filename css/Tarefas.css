@@ -16,16 +16,43 @@
 /* Helvetica Light */
 @font-face {
     font-family: 'HelveticaLight';
-    src: url('../fonts/Helvetica\ Light\ Regular.otf') format('truetype');
+    src: url('../fonts/Helvetica Light Regular.otf') format('truetype');
     font-weight: 300;
     font-style: normal;
 }
 
 /*----------------------------------------------------------------*/
 
-body {
+html, body {
+    height: 100%;
     margin: 0;
+}
+
+body {
     font-family: 'HelveticaCustom';
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================
+   MAIN
+============================ */
+
+main {
+  flex: 1;                
+  padding-top: 120px;
+  padding-bottom: 20px;
+}
+
+.hero-sobre {
+  text-align: left;
+  width: 85%;            
+  max-width: 1100px;     
+  margin: 20px auto; 
+}
+.hero-sobre h1 {
+  font-size: 30px;
+  margin-bottom: 10px;
 }
 
 /* ============================
@@ -121,7 +148,6 @@ body {
 
 @media (max-width: 1130px) {
 
-    /* Esconder links da navbar */
     .nav-links {
       display: none !important;
     }
@@ -129,11 +155,243 @@ body {
       display: none;
     }
 
-    /* Mostrar hambúrguer */
     .hamburger {
       display: flex !important;
     }
 }
+
+/* ============================
+   FILTROS
+============================ */
+.filtros {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 85%;
+    max-width: 1100px;
+    margin: 30px auto 30px auto;
+}
+
+.acoes {
+    margin-left: auto;
+    display: flex;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.btn-filtro {
+    padding: 10px 18px;
+    margin-top: 20px;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    background: #d68fff;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-filtro:hover {
+    background: white;
+    color: #d68fff;
+    border: 2px solid #d68fff;
+}
+
+.btn-add {
+    background: #d68fff;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 15px;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+.btn-add:hover {
+    background: white;
+    color: #d68fff;
+    border: 2px solid #d569ff;
+}
+
+/* botão delete normal */
+.btn-delete {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* hover normal (fora do modo delete) */
+.btn-delete:hover {
+    background: #f2f2f2;
+}
+
+/* MODO DELETE ATIVO */
+.btn-delete.ativo {
+    background: #ff4d4d;
+    border-color: #cc0000;
+    transform: scale(1.05);
+}
+
+/* ícone dentro do botão quando ativo (se for imagem) */
+.btn-delete.ativo img {
+    filter: brightness(0) invert(1);
+}
+
+
+/* ============================
+   TAREFAS
+============================ */
+.tarefas-container {
+    width: 85%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+}
+
+.coluna {
+    flex: 1;
+}
+
+/* Caixa geral */
+.lista-tarefas {
+    background: #f5f5f5;
+    border-radius: 15px;
+    overflow: hidden;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 0; 
+}
+
+/* Header colorido */
+.lista-header {
+    padding: 12px 18px;
+}
+
+.header-progresso {
+    background: #ffd27f; 
+}
+
+.header-concluido {
+    background: #b4f8c8;
+}
+
+.lista-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* Área onde as tarefas são adicionadas */
+.lista-conteudo {
+    padding: 20px;
+    flex: 1;
+}
+
+/* Tarefa */
+.tarefa {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    padding: 12px 15px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+
+.tarefa .texto {
+    flex: 1;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.yellow { background: #ffb347; }
+
+/*CheckBox*/
+.check {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    accent-color: #5675ff;
+}
+
+
+/* ============================
+   MODAL
+============================ */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Caixa da modal */
+.modal-content {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    width: 330px;
+    border: 1px solid #e5e5e5;
+}
+
+/* Títulos */
+.modal-content h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.modal-content h5 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #555;
+}
+
+/* Inputs e textarea */
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 18px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+/* Texto da descrição na modal de detalhes */
+.modal-content p {
+    background: #f4f4f4;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #444;
+    border: 1px solid #ddd;
+    line-height: 1.4;
+}
+
+/* Botão principal (Criar) */
+.btn-modal-add {
+    width: 100%;
+    padding: 12px;
+    background: #ff7a26;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
 /* ============================
    FOOTER
 ============================ */
@@ -148,6 +406,7 @@ body {
 
     padding: 0 80px;
     font-family: 'HelveticaCustom';
+    margin-top: auto;
 }
 
 .footer-center a {
@@ -155,7 +414,6 @@ body {
     font-size: 15px;
     color: black;
 }
-/*FOOTER*/
 
 @media (max-width: 768px) {
 

@@ -16,16 +16,22 @@
 /* Helvetica Light */
 @font-face {
     font-family: 'HelveticaLight';
-    src: url('../fonts/Helvetica\ Light\ Regular.otf') format('truetype');
+    src: url('../fonts/Helvetica Light Regular.otf') format('truetype');
     font-weight: 300;
     font-style: normal;
 }
 
 /*----------------------------------------------------------------*/
 
-body {
+html, body {
+    height: 100%;
     margin: 0;
+}
+
+body {
     font-family: 'HelveticaCustom';
+    display: flex;
+    flex-direction: column;
 }
 
 /* ============================
@@ -59,6 +65,7 @@ body {
   align-items: center;
   margin: 0 ; 
 }
+
 .link {
   text-decoration: none;
   color: white;
@@ -67,6 +74,7 @@ body {
   border-radius: 50px;   
   transition: background 0.3s ease;
 }
+
 .link:hover, .link.active {
   background-color: #ffffff; 
   color: rgb(0, 0, 0);
@@ -121,7 +129,6 @@ body {
 
 @media (max-width: 1130px) {
 
-    /* Esconder links da navbar */
     .nav-links {
       display: none !important;
     }
@@ -129,11 +136,11 @@ body {
       display: none;
     }
 
-    /* Mostrar hambúrguer */
     .hamburger {
       display: flex !important;
     }
 }
+
 /* ============================
    FOOTER
 ============================ */
@@ -148,6 +155,8 @@ body {
 
     padding: 0 80px;
     font-family: 'HelveticaCustom';
+
+    margin-top: auto; /* FIXA O FOOTER NO FUNDO */
 }
 
 .footer-center a {
@@ -155,7 +164,6 @@ body {
     font-size: 15px;
     color: black;
 }
-/*FOOTER*/
 
 @media (max-width: 768px) {
 
@@ -170,7 +178,9 @@ body {
         font-size: 10px;         
         margin-left: 20px;       
     }
+
     .footer span {
-        font-size: 12px
+        font-size: 12px;
     }
 }
+
