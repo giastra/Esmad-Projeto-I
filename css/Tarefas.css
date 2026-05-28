@@ -1,38 +1,3 @@
-@font-face {
-    font-family: 'SquareFont';
-    src: url('../fonts/Square.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/* Helvetica Normal */
-@font-face {
-    font-family: 'HelveticaCustom';
-    src: url('../fonts/Helvetica.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-
-/* Helvetica Light */
-@font-face {
-    font-family: 'HelveticaLight';
-    src: url('../fonts/Helvetica Light Regular.otf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
-
-/*----------------------------------------------------------------*/
-
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
-body {
-    font-family: 'HelveticaCustom';
-    display: flex;
-    flex-direction: column;
-}
 
 /* ============================
    MAIN
@@ -402,45 +367,4 @@ main {
     font-weight: bold;
     cursor: pointer;
     margin-top: 5px;
-}
-
-/* ============================
-   FOOTER
-============================ */
-
-.footer {
-    width: 100%;
-    height: 80px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 80px;
-    font-family: 'HelveticaCustom';
-    margin-top: auto;
-}
-
-.footer-center a {
-    margin-left: 50px;
-    font-size: 15px;
-    color: black;
-}
-
-@media (max-width: 768px) {
-
-    .footer {
-        padding: 0 30px;
-        height: 60px;
-    }
-
-    .footer a,
-    .footer-center a {
-        color: black !important;  
-        font-size: 10px;         
-        margin-left: 20px;       
-    }
-    .footer span {
-        font-size: 12px
-    }
 }

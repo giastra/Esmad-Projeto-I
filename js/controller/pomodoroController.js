@@ -22,7 +22,7 @@ export function initPomodoroController() {
         let s = currentTime % 60;
         timeDisplay.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
     }
-
+    //INICIAR
     function startTimer() {
         if (interval) return;
 
@@ -38,12 +38,12 @@ export function initPomodoroController() {
             }
         }, 1000);
     }
-
+    //PAUSA
     function pauseTimer() {
         clearInterval(interval);
         interval = null;
     }
-
+    //RESET
     function resetTimer() {
         pauseTimer();
         mode = "focus";
@@ -77,7 +77,7 @@ export function initPomodoroController() {
         startTimer();
     }
 
-    // 🔥 BOTÃO INICIAR/PARAR (TOGGLE)
+    // BOTÃO INICIAR/PARAR (TOGGLE)
     startBtn.addEventListener("click", () => {
         if (!interval) {
             startTimer();

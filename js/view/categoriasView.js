@@ -1,6 +1,4 @@
-/* ============================
-   BOTÕES E ELEMENTOS BASE
-============================ */
+/* BOTÕES E ELEMENTOS BASE */
 
 const btnAdd = document.querySelector(".btn-add");
 const middle = document.getElementById("middle");
@@ -9,9 +7,7 @@ const btnDeleteCategorias = document.querySelector(".btn-delete");
 let modoEliminarCategoria = false;
 
 
-/* ============================
-   ABRIR MODAL DE CRIAR CATEGORIA
-============================ */
+/* ABRIR MODAL DE CRIAR CATEGORIA */
 
 btnAdd.addEventListener("click", () => {
     criarModal();
@@ -49,9 +45,7 @@ function criarModal() {
 }
 
 
-/* ============================
-   CRIAR CARD DE CATEGORIA
-============================ */
+/* CRIAR CARD DE CATEGORIA */
 
 function criarCard(titulo) {
     const card = document.createElement("div");
@@ -74,9 +68,7 @@ function criarCard(titulo) {
 }
 
 
-/* ============================
-   MODO ELIMINAR CATEGORIAS
-============================ */
+/* MODO ELIMINAR CATEGORIAS */
 
 btnDeleteCategorias.addEventListener("click", () => {
 
