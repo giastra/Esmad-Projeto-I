@@ -12,7 +12,7 @@ function SImg(objeto) {
     else {return ""}
 }
 
-function Rend(objeto,Tpin=pin){`
+function Rend(objeto,Tpin=pin){return`
             <div class="tasks" name="${objeto.name}">
             <div class='linhaTxt'>
             <input type="checkbox" >
@@ -20,12 +20,12 @@ function Rend(objeto,Tpin=pin){`
             </div>
             <div class='pin'>
              <img src="${SImg(objeto.priority)}" width="15px" height="15px">
-             <img src="${pin}" name="${objeto.name}" width="15px" height="15px">
+             <img src="${Tpin}" name="${objeto.name}" width="15px" height="15px">
             </div>
             </div>` }
 
 function RendBtn(){
-    `
+    return`
         <p id="tarefaAtiva">Tarefa Prioritaria</p>
         <hr>
         <div class="botoes">
@@ -83,10 +83,10 @@ function todas(){
 for (let num in tasks) {
     document.getElementById("tarefas").innerHTML+=Rend(tasks[num])
 }
-    document.getElementById("telaInicial").innerHTML=RendBtn
+    document.getElementById("telaInicial").innerHTML=RendBtn()
     
         // todas btn
-        document.getElementById("Todas").addEventListener('click',function(){
+    document.getElementById("Todas").addEventListener('click',function(){
             console.log('todas');
             todas()
         })
@@ -115,12 +115,12 @@ for (let num in tasks) {
         listaB.map(n => lista.push(n))
         for (let num in lista){
         document.getElementById("tarefas").innerHTML+=Rend(lista[num])
-              
-        }})
+        }
+    })
 }
 
 // inicial 
-
+todas()
 let statu=false
  let num =0
 document.getElementById('tarefas').addEventListener('click',function(){
@@ -134,7 +134,7 @@ document.getElementById('tarefas').addEventListener('click',function(){
 
 
         if (statu == false && pin!=null){
-            document.getElementById("tarefas").innerHTML=Rend(lista[num],pinIN)   
+            document.getElementById("tarefas").innerHTML=Rend(tasks[num],pinIN)   
             statu=true
 
             document.getElementById("telaInicial").innerHTML=``
@@ -145,8 +145,5 @@ document.getElementById('tarefas').addEventListener('click',function(){
             document.getElementById("tarefas").innerHTML=''
             todas()
         }
-    
-    
-
 })
 
