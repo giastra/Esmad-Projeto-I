@@ -9,7 +9,7 @@ let tasks = ["limpar o chão","Fazer o dever de casa","Trabalhar muito"]
 
 function todas(){
 for (let num in tasks) {
-    document.getElementById("parte").innerHTML+=`
+    document.getElementById("tarefas").innerHTML+=`
             <div class="tasks" name="${tasks[num]}">
             <div class='linhaTxt'>
             <input type="checkbox" >
@@ -21,14 +21,23 @@ for (let num in tasks) {
             </div>
             </div>`  
 }
+    document.getElementById("telaInicial").innerHTML=`
+        <p id="tarefaAtiva">Tarefa Prioritaria</p>
+        <hr>
+        <div class="botoes">
+            <button name="Todas" class="botao">Todas</button>
+            <button name="Prioridade" class="botao">Prioridade</button>
+        </div>
+        <div class="botoes">
+            <button name="Hoje" class="botao">Hoje</button>
+            <button name="EstaSemana" class="botao">Esta Semana</button>
+        </div>`
 }
 
 todas()
-
-
 let statu=false
  let num =0
-document.getElementById('parte').addEventListener('click',function(){
+document.getElementById('tarefas').addEventListener('click',function(){
     let pin=(event.target.getAttribute('name'));
    
     for (let trab in tasks){    
@@ -39,7 +48,7 @@ document.getElementById('parte').addEventListener('click',function(){
 
 
         if (statu == false && pin!=null){
-            document.getElementById("parte").innerHTML=`
+            document.getElementById("tarefas").innerHTML=`
             <div class="tasks" name="${tasks[num]}">
             <div class='linhaTxt'>
             <input type="checkbox" >
@@ -51,14 +60,17 @@ document.getElementById('parte').addEventListener('click',function(){
             </div>
             </div>`   
             statu=true
+
+            document.getElementById("telaInicial").innerHTML=``
         }
 
         else{
             statu=false
-            document.getElementById("parte").innerHTML=''
+            document.getElementById("tarefas").innerHTML=''
             todas()
         }
     
     
 
 })
+
