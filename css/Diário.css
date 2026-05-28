@@ -65,6 +65,9 @@ body {
   align-items: center;
   margin: 0 ; 
 }
+#btn-pomodoro{
+  cursor: pointer;
+}
 
 .link {
   text-decoration: none;

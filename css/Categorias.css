@@ -60,6 +60,9 @@ body {
   align-items: center;
   margin: 0 ; 
 }
+#btn-pomodoro{
+  cursor: pointer;
+}
 .link {
   text-decoration: none;
   color: white;
@@ -145,7 +148,7 @@ body {
     gap: 15px;
     width: 85%;
     max-width: 1100px;
-    margin: 0 auto 30px auto;
+    margin: 30px auto 30px auto;
 }
 
 .acoes {
@@ -163,12 +166,15 @@ body {
     background: #d68fff;
     color: white;
     cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .btn-filtro:hover {
     background: white;
     color: #d68fff;
     border: 2px solid #d68fff;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 .btn-add {
@@ -178,11 +184,14 @@ body {
     border-radius: 15px;
     border: 2px solid transparent;
     cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .btn-add:hover {
     background: white;
     color: #d68fff;
     border: 2px solid #d569ff;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 /* botão delete normal */
@@ -193,11 +202,14 @@ body {
     padding: 6px 10px;
     cursor: pointer;
     transition: 0.2s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 /* hover normal (fora do modo delete) */
 .btn-delete:hover {
     background: #f2f2f2;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(80, 14, 14, 0.15);
 }
 
 /* MODO DELETE ATIVO */

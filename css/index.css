@@ -254,7 +254,26 @@ body {
     }
 }
 
+/* ============================
+   MAIN
+============================ */
 
+main {
+    background-image: url("../images/Fundo-teste1.jpg");
+    min-height: 300vh;
+    padding-top: 120px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.video-container {
+    background-color: #ff7b00;
+    width: 100%;            
+    max-width: 1100px;      
+    height: 550px;          
+    border-radius: 20px;
+}
 
 
 /* ============================
@@ -262,9 +281,9 @@ body {
 ============================ */
 
 .extension {
-    min-height: 650px;
+    min-height: 500px;
     display: flex;
-    padding-left: 10%;
+    padding-left: 5%;
     background-image: url('../images/extensão.png');
     background-size: cover;
     background-position: center;

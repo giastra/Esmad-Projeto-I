@@ -41,7 +41,7 @@ body {
 main {
   flex: 1;                
   padding-top: 120px;
-  padding-bottom: 20px;
+  padding-bottom: 100px;
 }
 
 .hero-sobre {
@@ -85,6 +85,9 @@ main {
   gap: 20px;
   align-items: center;
   margin: 0 ; 
+}
+#btn-pomodoro{
+  cursor: pointer;
 }
 .link {
   text-decoration: none;
@@ -187,12 +190,15 @@ main {
     background: #d68fff;
     color: white;
     cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .btn-filtro:hover {
     background: white;
     color: #d68fff;
     border: 2px solid #d68fff;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 .btn-add {
@@ -202,11 +208,14 @@ main {
     border-radius: 15px;
     border: 2px solid transparent;
     cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .btn-add:hover {
     background: white;
     color: #d68fff;
     border: 2px solid #d569ff;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 /* botão delete normal */
@@ -217,11 +226,14 @@ main {
     padding: 6px 10px;
     cursor: pointer;
     transition: 0.2s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 /* hover normal (fora do modo delete) */
 .btn-delete:hover {
     background: #f2f2f2;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(80, 14, 14, 0.15);
 }
 
 /* MODO DELETE ATIVO */
