@@ -9,7 +9,7 @@
     "128": "img/LogoExt.png"
   },
   "background": {
-    "service_worker": "js/servico.js"
+    "service_worker": "js/controller/servico.js"
   },
   "action": {
     "default_title": "Clique para abrir o painel"
