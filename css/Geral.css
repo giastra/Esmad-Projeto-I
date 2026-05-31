@@ -158,7 +158,7 @@ body {
     padding: 0 80px;
     font-family: 'HelveticaCustom';
 
-    margin-top: auto; /* FIXA O FOOTER NO FUNDO */
+    margin-top: auto;
 }
 
 .footer-center a {
