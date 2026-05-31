@@ -1,0 +1,298 @@
+@font-face {
+    font-family: 'SquareFont';
+    src: url('../fonts/Square.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Helvetica Normal */
+@font-face {
+    font-family: 'HelveticaCustom';
+    src: url('../fonts/Helvetica.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Helvetica Light */
+@font-face {
+    font-family: 'HelveticaLight';
+    src: url('../fonts/Helvetica Light Regular.otf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+/*----------------------------------------------------------------*/
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'HelveticaCustom';
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(206, 186, 255);
+}
+
+/* ============================
+   NAVBAR ADMIN
+============================ */
+.navbar-admin {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  max-width: 1100px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 30px;
+  border-radius: 50px;
+  box-shadow: 0 10px 10px rgba(102, 102, 102, 0.3);
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  align-items: center;
+  margin: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 8px 10px;
+  border-radius: 50px;
+  transition: background 0.3s ease;
+}
+
+.link:hover,
+.link.active {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+  display: block;
+  margin: 0;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
+
+.logo-text {
+  font-family: 'SquareFont';
+  font-size: 30px;
+  margin-top: 7px;
+  color: white;
+  white-space: nowrap;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+/* Texto azul “Administrador” */
+.admin-text {
+  color: #0398e2;
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 15px;
+}
+
+/* Ícone hambúrguer */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  width: 28px;
+  height: 3px;
+  background: white;
+  border-radius: 3px;
+}
+
+@media (max-width: 1130px) {
+  .nav-links {
+    display: none !important;
+  }
+  .logo-text {
+    display: none;
+  }
+  .hamburger {
+    display: flex !important;
+  }
+}
+
+
+/* ============================
+   MAIN
+============================ */
+
+main {
+  flex: 1;                
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.hero-sobre {
+  text-align: left;
+  width: 85%;            
+  max-width: 1100px;     
+  margin: 120px auto 30px auto; 
+}
+.hero-sobre h1 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+
+/* WRAPPER */
+.email-layout {
+    width: 85%;
+    max-width: 1100px;
+    margin: 60px auto 0 auto; 
+    display: flex;
+    height: 100vh; 
+    border-radius: 20px;
+    overflow: hidden; 
+}
+
+/* COLUNA ESQUERDA */
+.email-list {
+    width: 30%;
+    background: #f2f2f2;
+    border-right: 2px solid #d1d1d1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* COLUNA DIREITA */
+.email-content {
+    width: 70%;
+    background: #ffffff;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+/* Scroll */
+.email-list::-webkit-scrollbar,
+.email-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.email-list::-webkit-scrollbar-thumb,
+.email-content::-webkit-scrollbar-thumb {
+    background: #bdbdbd;
+    border-radius: 10px;
+}
+
+/* COLUNA ESQUERDA */
+.email-list {
+    width: 30%;
+    background: #f2f2f2;
+    border-right: 2px solid #d1d1d1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* COLUNA DIREITA */
+.email-content {
+    width: 70%;
+    background: #ffffff;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+/* Scroll bonito */
+.email-list::-webkit-scrollbar,
+.email-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.email-list::-webkit-scrollbar-thumb,
+.email-content::-webkit-scrollbar-thumb {
+    background: #bdbdbd;
+    border-radius: 10px;
+}
+
+.contacto-item {
+    background: #ffffff;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: 1px solid #e6e6e6;
+    padding: 15px;
+    margin: 5px;
+}
+
+.contacto-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+    background: #fafafa;
+}
+
+
+/* ============================
+   FOOTER
+============================ */
+
+.footer {
+    width: 100%;
+    height: 80px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 80px;
+    font-family: 'HelveticaCustom';
+
+    margin-top: auto; 
+}
+
+.footer-center a {
+    margin-left: 50px;
+    font-size: 15px;
+    color: black;
+}
+
+@media (max-width: 768px) {
+
+    .footer {
+        padding: 0 30px;
+        height: 60px;
+    }
+
+    .footer a,
+    .footer-center a {
+        color: black !important;  
+        font-size: 10px;         
+        margin-left: 20px;       
+    }
+
+    .footer span {
+        font-size: 12px;
+    }
+}
