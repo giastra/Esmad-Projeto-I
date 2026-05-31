@@ -1,38 +1,3 @@
-@font-face {
-    font-family: 'SquareFont';
-    src: url('../fonts/Square.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/* Helvetica Normal */
-@font-face {
-    font-family: 'HelveticaCustom';
-    src: url('../fonts/Helvetica.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-
-/* Helvetica Light */
-@font-face {
-    font-family: 'HelveticaLight';
-    src: url('../fonts/Helvetica Light Regular.otf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
-
-/*----------------------------------------------------------------*/
-
-html, body {
-    height: 100%;
-    margin: 0;
-}
-
-body {
-    font-family: 'HelveticaCustom';
-    display: flex;
-    flex-direction: column;
-}
 
 /* ============================
    MAIN
@@ -41,7 +6,7 @@ body {
 main {
   flex: 1;                
   padding-top: 120px;
-  padding-bottom: 20px;
+  padding-bottom: 100px;
 }
 
 .hero-sobre {
@@ -85,6 +50,9 @@ main {
   gap: 20px;
   align-items: center;
   margin: 0 ; 
+}
+#btn-pomodoro{
+  cursor: pointer;
 }
 .link {
   text-decoration: none;
@@ -187,12 +155,15 @@ main {
     background: #d68fff;
     color: white;
     cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .btn-filtro:hover {
     background: white;
     color: #d68fff;
     border: 2px solid #d68fff;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 .btn-add {
@@ -202,11 +173,14 @@ main {
     border-radius: 15px;
     border: 2px solid transparent;
     cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .btn-add:hover {
     background: white;
     color: #d68fff;
     border: 2px solid #d569ff;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
 /* botão delete normal */
@@ -217,11 +191,14 @@ main {
     padding: 6px 10px;
     cursor: pointer;
     transition: 0.2s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 /* hover normal (fora do modo delete) */
 .btn-delete:hover {
     background: #f2f2f2;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(80, 14, 14, 0.15);
 }
 
 /* MODO DELETE ATIVO */
@@ -390,45 +367,4 @@ main {
     font-weight: bold;
     cursor: pointer;
     margin-top: 5px;
-}
-
-/* ============================
-   FOOTER
-============================ */
-
-.footer {
-    width: 100%;
-    height: 80px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 80px;
-    font-family: 'HelveticaCustom';
-    margin-top: auto;
-}
-
-.footer-center a {
-    margin-left: 50px;
-    font-size: 15px;
-    color: black;
-}
-
-@media (max-width: 768px) {
-
-    .footer {
-        padding: 0 30px;
-        height: 60px;
-    }
-
-    .footer a,
-    .footer-center a {
-        color: black !important;  
-        font-size: 10px;         
-        margin-left: 20px;       
-    }
-    .footer span {
-        font-size: 12px
-    }
 }

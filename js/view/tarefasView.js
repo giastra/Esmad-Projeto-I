@@ -2,16 +2,12 @@ const btnAdd = document.querySelector(".btn-add");
 const porFazer = document.getElementById("por-fazer");
 const concluido = document.getElementById("concluido");
 
-/* ============================
-   ABRIR MODAL DE CRIAÇÃO
-============================ */
+/* ABRIR MODAL DE CRIAÇÃ */
 btnAdd.addEventListener("click", () => {
     criarModal();
 });
 
-/* ============================
-   MODAL DE CRIAÇÃO (CSS PURO)
-============================ */
+/* MODAL DE CRIAÇÃO */
 function criarModal() {
     const modal = document.createElement("div");
     modal.className = "modal";
@@ -51,9 +47,7 @@ function criarModal() {
     });
 }
 
-/* ============================
-   CRIAR TAREFA
-============================ */
+/* CRIAR TAREFA */
 function criarTarefa(titulo, descricao) {
     const tarefa = document.createElement("div");
     tarefa.classList.add("tarefa");
@@ -79,9 +73,7 @@ function criarTarefa(titulo, descricao) {
     porFazer.appendChild(tarefa);
 }
 
-/* ============================
-   MODAL DE DETALHES
-============================ */
+/* MODAL DE DETALHES */
 function abrirModalDetalhes(titulo, descricao) {
     const modal = document.createElement("div");
     modal.className = "modal";
@@ -105,9 +97,7 @@ function abrirModalDetalhes(titulo, descricao) {
     });
 }
 
-/* ============================
-   MOVER ENTRE COLUNAS
-============================ */
+/* MOVER ENTRE COLUNAS */
 document.addEventListener("change", (e) => {
     if (!e.target.classList.contains("check")) return;
 
@@ -120,9 +110,7 @@ document.addEventListener("change", (e) => {
     }
 });
 
-/* ============================
-   MODO ELIMINAR
-============================ */
+/* MODO ELIMINAR*/
 let modoEliminarTarefa = false;
 
 const btnDelete = document.querySelector(".btn-delete");
