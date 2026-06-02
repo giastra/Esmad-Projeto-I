@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobrepor Imagens</title>
+<style>
+  /* Contêiner para manter as imagens alinhadas */
+  .container {
+    position: relative; /* Define referência para posicionamento absoluto */
+    width: 400px;
+    height: 300px;
+  }
+
+  /* Imagem de fundo */
+  .fundo {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* Imagem sobreposta */
+  .sobreposta {
+    position: absolute; /* Permite posicionar livremente dentro do contêiner */
+    top: 200px;  /* Distância do topo */
+    left: 100px; /* Distância da esquerda */
+    width: 20px;
+    opacity: 1; /* Transparência opcional */
+  }
+
+  #sd{
+    position: fixed;
+    left: 90%;
+    top: 90%;
+  }
+
+  #fechar{
+    position: relative;
+    left: 75%;
+  }
+</style>
+</head>
+<body>
+<p>teste</p>
+    
+<button id="sd" onclick="document.getElementById('modal').showModal()"  >Abrir Modal</button>
+
+<dialog id="modal">
+
+<div class="container" id="sdfv">
+  <img src="Group 12.png" alt="Imagem de Fundo" class="fundo">
+  <img src="Group 9.png" alt="Imagem Sobreposta" class="sobreposta" >
+</div>
+
+<button id="btt">add</button>
+<button id="fechar" onclick="document.getElementById('modal').close()">Fechar</button>
+
+</dialog>
+
+
+
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+<p>teste</p>
+</body>
+
+
+
+<script>
+    function getRandomInt(min, max) {
+        min = Math.ceil(min); // Arredonda para cima
+        max = Math.floor(max); // Arredonda para baixo
+        return Math.floor(Math.random() * (max - min + 1)) + min; // Gera o número no intervalo
+    }
+
+    let n = 0
+    let y = 0
+    document.getElementById('btt').addEventListener('click', function(){
+        x=getRandomInt(110,221)
+        y=getRandomInt(10,360)
+        console.log(`x ${x}   y ${y}`);
+        
+        document.getElementById('sdfv').innerHTML+=`
+        <img src="Group 9.png" alt="Imagem Sobreposta" class="sobreposta" style=" left:${y}px ; top:${x}px ;">
+        `
+    })
+
+
+</script>
+</html>
