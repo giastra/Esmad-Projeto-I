@@ -1,10 +1,10 @@
-// ELEMENTOS
+/* ELEMENTOS */
 const btn = document.querySelector(".acessibilidade-btn");
 const overlay = document.querySelector(".tdha-rect-overlay");
 
 let modal = null; 
 
-// ---------------- MODAL ----------------
+/* MODAL */
 function criarModalAcessibilidade() {
     modal = document.createElement("div");
     modal.classList.add("acessibilidade-modal");
@@ -47,14 +47,14 @@ function criarModalAcessibilidade() {
 
 criarModalAcessibilidade();
 
-// ---------------- ABRIR / FECHAR MODAL ----------------
+/* ABRIR / FECHAR MODAL */
 btn.addEventListener("click", () => {
     if (!modal) return;
 
     modal.style.display = modal.style.display === "block" ? "none" : "block";
 });
 
-// ---------------- MOVER O RETÂNGULO COM O RATO ----------------
+/* MOVER O RETÂNGULO COM O RATO */
 document.addEventListener("mousemove", (e) => {
     if (overlay.style.display !== "block") return;
 

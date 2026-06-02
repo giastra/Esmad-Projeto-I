@@ -1,5 +1,5 @@
 
-// Carregar lista de contactos na coluna esquerda
+/* Carregar lista de contactos na coluna esquerda */
 function carregarContactos() {
     const lista = document.getElementById("email-list");
 
@@ -25,7 +25,7 @@ function carregarContactos() {
     });
 }
 
-// Mostrar mensagem completa na coluna direita
+/* Mostrar mensagem completa na coluna direita */
 function mostrarMensagem(index) {
     const mensagens = JSON.parse(localStorage.getItem("contactos")) || [];
     const msg = mensagens[index];
@@ -43,5 +43,5 @@ function mostrarMensagem(index) {
     `;
 }
 
-// Carregar automaticamente ao abrir a página
+/* Carregar automaticamente ao abrir a página */
 window.onload = carregarContactos;

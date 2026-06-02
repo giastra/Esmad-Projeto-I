@@ -7,3 +7,4 @@ const pomodoroModel = {
 };
 
 export default pomodoroModel;
+

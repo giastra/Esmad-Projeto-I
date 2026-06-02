@@ -1,6 +1,6 @@
 import { initPomodoroController } from "../controller/pomodoroController.js";
 
-// Função da interface do Pomodoro
+/* Função da interface do Pomodoro */
 export function pomodoroView() {
     return `
         <style>
@@ -134,10 +134,10 @@ export function pomodoroView() {
 }
 
 
-// Obtém o botão que abre o Pomodoro
+/* Obtém o botão que abre o Pomodoro */
 const pomodoroLink = document.getElementById("btn-pomodoro");
 
-// Função Abrir Modal
+/* Função Abrir Modal */
 pomodoroLink.addEventListener("click", (e) => {
     e.preventDefault();
 
@@ -154,7 +154,7 @@ pomodoroLink.addEventListener("click", (e) => {
 
     document.body.appendChild(modal);
 
-    // Botão para fechar o modal
+    /* Botão para fechar o modal */
     document.getElementById("close-pomodoro").onclick = () => modal.remove();
 
     initPomodoroController();
