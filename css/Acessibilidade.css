@@ -121,3 +121,39 @@ input:checked + .slider:before {
             var(--darkness) calc(var(--mouse-y) + var(--rect-height) / 2)
         );
 }
+
+
+/* MODO DARK GLOBAL */
+body.dark-mode {
+    background-color: #1d1d1d!important;
+    color: inherit !important;
+}
+
+/* CONTACTOS — remover o fundo colorido e meter preto */
+body.dark-mode main {
+    background: #1d1d1d !important;
+    background-image: none !important;
+}
+
+
+/* FOOTER — preto com texto branco */
+body.dark-mode footer {
+    background-color: #1d1d1d !important;
+    color: #ffffff !important;
+}
+
+body.dark-mode footer * {
+    color: #ffffff !important;
+}
+/* CONTACTOS — remover o fundo gradiente e meter preto */
+body.dark-mode .middle-section {
+    background: #1d1d1d !important;
+    background-image: none !important;
+}
+/* HERO — texto branco no modo dark */
+body.dark-mode .hero-sobre h1,
+body.dark-mode .hero-sobre h2,
+body.dark-mode .hero-sobre p,
+body.dark-mode .hero-sobre span{
+    color: #ffffff !important;
+}

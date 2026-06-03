@@ -10,16 +10,26 @@ function criarModalAcessibilidade() {
     modal.classList.add("acessibilidade-modal");
 
     modal.innerHTML = `
-        <button class="close-modal">✖</button>
+    <button class="close-modal">✖</button>
 
-        <h3>Acessibilidade</h3>
+    <h3>Acessibilidade</h3>
 
+    <div class="opcao">
         <label class="switch">
             <input type="checkbox" id="toggle-tdha">
             <span class="slider"></span>
         </label>
         <span class="switch-text">Modo TDAH</span>
-    `;
+    </div>
+
+    <div class="opcao">
+        <label class="switch">
+            <input type="checkbox" id="toggle-dark">
+            <span class="slider"></span>
+        </label>
+        <span class="switch-text">Modo Escuro</span>
+    </div>
+`;
 
     document.body.appendChild(modal);
 
@@ -60,4 +70,28 @@ document.addEventListener("mousemove", (e) => {
 
     const yPercent = (e.clientY / window.innerHeight) * 100;
     document.documentElement.style.setProperty("--mouse-y", yPercent + "%");
+});
+
+
+// Toggle Dark Mode
+const toggleDark = modal.querySelector("#toggle-dark");
+
+// Aplicar estado guardado
+const darkGuardado = localStorage.getItem("modoDark");
+if (darkGuardado === "1") {
+    document.body.classList.add("dark-mode");
+    toggleDark.checked = true;
+}
+
+// Guardar quando muda
+toggleDark.addEventListener("change", () => {
+    const ativo = toggleDark.checked;
+
+    if (ativo) {
+        document.body.classList.add("dark-mode");
+        localStorage.setItem("modoDark", "1");
+    } else {
+        document.body.classList.remove("dark-mode");
+        localStorage.setItem("modoDark", "0");
+    }
 });
