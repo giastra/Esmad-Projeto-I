@@ -9,7 +9,7 @@ function criarModalAcessibilidade() {
     modal = document.createElement("div");
     modal.classList.add("acessibilidade-modal");
 
-    modal.innerHTML = `
+modal.innerHTML = `
     <button class="close-modal">✖</button>
 
     <h3>Acessibilidade</h3>
@@ -29,7 +29,16 @@ function criarModalAcessibilidade() {
         </label>
         <span class="switch-text">Modo Escuro</span>
     </div>
+
+    <div class="opcao">
+        <label class="switch">
+            <input type="checkbox" id="toggle-font">
+            <span class="slider"></span>
+        </label>
+        <span class="switch-text">Aumentar Letras</span>
+    </div>
 `;
+
 
     document.body.appendChild(modal);
 
@@ -93,5 +102,29 @@ toggleDark.addEventListener("change", () => {
     } else {
         document.body.classList.remove("dark-mode");
         localStorage.setItem("modoDark", "0");
+    }
+});
+
+
+// Toggle aumentar letras
+const toggleFont = modal.querySelector("#toggle-font");
+
+// Aplicar estado guardado
+const fontGuardado = localStorage.getItem("fontLarge");
+if (fontGuardado === "1") {
+    document.body.classList.add("font-large");
+    toggleFont.checked = true;
+}
+
+// Guardar quando muda
+toggleFont.addEventListener("change", () => {
+    const ativo = toggleFont.checked;
+
+    if (ativo) {
+        document.body.classList.add("font-large");
+        localStorage.setItem("fontLarge", "1");
+    } else {
+        document.body.classList.remove("font-large");
+        localStorage.setItem("fontLarge", "0");
     }
 });
