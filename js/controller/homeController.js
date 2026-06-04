@@ -1,4 +1,4 @@
-import {abrirModalDetalhes,criarTarefa} from "../view/homeView.js"
+import {abrirModalDetalhes,criarTarefa,criarCard} from "../view/homeView.js"
 
 const cat = [
     {
@@ -51,7 +51,20 @@ const tasks = [
         category : {
             name : "tarefas",
             color : "#5C95FF"}
-    }]
+    },
+    {
+        name :"Lavar a roupa",
+        description : "Lavar",
+        startDate : "2026-06-04",
+        endDate : "2026-06-10",
+        status : "concluida",
+        priority: "baixa",
+        user : {name : "giastra"},
+        category : {
+            name : "tarefas",
+            color : "#5C95FF"}
+    }
+]
 
 
 // renderiza as tarefas quando pedida
@@ -81,9 +94,20 @@ export function rendTarefas() {
 }
 
 
+// função puxa as listas de categorias e de tarefas para renderiar na home pg
 export function rendCategorias() {
     for (const tas of cat) {
-        cariarCategorias(tas.name,tas.color)
+           let nconclu = 0
+           let ntotal = 0
+        for (const taf of tasks){   
+            if (taf.category.name == tas.name){
+                ntotal++
+                if (taf.status == 'concluida'){
+                    nconclu ++
+                }
+            }
+        }
+        criarCard(tas.name,tas.color,nconclu,ntotal)
     }
 }
 
