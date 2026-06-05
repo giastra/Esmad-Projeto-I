@@ -58,50 +58,67 @@
         </div>
     </nav>
 
-    <!-- MEIO -->
+    <!-- MAIN -->
     <main>
+
+        <!-- VIDEO PLACEHOLDER -->
         <div class="video-container">
-            Video promocional
+        Vídeo promocional
         </div>
 
+        <!-- INFO TABS -->
         <div class="info-box" id="infoBox">
 
-            <div class="tabs">
-                <button class="tab active" data-tab="proposito">Propósito</button>
-                <button class="tab" data-tab="game">Game</button>
-                <button class="tab" data-tab="funcionalidades">Funcionalidades</button>
+            <div class="tabs-col">
+                <button class="tab active" data-tab="proposito">
+                    <span class="tab-name">Propósito</span>
+                </button>
+                <button class="tab" data-tab="game">
+                    <span class="tab-name">Game</span>
+                </button>
+                <button class="tab" data-tab="funcionalidades">
+                    <span class="tab-name">Funcionalidades</span>
+                </button>
             </div>
 
-            <div id="conteudo" class="conteudo">
-                O Stad To Do reúne ferramentas essenciais para uma organização simples e equilibrada: um gestor de tarefas intuitivo, um calendário claro, um diário para registar rotinas e emoções, e um temporizador Pomodoro que ajuda a manter o foco com ciclos de trabalho equilibrados.
+            <div class="conteudo-col">
+                <h3 class="conteudo-titulo" id="conteudoTitulo">Propósito</h3>
+                <p class="conteudo-texto" id="conteudo">
+                    O Stad To Do reúne ferramentas essenciais para uma organização simples e equilibrada: um gestor de tarefas intuitivo, um calendário claro, um diário para registar rotinas e emoções, e um temporizador Pomodoro que ajuda a manter o foco com ciclos de trabalho equilibrados.
+                </p>
             </div>
 
         </div>
 
+        <!-- POMODORO -->
         <div class="pomodoro-section">
 
-            <!-- COLUNA ESQUERDA — POMODORO -->
-            <div class="pomodoro-col">
-                <div class="pomodoro-container">
-                    <h3 id="pomo-label">Foco</h3>
-
-                    <div id="pomo-time">00:00</div>
-
-                    <div class="pomo-buttons">
-                        <button id="pomo-start">Iniciar</button>
-                        <button id="pomo-reset">Reset</button>
-                    </div>
+            <!-- TIMER (esquerda) -->
+            <div class="pomodoro-container">
+                <h3 id="pomo-label">Foco</h3>
+                <div id="pomo-time">25:00</div>
+                <div class="pomo-buttons">
+                    <button id="pomo-start">Iniciar</button>
+                    <button id="pomo-reset">Reset</button>
                 </div>
             </div>
 
-            <!-- COLUNA DIREITA — INFORMAÇÃO -->
-            <div class="info-col">
-               <h2>POMODORO</h2>
-               <p>Foca-te por blocos de tempo. Trabalha 25 minutos, faz uma pausa de 5. Mantém o ritmo e a clareza mental</p>
+            <!-- INFO (direita) -->
+            <div class="pomo-info">
+                <h2>POMODORO</h2>
+                <p class="pomo-sub">Foca-te por blocos de tempo</p>
+                <p class="pomo-text">Trabalha 25 minutos, faz uma pausa de 5. Mantém o ritmo e a clareza mental.</p>
             </div>
+
         </div>
+
     </main>
-    
+
+    <!-- INICIAR POMODORO  -->
+    <script type="module">
+        import { initPomodoroController } from "./js/controller/pomodoroController.js";
+        initPomodoroController();
+    </script>
 
 
     <!-- BOTÃO DE ACESSIBILIDADE -->
@@ -142,13 +159,6 @@
             <img src="images/logo fother.png" alt="Logotipo preto">
         </div>
     </footer>
-
-    <!--INICIAR POMODORO-->
-    <script type="module">
-       import { initPomodoroController } from "./js/controller/pomodoroController.js";
-       initPomodoroController();
-    </script>
-
     <!-- JS -->
 
     <script src="js/view/Acessibilidade.js"></script>

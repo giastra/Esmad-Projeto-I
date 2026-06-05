@@ -258,182 +258,305 @@ body {
    MAIN
 ============================ */
 
+/* MAIN */
 main {
-  background-image: url("../images/Fundo-teste1.jpg");
-  min-height: 100vh;
-  padding-top: 120px;
-  padding-bottom: 50px;
-
-  display: flex;
-  flex-direction: column;   
-  align-items: center;      
-  gap: 40px;                
-}
-
-
-.video-container {
-  background-color: #ff7b00;
-  width: 100%;            
-  max-width: 1100px;      
-  height: 550px;          
-  border-radius: 20px;
-}
-
-/* Informação */
-
-/* Caixa que muda de cor */
-.info-box {
-    width: 100%;
-    max-width: 1100px;
-    background: white;
-    padding: 40px;
-    border-radius: 20px;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
+    background-image: url("../images/Fundo-teste1.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    padding: 120px 0 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
-    margin: 150px auto;
-
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-
-    height: 350px; 
-    overflow: hidden; 
+    gap: 100px;
 }
 
-.tabs {
+/* ============================
+   VIDEO
+============================ */
+
+.video-container {
     width: 100%;
+    max-width: 1100px;
+    height: 550px;
+    background-color: #ff7b00;
+    border-radius: 20px;
     display: flex;
-    justify-content: flex-start; 
-    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'HelveticaCustom', sans-serif;
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+}
+
+/* ============================
+   INFO BOX
+============================ */
+
+.info-box {
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 150px;
+    margin-bottom: 150px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+
+    /* altura fixa para não mudar de tamanho ao trocar tab */
+    min-height: 320px;
+
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    overflow: hidden;
+}
+
+/* Coluna das tabs (esquerda) */
+.tabs-col {
+    background: #f9f9f9;
+    border-right: 1px solid #efefef;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .tab {
     background: none;
     border: none;
-    font-size: 20px;
-    padding: 10px 10px;
+    border-left: 3px solid transparent;
+    padding: 20px 30px;
     cursor: pointer;
-    color: #ffffff;
-    opacity: 0.6;
-    transition: 0.2s;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    text-align: left;
+    transition: background 0.2s, border-color 0.2s;
 }
 
-/* TAB ATIVA */
+
+.tab-name {
+    font-family: 'HelveticaCustom', 'Helvetica Neue', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #aaa;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+}
+
 .tab.active {
-    color: black;               
-    opacity: 1;
-    border-bottom: 3px solid black;       
+    border-left-color: #ff7b00;
+    background: white;
 }
 
-
-
-.conteudo {
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 20px;
-  margin-top: 10px;
-  font-size: 18px;
-  line-height: 1.5;
-  max-width: 1100px;
-  height: 200px;
+.tab.active .tab-num {
+    color: #ff7b00;
 }
 
+.tab.active .tab-name {
+    color: #111;
+}
 
-/* POMODORO */
+.tab:hover:not(.active) {
+    background: #f2f2f2;
+}
+
+.tab:hover:not(.active) .tab-name {
+    color: #555;
+}
+
+/* Coluna do conteúdo (direita) */
+.conteudo-col {
+    padding: 48px 54px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+}
+
+.conteudo-titulo {
+    font-family: 'SquareFont', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+.conteudo-texto {
+    font-family: 'HelveticaCustom', sans-serif;
+    font-size: 16px;
+    line-height: 1.85;
+    color: #555;
+    margin: 0;
+}
+
+/* ============================
+   POMODORO
+============================ */
+
 .pomodoro-section {
     width: 100%;
     max-width: 1100px;
-    margin: 70px auto 140px auto;
-    display: flex;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: stretch;
+    margin-bottom: 100px;
 }
 
-/* COLUNA ESQUERDA  */
-.pomodoro-col {
-    flex: 2;
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-
-/* COLUNA DIREITA */
-.info-col {
-    flex: 1;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.info-col h2 {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #000000;
-}
-
-.info-col p {
-    font-size: 16px;
-    line-height: 2;
-    text-align: center;
-    color: #333;
-}
-
-/* TÍTULO */
-.pomodoro-title {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
+/* TIMER (esquerda) */
 .pomodoro-container {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
     text-align: center;
 }
 
 #pomo-label {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 15px;
+    font-family: 'HelveticaCustom', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #bbb;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin: 0;
 }
 
 #pomo-time {
-    font-size: 75px;
-    font-weight: bold;
-    margin: 20px 0;
-    color: #333;
+    font-family: 'SquareFont', sans-serif;
+    font-size: 100px;
+    font-weight: 700;
+    color: #ff7b00;
+    line-height: 1;
 }
 
 .pomo-buttons {
     display: flex;
-    justify-content: center;
     gap: 10px;
+    width: 100%;
 }
 
 #pomo-start,
 #pomo-reset {
-    padding: 10px 18px;
-    background: #ff7b00;
+    padding: 14px 0;
     border: none;
-    color: white;
     border-radius: 10px;
+    font-family: 'HelveticaCustom', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
     cursor: pointer;
-    font-weight: bold;
-    transition: 0.2s;
+    transition: background 0.2s;
 }
 
-#pomo-start:hover,
-#pomo-reset:hover {
-    background: #feaa2c;
+#pomo-start {
+    background: #ff7b00;
+    color: white;
+    flex: 1;
+}
+#pomo-start:hover { background: #e06d00; }
+
+#pomo-reset {
+    background: #f2f2f2;
+    color: #555;
+    padding: 14px 24px;
+}
+#pomo-reset:hover { background: #e5e5e5; }
+
+/* INFO POMODORO (direita) */
+.pomo-info {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
+.pomo-info h2 {
+    font-size: 58px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1;
+    margin: 0;
+}
+
+.pomo-sub {
+    font-size: 20px;
+    color: #222;
+    margin: 0;
+}
+
+.pomo-text {
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #777;
+    margin: 0;
+}
+
+/* ============================
+   RESPONSIVIDADE
+============================ */
+
+@media (max-width: 900px) {
+
+    main {
+        padding: 80px 20px 80px;
+        gap: 60px;
+    }
+
+    .info-box {
+        grid-template-columns: 1fr;
+        min-height: unset;
+    }
+
+    .tabs-col {
+        flex-direction: row;
+        border-right: none;
+        border-bottom: 1px solid #efefef;
+        padding: 0;
+    }
+
+    .tab {
+        flex: 1;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 16px 10px;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+
+    .tab.active {
+        border-bottom-color: #ff7b00;
+        border-left-color: transparent;
+    }
+
+    .conteudo-col {
+        padding: 30px 28px;
+    }
+
+    .pomodoro-section {
+        grid-template-columns: 1fr;
+    }
+
+    #pomo-time {
+        font-size: 72px;
+    }
+
+    .pomo-info h2 {
+        font-size: 44px;
+    }
+}
 /* ============================
    EXTENSÃO
 ============================ */

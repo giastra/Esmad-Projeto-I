@@ -64,10 +64,9 @@ body {
   gap: 20px;
   align-items: center;
   margin: 0 ; 
+  cursor: pointer !important;
 }
-#btn-pomodoro{
-  cursor: pointer;
-}
+
 .link {
   text-decoration: none;
   color: white;
