@@ -128,3 +128,14 @@ toggleFont.addEventListener("change", () => {
         localStorage.setItem("fontLarge", "0");
     }
 });
+
+
+//NAVBAR HAMBURGUER
+
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    hamburger.classList.toggle('active');
+  });

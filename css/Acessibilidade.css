@@ -142,10 +142,11 @@ body.dark-mode footer * {
     color: #ffffff !important;
 }
 /* CONTACTOS */
-body.dark-mode .middle-section {
-    background: #1d1d1d !important;
+body.dark-mode main {
+    background-color: #1d1d1d !important;
     background-image: none !important;
 }
+
 /* HERO — texto branco no modo dark */
 body.dark-mode .hero-sobre h1,
 body.dark-mode .hero-sobre h2,
@@ -164,7 +165,7 @@ body.font-large .hero-sobre,
 body.font-large .middle-section,
 body.font-large .container,
 body.font-large .content {
-    font-size: 1.25rem !important;
+    font-size: 1.50rem !important;
     line-height: 1.6 !important;
 }
 
@@ -173,3 +174,5 @@ body.font-large nav,
 body.font-large footer {
     font-size: inherit !important;
 }
+
+
