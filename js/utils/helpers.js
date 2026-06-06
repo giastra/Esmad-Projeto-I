@@ -27,4 +27,17 @@ export const clearMessages = (...elementIds) => {
     if (el) el.textContent = '';
   });
 };
+// Redireciona se não estiver autenticado
+export const requireAuth = () => {
+  if (!localStorage.getItem('token')) {
+    window.location.href = '/index.html';
+  }
+};
 
+// Redireciona se não for admin
+export const requireAdmin = () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (!user?.roles?.includes('admin')) {
+    window.location.href = '/index.html';
+  }
+};
