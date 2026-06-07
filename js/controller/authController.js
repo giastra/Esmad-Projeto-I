@@ -1,7 +1,7 @@
-import { register, login, logout, getMe, updateMe, updateEmail, updatePassword, deleteMe } from '../models/userModel.js';
+import { register, login, logout, getMe, updateMe, updateEmail, updatePassword, deleteMe } from '../model/userModel.js';
 import { setToken, setUser, removeToken, removeUser } from '../utils/auth.js';
 import { requireAuth } from '../utils/helpers.js';
-
+import { renderErroLogin, limparErroLogin, renderErroRegister, limparErroRegister, renderErro, renderSucesso, limparMensagens, renderPerfil } from '../view/userView.js';
 
 
 // REGISTER
@@ -11,14 +11,14 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
 
   const res = await register({
     name: document.getElementById('name').value,
-    email: document.getElementById('email').value,
-    password: document.getElementById('password').value
+    email: document.getElementById('email-register').value,
+    password: document.getElementById('password-register').value
   });
 
   if (res.success) {
     setToken(res.token);
     setUser(res.data);
-    window.location.href = //colocar aqui a página para onde redirecionar após registo/login;
+    window.location.href = 'html/Home.html';
   } else {
     renderErroRegister(res.message);
   }
@@ -38,7 +38,7 @@ document.getElementById('form-login')?.addEventListener('submit', async (e) => {
   if (res.success) {
     setToken(res.token);
     setUser(res.data);
-    window.location.href = //colocar aqui a página para onde  redirecionar após registo/login;
+    window.location.href = 'html/Home.html';
   } else {
     renderErroLogin(res.message);
   }
@@ -133,4 +133,3 @@ document.getElementById('btn-delete')?.addEventListener('click', async () => {
 });
 
 
-carregarPerfil();
