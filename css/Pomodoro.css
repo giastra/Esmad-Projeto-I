@@ -1,0 +1,108 @@
+.pomodoro-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.pomodoro-content {
+    background: #ffffff;
+    padding: 50px 50px 40px;
+    border-radius: 20px;
+    width: 420px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.25s ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.pomodoro-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+#pomo-label {
+    font-family: 'HelveticaCustom', 'Helvetica Neue', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #bbb;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+#pomo-time {
+    font-family: 'SquareFont', sans-serif;
+    font-size: 90px;
+    font-weight: 700;
+    color: #ff7b00;
+    line-height: 1;
+    margin: 0;
+}
+
+.pomo-buttons {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+#pomo-start,
+#pomo-reset,
+#customize {
+    padding: 13px 0;
+    border: none;
+    border-radius: 10px;
+    font-family: 'HelveticaCustom', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#pomo-start {
+    background: #ff7b00;
+    color: white;
+    flex: 1;
+}
+#pomo-start:hover { background: #e06d00; }
+
+#pomo-reset {
+    background: #f2f2f2;
+    color: #000000;
+    padding: 13px 18px;
+}
+#pomo-reset:hover { background: #e5e5e5; }
+
+#customize {
+    background: #f2f2f2;
+    color: #000000;
+    padding: 13px 18px;
+}
+#customize:hover { background: #e5e5e5; }
+
+.close-pomodoro {
+    background: none;
+    border: none;
+    font-size: 13px;
+    color: #000000;
+    cursor: pointer;
+    font-family: 'HelveticaCustom', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    transition: color 0.2s;
+}
+.close-pomodoro:hover { 
+    color: #888; 
+}
