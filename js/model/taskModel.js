@@ -1,6 +1,6 @@
 import { getToken } from '../utils/auth.js';
 
-const BASE_URL = 'http://localhost:5000/api/pomodoro';
+const BASE_URL = 'http://localhost:5000/api/tasks';
 
 // Headers com token para rotas protegidas
 const headers = () => ({
@@ -8,43 +8,35 @@ const headers = () => ({
   'Authorization': `Bearer ${getToken()}`
 });
 
-// Ver pomodoro default (público)
-export const getDefault = () => fetch(`${BASE_URL}/default`).then(r => r.json());
+// Listar tarefas com filtros opcionais (?status, ?priority, ?category)
+export const getMinhasTarefas = (filtros = {}) => {
+  const query = new URLSearchParams(filtros).toString();
+  return fetch(`${BASE_URL}?${query}`, {
+    headers: headers()
+  }).then(r => r.json());
+};
 
-// Listar meus pomodoros
-export const getMeus = () => fetch(BASE_URL, {
+// Ver tarefa por id
+export const getTarefaById = (id) => fetch(`${BASE_URL}/${id}`, {
   headers: headers()
 }).then(r => r.json());
 
-// Criar pomodoro
+// Criar tarefa
 export const criar = (data) => fetch(BASE_URL, {
   method: 'POST',
   headers: headers(),
   body: JSON.stringify(data)
 }).then(r => r.json());
 
-// Atualizar pomodoro
+// Atualizar tarefa
 export const atualizar = (id, data) => fetch(`${BASE_URL}/${id}`, {
   method: 'PUT',
   headers: headers(),
   body: JSON.stringify(data)
 }).then(r => r.json());
 
-// Eliminar pomodoro
+// Eliminar tarefa
 export const apagar = (id) => fetch(`${BASE_URL}/${id}`, {
   method: 'DELETE',
   headers: headers()
-}).then(r => r.json());
-
-// Ativar pomodoro
-export const ativar = (id) => fetch(`${BASE_URL}/${id}/ativar`, {
-  method: 'PUT',
-  headers: headers()
-}).then(r => r.json());
-
-// Atualizar pomodoro default (admin)
-export const atualizarDefault = (data) => fetch(`${BASE_URL}/admin/default`, {
-  method: 'PUT',
-  headers: headers(),
-  body: JSON.stringify(data)
 }).then(r => r.json());

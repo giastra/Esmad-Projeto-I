@@ -1,105 +1,66 @@
-import pomodoroModel from "../model/pomodoroModel.js";
- 
-export function initPomodoroController() {
- 
-    let focusTime = pomodoroModel.focusTime * 60;
-    let shortBreak = pomodoroModel.shortBreak * 60;
-    let longBreak = pomodoroModel.longBreak * 60;
-    let cycles = pomodoroModel.cycles;
- 
-    let currentTime = focusTime;
-    let interval = null;
-    let cycleCount = 0;
-    let mode = "focus";
- 
-    const timeDisplay = document.getElementById("pomo-time");
-    const label = document.getElementById("pomo-label");
-    const startBtn = document.getElementById("pomo-start");
-    const resetBtn = document.getElementById("pomo-reset");
-    const closeBtn = document.querySelector(".close-pomodoro");
- 
-    function updateDisplay() {
-        let m = Math.floor(currentTime / 60);
-        let s = currentTime % 60;
-        timeDisplay.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
-    }
- 
-    // INICIAR
-    function startTimer() {
-        if (interval) return;
- 
-        interval = setInterval(() => {
-            currentTime--;
-            updateDisplay();
- 
-            if (currentTime <= 0) {
-                clearInterval(interval);
-                interval = null;
-                startBtn.textContent = "Iniciar";
-                nextPhase();
-            }
-        }, 1000);
-    }
- 
-    // PAUSA
-    function pauseTimer() {
-        clearInterval(interval);
-        interval = null;
-    }
- 
-    // RESET
-    function resetTimer() {
-        pauseTimer();
-        mode = "focus";
-        currentTime = focusTime;
-        label.textContent = "Foco";
-        startBtn.textContent = "Iniciar";
-        updateDisplay();
-    }
- 
-    function nextPhase() {
-        if (mode === "focus") {
-            cycleCount++;
- 
-            if (cycleCount % cycles === 0) {
-                mode = "long";
-                currentTime = longBreak;
-                label.textContent = "Pausa Longa";
-            } else {
-                mode = "short";
-                currentTime = shortBreak;
-                label.textContent = "Pausa Curta";
-            }
- 
-        } else {
-            mode = "focus";
-            currentTime = focusTime;
-            label.textContent = "Foco";
-        }
- 
-        updateDisplay();
-        startTimer();
-    }
- 
-    // BOTÃO INICIAR/PAUSAR
-    startBtn.addEventListener("click", () => {
-        if (!interval) {
-            startTimer();
-            startBtn.textContent = "Pausar";
-        } else {
-            pauseTimer();
-            startBtn.textContent = "Iniciar";
-        }
+import { getMeus, criar, atualizar, apagar, ativar } from '..models/pomodoroModel.js';
+import { requireAuth } from '../utils/helpers.js';
+
+
+// Carrega todos os pomodoros do utilizador
+const carregarPomodoros = async () => {
+  requireAuth();
+
+  const res = await getMeus();
+  if (res.success) {
+    renderPomodoros(res.data.meus, res.data.default, res.data.activePomodoro);
+    bindEventos();
+  }
+};
+
+// Liga os eventos aos botões da lista
+const bindEventos = () => {
+  // Ativar pomodoro
+  document.querySelectorAll('.btn-ativar').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      const id = e.target.closest('[data-id]').dataset.id;
+      const res = await ativar(id);
+      if (res.success) {
+        renderSucesso('Pomodoro ativado.');
+        carregarPomodoros();
+      } else {
+        renderErro(res.message);
+      }
     });
- 
-    // RESET
-    resetBtn.onclick = resetTimer;
- 
-    // FECHAR MODAL
-    closeBtn.addEventListener("click", () => {
-        pauseTimer();
-        document.querySelector(".pomodoro-modal").remove();
+  });
+
+  // Apagar pomodoro
+  document.querySelectorAll('.btn-apagar').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      const id = e.target.closest('[data-id]').dataset.id;
+      const res = await apagar(id);
+      if (res.success) carregarPomodoros();
+      else renderErro(res.message);
     });
- 
-    updateDisplay();
-}
+  });
+};
+
+// CRIAR POMODORO
+document.getElementById('form-pomodoro')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  limparMensagens();
+
+  const res = await criar({
+    name: document.getElementById('name').value,
+    focusTime: Number(document.getElementById('focusTime').value),
+    shortBreak: Number(document.getElementById('shortBreak').value),
+    longBreak: Number(document.getElementById('longBreak').value),
+    cycles: Number(document.getElementById('cycles').value)
+  });
+
+  if (res.success) {
+    renderSucesso('Pomodoro criado com sucesso.');
+    e.target.reset();
+    carregarPomodoros();
+  } else {
+    renderErro(res.message);
+  }
+});
+
+
+carregarPomodoros();
