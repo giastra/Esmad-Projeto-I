@@ -1,6 +1,6 @@
 import { getToken } from '../utils/auth.js';
 
-const BASE_URL = 'http://localhost:5000/api/pomodoro';
+const BASE_URL = 'http://localhost:5000/api/colors';
 
 // Headers com token para rotas protegidas
 const headers = () => ({
@@ -8,43 +8,32 @@ const headers = () => ({
   'Authorization': `Bearer ${getToken()}`
 });
 
-// Ver pomodoro default (público)
-export const getDefault = () => fetch(`${BASE_URL}/default`).then(r => r.json());
-
-// Listar meus pomodoros
-export const getMeus = () => fetch(BASE_URL, {
+// Listar cores
+export const getColors = () => fetch(BASE_URL, {
   headers: headers()
 }).then(r => r.json());
 
-// Criar pomodoro
+// Ver cor por id
+export const getColorById = (id) => fetch(`${BASE_URL}/${id}`, {
+  headers: headers()
+}).then(r => r.json());
+
+// Criar cor (admin)
 export const criar = (data) => fetch(BASE_URL, {
   method: 'POST',
   headers: headers(),
   body: JSON.stringify(data)
 }).then(r => r.json());
 
-// Atualizar pomodoro
+// Atualizar cor (admin)
 export const atualizar = (id, data) => fetch(`${BASE_URL}/${id}`, {
   method: 'PUT',
   headers: headers(),
   body: JSON.stringify(data)
 }).then(r => r.json());
 
-// Eliminar pomodoro
+// Eliminar cor (admin)
 export const apagar = (id) => fetch(`${BASE_URL}/${id}`, {
   method: 'DELETE',
   headers: headers()
-}).then(r => r.json());
-
-// Ativar pomodoro
-export const ativar = (id) => fetch(`${BASE_URL}/${id}/ativar`, {
-  method: 'PUT',
-  headers: headers()
-}).then(r => r.json());
-
-// Atualizar pomodoro default (admin)
-export const atualizarDefault = (data) => fetch(`${BASE_URL}/admin/default`, {
-  method: 'PUT',
-  headers: headers(),
-  body: JSON.stringify(data)
 }).then(r => r.json());
