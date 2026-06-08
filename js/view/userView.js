@@ -15,12 +15,19 @@ export const fecharModais = () => {
   document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
 };
 
-// Preenche os dados do perfil na página
+// Preenche os dados do perfil na página e os placeholders dos inputs
 export const renderPerfil = (user) => {
+  // Dados visíveis
   const nome = document.getElementById('nome');
   const email = document.getElementById('email');
   if (nome) nome.textContent = user.name;
   if (email) email.textContent = user.email;
+
+  // Placeholders dos inputs com os dados atuais
+  const inputNome = document.getElementById('novo-nome');
+  const inputEmail = document.getElementById('novo-email');
+  if (inputNome) inputNome.placeholder = user.name;
+  if (inputEmail) inputEmail.placeholder = user.email;
 };
 
 // Mostra erro no formulário de registo

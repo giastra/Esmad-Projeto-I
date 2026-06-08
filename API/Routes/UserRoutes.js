@@ -7,7 +7,7 @@ router.post('/register', userController.register);
 router.post('/login',    userController.login);
 router.post('/logout',   protect, userController.logout);
 
-router.get('/me',           protect, userController.updateUserSelf);
+router.get('/me', protect, userController.getMe);
 router.put('/me',           protect, userController.updateUserSelf);
 router.put('/me/email',     protect, userController.updateEmail);
 router.put('/me/password', protect, userController.updatePassword);
