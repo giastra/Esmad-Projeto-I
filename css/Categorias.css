@@ -123,6 +123,28 @@
     cursor: pointer;
 }
 
+.color-select-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+#color {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.color-preview-box {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: 2px solid #777777;
+}
+
 
 /* ============================
    MAIN

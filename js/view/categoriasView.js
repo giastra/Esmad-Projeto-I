@@ -24,6 +24,14 @@ function criarModal() {
             <label>Título</label>
             <input type="text" id="tituloCategoria" placeholder="Nome da categoria">
 
+            <label>Cor</label>
+            <div class="color-select-wrapper">
+                <select id="color"></select>
+                <div id="colorPreview" class="color-preview-box"></div>
+            </div>
+
+
+
             <button id="criarCategoria" class="btn-modal-add">Adicionar</button>
         </div>
     `;
@@ -43,6 +51,33 @@ function criarModal() {
         if (e.target === modal) modal.remove();
     });
 }
+
+export function renderOpcoesCores(cores) {
+    const select = document.getElementById("color");
+    const preview = document.getElementById("colorPreview");
+
+    select.innerHTML = "";
+
+    cores.forEach(cor => {
+        const option = document.createElement("option");
+        option.value = cor._id;
+        option.textContent = cor.name;
+        option.dataset.hex = cor.hex;
+        select.appendChild(option);
+    });
+
+    // Atualizar preview ao mudar seleção
+    select.addEventListener("change", () => {
+        const hex = select.selectedOptions[0].dataset.hex;
+        preview.style.background = hex;
+    });
+
+    // Preview inicial
+    if (cores.length > 0) {
+        preview.style.background = cores[0].hex;
+    }
+}
+
 
 
 /* CRIAR CARD DE CATEGORIA */

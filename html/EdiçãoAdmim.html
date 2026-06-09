@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Contactos</title>
+    <title>Admin - Edição</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/Admim-Contactos.css">
+    <link rel="stylesheet" href="../css/EdiçãoAdmim.css">
 </head>
 <body>
 
@@ -24,8 +24,8 @@
         </div>
 
         <ul class="nav-links">
-            <li><a href="Admim-Contactos.html" class="link active">Contactos</a></li>
-            <li><a href="EdiçãoAdmim.html" class="link">Edição</a></li>
+            <li><a href="Admim-Contactos.html" class="link">Contactos</a></li>
+            <li><a href="EdiçãoAdmim.html" class="link active">Edição</a></li>
         </ul>
 
         <div class="hamburger">
@@ -35,26 +35,39 @@
         </div>
     </nav>
 
-    <main>
-        <section class="hero-sobre">
-            <h1>Contactos</h1>
-        </section>
+<main class="admin-colors-container">
 
-        <!-- LAYOUT EMAIL -->
-        <div class="email-layout">
+    <section class="admin-header">
+        <h1>Gestão de Cores</h1>
+        <p>Adiciona e remove cores que serão usadas em todo o site.</p>
+    </section>
 
-            <!-- COLUNA ESQUERDA -->
-            <div class="email-list" id="email-list">
- 
+    <!-- FORMULÁRIO -->
+    <section class="color-form-section">
+        <form id="form-color" class="color-form">
+
+            <div class="form-group">
+                <label for="name">Nome da Cor</label>
+                <input type="text" id="name" placeholder="Ex: Roxo Primário" required>
             </div>
 
-            <!-- COLUNA DIREITA -->
-            <div class="email-content" id="email-content">
-
+            <div class="form-group">
+                <label for="hex">Código HEX</label>
+                <input type="color" id="hex" value="#000000">
             </div>
 
-        </div>
-    </main>
+            <button type="submit" class="btn-add-color">Adicionar Cor</button>
+        </form>
+    </section>
+
+    <!-- LISTA DE CORES -->
+    <section class="color-list-section">
+        <h2>Cores Existentes</h2>
+        <div id="colorList" class="color-list"></div>
+    </section>
+
+</main>
+
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -74,8 +87,6 @@
         </div>
     </footer>
 
-    <!-- JS DO ADMIN -->
-    <script src="../js/view/contactosAdminView.js"></script>
-
+    <script type="module" src="../js/view/edicaoAdminView.js"></script>
 </body>
 </html>
