@@ -1,74 +1,89 @@
 import {abrirModalDetalhes,criarTarefa,criarCard} from "../view/homeView.js"
+import { getMinhasCategorias } from '../model/taskCategoryModel.js';
+import { getMinhasTarefas } from '../model/taskModel.js';
 
-const cat = [
-    {
-        name: 'tarefas',
-        user:  {name : "giastra"},
-        color: '#5C95FF'
-    },
-    {
-        name: 'escola',
-        user:  {name : "giastra"},
-        color: '#FC95FF'
-    }
-]
+// pega as categorias da API
+const res = await getMinhasCategorias();
+const cat = res.data
+const rs = await getMinhasTarefas()
+const tasks = rs.data
 
-const tasks = [
-    {
-        name : "Limpar o chão",
-        description : "limpe",
-        startDate : "2002-12-04",
-        endDate : "2022-02-12",
-        status : "por_fazer",
-        priority: "normal",
-        user : {name : "giastra"},
-        category : {
-            name : "tarefas",
-            color : "#5C95FF"
-        }
-    },
-     {
-        name : "Fazer o dever de casa",
-        description : "dever",
-        startDate : "2022-12-04",
-        endDate : "2022-02-12",
-        status : "por_fazer",
-        priority: "alta",
-        user : {name : "giastra"},
-        category : {
-            name : "escola",
-            color : "#FC95FF"
-        }
-    },
-    {
-        name :"Trabalhar muito",
-        description : "dever",
-        startDate : "2022-12-04",
-        endDate : "2002-02-12",
-        status : "por_fazer",
-        priority: "baixa",
-        user : {name : "giastra"},
-        category : {
-            name : "tarefas",
-            color : "#5C95FF"}
-    },
-    {
-        name :"Lavar a roupa",
-        description : "Lavar",
-        startDate : "2026-06-04",
-        endDate : "2026-06-10",
-        status : "concluida",
-        priority: "baixa",
-        user : {name : "giastra"},
-        category : {
-            name : "tarefas",
-            color : "#5C95FF"}
-    }
-]
+// const cat = [
+//     {
+//         name: 'tarefas',
+//         user:  {name : "giastra"},
+//         color: '#5C95FF'
+//     },
+//     {
+//         name: 'escola',
+//         user:  {name : "giastra"},
+//         color: '#FC95FF'
+//     }
+// ]
+
+
+    // const tasks = [
+    //     {
+    //         name : "Limpar o chão",
+    //         description : "limpe",
+    //         startDate : "2002-12-04",
+    //         endDate : "2022-02-12",
+    //         status : "por_fazer",
+    //         priority: "normal",
+    //         user : {name : "giastra"},
+    //         category : {
+    //             name : "tarefas",
+    //             color : "#5C95FF"
+    //         }
+    //     },
+    //     {
+    //         name : "Fazer o dever de casa",
+    //         description : "dever",
+    //         startDate : "2022-12-04",
+    //         endDate : "2022-02-12",
+    //         status : "por_fazer",
+    //         priority: "alta",
+    //         user : {name : "giastra"},
+    //         category : {
+    //             name : "escola",
+    //             color : "#FC95FF"
+    //         }
+    //     },
+    //     {
+    //         name :"Trabalhar muito",
+    //         description : "dever",
+    //         startDate : "2022-12-04",
+    //         endDate : "2002-02-12",
+    //         status : "por_fazer",
+    //         priority: "baixa",
+    //         user : {name : "giastra"},
+    //         category : {
+    //             name : "tarefas",
+    //             color : "#5C95FF"}
+    //     },
+    //     {
+    //         name :"Lavar a roupa",
+    //         description : "Lavar",
+    //         startDate : "2026-06-04",
+    //         endDate : "2026-06-10",
+    //         status : "concluida",
+    //         priority: "baixa",
+    //         user : {name : "giastra"},
+    //         category : {
+    //             name : "tarefas",
+    //             color : "#5C95FF"}
+    //     }
+    // ]
 
 
 // renderiza as tarefas quando pedida
 export function rendTarefas() {
+    // verifica se existe tarefa
+
+    
+    if(tasks.length>0){
+      
+    // para cada tarefa por fazer ele cria um cartão 
     for (const tas of tasks) {
     if (tas.status == 'por_fazer'){
         
@@ -88,14 +103,19 @@ export function rendTarefas() {
 
         criarTarefa(tas.name,tas.description,tipo)
     }  
-}
-
-   
+    }
+    }   
+    else{
+        criarTarefa('n','n','n','n')
+             
+    }
+    
 }
 
 
 // função puxa as listas de categorias e de tarefas para renderiar na home pg
 export function rendCategorias() {
+    if (cat.length>0){
     for (const tas of cat) {
            let nconclu = 0
            let ntotal = 0
@@ -109,6 +129,11 @@ export function rendCategorias() {
         }
         criarCard(tas.name,tas.color,nconclu,ntotal)
     }
+}
+else{
+    criarCard('n','n','n','n','n')
+}
+
 }
 
 
@@ -127,3 +152,4 @@ export function marcaConcluido(nome){
         
     }
 }
+

@@ -4,7 +4,9 @@ const middle = document.getElementById("middle");
 const porFazer = document.getElementById("por-fazer");
 
 /* CRIAR TAREFA */
-export function criarTarefa(titulo, descricao, prioridade='green') {
+// recebe 4 proriedades (o titulo da tarefa, a dercrição da tarefa, a prioridade da tarefa ('green','yellow' ou 'red'),se existe tarefa na lista(s/n))
+export function criarTarefa(titulo, descricao, prioridade='green',temTarefa='s') {
+    if (temTarefa=='s'){
     const tarefa = document.createElement("div");
     tarefa.classList.add("tarefa");
 
@@ -29,7 +31,15 @@ export function criarTarefa(titulo, descricao, prioridade='green') {
 
     porFazer.appendChild(tarefa);
 }
-
+    else{
+        const tarefa = document.createElement("div");
+        tarefa.classList.add("tarefa");
+        tarefa.innerHTML = `
+            <div class="texto titulo-tarefa">Nenhuma tarefa criada</div>
+        `;
+        porFazer.appendChild(tarefa);
+    }
+}
 /* MODAL DE DETALHES */
 export function abrirModalDetalhes(titulo, descricao) {
     const modal = document.createElement("div");
@@ -56,8 +66,9 @@ export function abrirModalDetalhes(titulo, descricao) {
 
 
 /* CRIAR CARD DE CATEGORIA */
-// (titulo, cor , qauntas tarefas completas, quantas tarefas no total)
-export function criarCard(titulo,color,ncomp=0,ntotal=0) {
+// (titulo, cor , qauntas tarefas completas, quantas tarefas no total,se foi encontrado tarefa (s/n))
+export function criarCard(titulo,color,ncomp=0,ntotal=0,temCategoria='s') {
+    if (temCategoria == 's'){
     let porcenta = 100
     if (ntotal != 0){
         porcenta = (ncomp*100)/ntotal
@@ -80,6 +91,19 @@ export function criarCard(titulo,color,ncomp=0,ntotal=0) {
     `;
 
     middle.appendChild(card);
+}
+else{
+    const card = document.createElement("div");
+    card.classList.add("category-card");
+
+    card.innerHTML = `
+    <div class="card p-4 mb-3" style="width: 300px; border-radius: 12px;">
+        <h5 class="card-title mb-2" style="font-size: 16px;">Nenhuma categoria criada</h5>
+    </div>
+    `;
+
+    middle.appendChild(card);
+}
 }
 
 rendTarefas()
