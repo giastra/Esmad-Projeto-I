@@ -161,7 +161,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  align-items: center;
+  /* align-items: center; */
   
 }
 
@@ -185,6 +185,7 @@ body {
 }
 
 .categorias {
+  gap: 10px;
   grid-area: categorias;
   background-color: #c6c6c6;
 }
@@ -206,12 +207,13 @@ body {
 }
 
 .categorias .btn-link:hover {
-  background-color: #ffffff;
+  background-color: #ecefec;
   color: #464646;
+;
 }
 
 .tarefas .btn-link:hover {
-  background-color: #ffffff;
+  background-color: #ecefec;
   color: #464646;
 }
 
@@ -428,9 +430,6 @@ main {
     min-height: 300px;
     display: flex;
     flex-direction: column;
-    padding: 0;
-    width: 600px; 
-     gap: 10px;
     margin: 0 auto;
    
 }

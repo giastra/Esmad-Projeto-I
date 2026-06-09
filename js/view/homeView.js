@@ -78,7 +78,7 @@ export function criarCard(titulo,color,ncomp=0,ntotal=0,temCategoria='s') {
     card.classList.add("category-card");
 
     card.innerHTML = `
-    <div class="card p-4 mb-3" style="width: 300px; border-radius: 12px;">
+    <div class="card p-4 mb-3" style="width: 300px; border-radius: 12px;" id='categoria'>
         <h5 class="card-title mb-2" style="font-size: 16px;">${titulo}</h5>
 
         <div class="d-flex align-items-center gap-2">
@@ -97,7 +97,7 @@ else{
     card.classList.add("category-card");
 
     card.innerHTML = `
-    <div class="card p-4 mb-3" style="width: 300px; border-radius: 12px;">
+    <div class="card p-4 mb-3" style="width: 300px; border-radius: 12px;" id='categoria'>
         <h5 class="card-title mb-2" style="font-size: 16px;">Nenhuma categoria criada</h5>
     </div>
     `;
