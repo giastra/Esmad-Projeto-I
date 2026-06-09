@@ -14,7 +14,7 @@
 <body>
 
     <!-- NAVBAR ADMIN -->
-    <nav class="navbar navbar-admin">
+        <nav class="navbar navbar-admin">
         <div class="logo">
             <a class="logo-link">
                 <img src="../images/logo principal.png" alt="STAD TO DO">
@@ -23,51 +23,93 @@
             </a>
         </div>
 
-        <ul class="nav-links">
+        <ul class="nav-links nav-group">
             <li><a href="Admim-Contactos.html" class="link">Contactos</a></li>
             <li><a href="EdiçãoAdmim.html" class="link active">Edição</a></li>
+            <li><a href="../html/Perfil.html" class="link sair">Sair</a></li>
         </ul>
 
-        <div class="hamburger">
+       <div class="hamburger">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
 
-<main class="admin-colors-container">
 
-    <section class="admin-header">
-        <h1>Gestão de Cores</h1>
-        <p>Adiciona e remove cores que serão usadas em todo o site.</p>
-    </section>
+    <main class="admin-colors-container">
 
-    <!-- FORMULÁRIO -->
-    <section class="color-form-section">
-        <form id="form-color" class="color-form">
+        <!-- FORMULÁRIO -->
+        <section class="color-form-section compact-box">
+            <h2>Adicionar Cor</h2>
 
-            <div class="form-group">
-                <label for="name">Nome da Cor</label>
-                <input type="text" id="name" placeholder="Ex: Roxo Primário" required>
+            <form id="form-color" class="color-form">
+
+                <div class="form-group small-input">
+                    <label for="name">Nome da Cor</label>
+                    <input type="text" id="name" placeholder="Ex: Roxo Primário" required>
+                </div>
+
+                <div class="form-group small-input">
+                    <label for="hex">Código HEX</label>
+                    <input type="color" id="hex" value="#000000">
+                </div>
+
+                <button type="submit" class="btn-add-color small-btn">Adicionar</button>
+            </form>
+        </section>
+
+        <!-- LISTA DE CORES -->
+        <section class="color-list-section">
+            <h2>Cores Existentes</h2>
+            <div id="colorList" class="color-list"></div>
+        </section>
+
+        <!-- SECÇÃO 1 — ALTERAR NÚMEROS -->
+        <section class="settings-box">
+            <h2>Configurações</h2>
+
+            <div class="settings-grid">
+
+                <div class="setting-item">
+                    <label for="foco">Foco (min)</label>
+                    <input id="foco" type="number" value="25" min="1">
+                </div>
+
+                <div class="setting-item">
+                    <label for="pausa-curta">Pausa Curta (min)</label>
+                    <input id="pausa-curta" type="number" value="5" min="1">
+                </div>
+
+                <div class="setting-item">
+                    <label for="pausa-longa">Pausa Longa (min)</label>
+                    <input id="pausa-longa" type="number" value="15" min="1">
+                </div>
+
+                <div class="setting-item">
+                    <label for="ciclos">Ciclos</label>
+                    <input id="ciclos" type="number" value="4" min="1">
+                </div>
+
             </div>
 
-            <div class="form-group">
-                <label for="hex">Código HEX</label>
-                <input type="color" id="hex" value="#000000">
+            <button class="btn-alterar">Alterar</button>
+        </section>
+
+        <!-- SECÇÃO 2 — PESQUISA + LISTA -->
+        <section class="users-box">
+            <h2>Utilizadores</h2>
+
+            <label for="pesquisa">Pesquisar</label>
+            <input id="pesquisa" type="text" class="search-input" placeholder="Pesquisar utilizador...">
+
+            <label>Lista de Utilizadores</label>
+            <div class="users-list">
+                <!-- Aqui vão aparecer utilizadores futuramente -->
             </div>
+        </section>
 
-            <button type="submit" class="btn-add-color">Adicionar Cor</button>
-        </form>
-    </section>
-
-    <!-- LISTA DE CORES -->
-    <section class="color-list-section">
-        <h2>Cores Existentes</h2>
-        <div id="colorList" class="color-list"></div>
-    </section>
-
-</main>
-
+    </main>
 
     <!-- FOOTER -->
     <footer class="footer">

@@ -142,3 +142,8 @@ document.getElementById('btn-delete')?.addEventListener('click', async () => {
 if (document.getElementById('nome') && localStorage.getItem('token')) {
   carregarPerfil();
 }
+
+//ADMIM PAGINA 
+document.getElementById('btn-admin')?.addEventListener('click', () => {
+    window.location.href = "EdiçãoAdmim.html";
+});
