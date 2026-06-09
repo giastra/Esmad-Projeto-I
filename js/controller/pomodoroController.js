@@ -1,66 +1,61 @@
-import { getMeus, criar, atualizar, apagar, ativar } from '..models/pomodoroModel.js';
+import { getMeus, criar, atualizar, apagar, ativar } from '../model/pomodoroModel.js';
 import { requireAuth } from '../utils/helpers.js';
 
+//MENSAGENS
 
-// Carrega todos os pomodoros do utilizador
-const carregarPomodoros = async () => {
+export const renderSucesso = (msg) => {
+  const el = document.getElementById('mensagem');
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'alert alert-success';
+  setTimeout(() => limparMensagens(), 3000);
+};
+
+export const renderErro = (msg) => {
+  const el = document.getElementById('mensagem');
+  if (!el) return;
+  el.textContent = msg;
+  el.className = 'alert alert-danger';
+};
+
+export const limparMensagens = () => {
+  const el = document.getElementById('mensagem');
+  if (!el) return;
+  el.textContent = '';
+  el.className = '';
+};
+
+//CARREGAR POMODOROS
+
+export const carregarPomodoros = async (onRender) => {
   requireAuth();
-
   const res = await getMeus();
   if (res.success) {
-    renderPomodoros(res.data.meus, res.data.default, res.data.activePomodoro);
-    bindEventos();
-  }
-};
-
-// Liga os eventos aos botões da lista
-const bindEventos = () => {
-  // Ativar pomodoro
-  document.querySelectorAll('.btn-ativar').forEach(btn => {
-    btn.addEventListener('click', async (e) => {
-      const id = e.target.closest('[data-id]').dataset.id;
-      const res = await ativar(id);
-      if (res.success) {
-        renderSucesso('Pomodoro ativado.');
-        carregarPomodoros();
-      } else {
-        renderErro(res.message);
-      }
-    });
-  });
-
-  // Apagar pomodoro
-  document.querySelectorAll('.btn-apagar').forEach(btn => {
-    btn.addEventListener('click', async (e) => {
-      const id = e.target.closest('[data-id]').dataset.id;
-      const res = await apagar(id);
-      if (res.success) carregarPomodoros();
-      else renderErro(res.message);
-    });
-  });
-};
-
-// CRIAR POMODORO
-document.getElementById('form-pomodoro')?.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  limparMensagens();
-
-  const res = await criar({
-    name: document.getElementById('name').value,
-    focusTime: Number(document.getElementById('focusTime').value),
-    shortBreak: Number(document.getElementById('shortBreak').value),
-    longBreak: Number(document.getElementById('longBreak').value),
-    cycles: Number(document.getElementById('cycles').value)
-  });
-
-  if (res.success) {
-    renderSucesso('Pomodoro criado com sucesso.');
-    e.target.reset();
-    carregarPomodoros();
+    onRender(res.data.meus, res.data.default, res.data.activePomodoro);
   } else {
-    renderErro(res.message);
+    renderErro(res.message || 'Erro ao carregar pomodoros.');
   }
-});
+};
+
+//AÇÕES 
+
+export const ativarPomodoro = async (id) => {
+  return await ativar(id);
+};
+
+export const apagarPomodoro = async (id) => {
+  return await apagar(id);
+};
+
+export const criarPomodoro = async (dados) => {
+  return await criar(dados);
+};
+
+export const atualizarPomodoro = async (id, dados) => {
+  return await atualizar(id, dados);
+};
 
 
-carregarPomodoros();
+export const initPomodoroController = (onRender) => {
+  carregarPomodoros(onRender);
+};

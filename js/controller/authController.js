@@ -74,6 +74,7 @@ document.getElementById('form-update')?.addEventListener('submit', async (e) => 
   if (res.success) {
     setUser(res.data);
     renderPerfil(res.data);
+    document.getElementById('novo-nome').value = '';
     renderSucesso('Nome atualizado com sucesso.');
   } else {
     renderErro(res.message);
@@ -92,6 +93,8 @@ document.getElementById('form-email')?.addEventListener('submit', async (e) => {
   });
 
   if (res.success) {
+    document.getElementById('novo-email').value = '';
+    document.getElementById('password-confirm').value = '';
     renderSucesso('Email atualizado com sucesso.');
   } else {
     renderErro(res.message);
@@ -110,6 +113,8 @@ document.getElementById('form-password')?.addEventListener('submit', async (e) =
   });
 
   if (res.success) {
+    document.getElementById('password-atual').value = '';
+    document.getElementById('password-nova').value = '';
     renderSucesso('Password atualizada com sucesso.');
   } else {
     renderErro(res.message);
@@ -133,3 +138,7 @@ document.getElementById('btn-delete')?.addEventListener('click', async () => {
 });
 
 
+// Inicializa a página de perfil apenas se estiver na página de perfil e autenticado
+if (document.getElementById('nome') && localStorage.getItem('token')) {
+  carregarPerfil();
+}
