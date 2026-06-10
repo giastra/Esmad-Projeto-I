@@ -66,8 +66,8 @@ export function abrirModalDetalhes(titulo, descricao) {
 
 
 /* CRIAR CARD DE CATEGORIA */
-// (titulo, cor , qauntas tarefas completas, quantas tarefas no total,se foi encontrado tarefa (s/n))
-export function criarCard(titulo,color,ncomp=0,ntotal=0,temCategoria='s') {
+// (_id,titulo, cor , qauntas tarefas completas, quantas tarefas no total,se foi encontrado tarefa (s/n))
+export function criarCard(id,titulo,color,ncomp=0,ntotal=0,temCategoria='s') {
     if (temCategoria == 's'){
     let porcenta = 100
     if (ntotal != 0){
@@ -75,10 +75,10 @@ export function criarCard(titulo,color,ncomp=0,ntotal=0,temCategoria='s') {
     }
 
     const card = document.createElement("div");
-    card.classList.add("category-card");
+    card.classList.add("category-card",id);
 
     card.innerHTML = `
-    <div class="card p-4 mb-3" style="width: 300px; border-radius: 12px;" id='categoria'>
+    <div class="card p-4 mb-3" id='categoria' name="${id}">
         <h5 class="card-title mb-2" style="font-size: 16px;">${titulo}</h5>
 
         <div class="d-flex align-items-center gap-2">
@@ -89,15 +89,22 @@ export function criarCard(titulo,color,ncomp=0,ntotal=0,temCategoria='s') {
         </div>
     </div>
     `;
-
     middle.appendChild(card);
+
+    // adiciona a possibilidade de entrar nas categoria selecionada
+    card.addEventListener('click',function(){
+        localStorage.setItem("categoria", id)
+         window.location.href = "./Tarefas.html"
+    })
 }
+
+// caso não exista cards
 else{
     const card = document.createElement("div");
     card.classList.add("category-card");
 
     card.innerHTML = `
-    <div class="card p-4 mb-3" style="width: 300px; border-radius: 12px;" id='categoria'>
+    <div class="card p-4 mb-3" style="width: 290px; border-radius: 12px" id='categoria'>
         <h5 class="card-title mb-2" style="font-size: 16px;">Nenhuma categoria criada</h5>
     </div>
     `;
@@ -105,6 +112,7 @@ else{
     middle.appendChild(card);
 }
 }
+
 
 rendTarefas()
 rendCategorias()

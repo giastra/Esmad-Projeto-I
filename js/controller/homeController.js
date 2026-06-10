@@ -59,7 +59,7 @@ export function rendCategorias() {
                 }
             }
         }
-        criarCard(tas.name,tas.color,nconclu,ntotal)
+        criarCard(tas._id,tas.name,tas.color,nconclu,ntotal)
     }
 }
 else{
