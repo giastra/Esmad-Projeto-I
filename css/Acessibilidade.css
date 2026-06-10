@@ -159,13 +159,13 @@ body.dark-mode .hero-sobre span{
 /* ------------- AUMENTAR LETRAS GLOBAL ------------- */
 
 body.font-large main,
-body.font-large section,
+body.font-large section p,
 body.font-large .hero,
 body.font-large .hero-sobre,
 body.font-large .middle-section,
 body.font-large .container,
 body.font-large .content {
-    font-size: 1.50rem !important;
+    font-size: 1.20rem !important;
     line-height: 1.6 !important;
 }
 
