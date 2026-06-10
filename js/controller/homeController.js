@@ -2,7 +2,7 @@ import {abrirModalDetalhes,criarTarefa,criarCard} from "../view/homeView.js"
 import { getMinhasCategorias } from '../model/taskCategoryModel.js';
 import { getMinhasTarefas } from '../model/taskModel.js';
 
-// pega as categorias da API
+// pega as categorias e as tarefas da API
 const res = await getMinhasCategorias();
 const cat = res.data
 const rs = await getMinhasTarefas()
