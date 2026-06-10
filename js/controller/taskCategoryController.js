@@ -2,24 +2,40 @@ import { getMinhasCategorias, criar, apagar } from '../model/taskCategoryModel.j
 import { getColors } from '../model/colorModel.js';
 import { requireAuth } from '../utils/helpers.js';
 
-
+const resCat = await getMinhasCategorias();
+const cat = res.data
+console.log(cat);
+const resColor = await getColors();
+const color = resColor.data
 
 // Carrega todas as categorias do utilizador
-const carregarCategorias = async () => {
-  requireAuth();
-
-  const res = await getMinhasCategorias();
-  if (res.success) {
-    renderCategorias(res.data);
-    bindEventos();
+export function carregarCategorias() { 
+  if (cat.length>0){
+      for (const tas of cat) {
+             let nconclu = 0
+             let ntotal = 0
+          for (const taf of tasks){   
+              if (taf.category.name == tas.name){
+                  ntotal++
+                  if (taf.status == 'concluida'){
+                      nconclu ++
+                  }
+              }
+          }
+          criarCard(tas.name,tas.color,nconclu,ntotal)
+      }
   }
+  else{
+      criarCard('n','n','n','n','n')
+  }
+  
 };
 
 // Carrega as cores para o select do formulário
-const carregarCores = async () => {
-  const res = await getColors();
-  if (res.success) renderOpcoesCores(res.data);
-};
+export function carregarCores(){
+ 
+  
+}
 
 // Liga os eventos aos botões da lista
 const bindEventos = () => {
@@ -56,5 +72,5 @@ document.getElementById('form-category')?.addEventListener('submit', async (e) =
 });
 
 
-carregarCores();
-carregarCategorias();
+// carregarCores();
+// carregarCategorias();

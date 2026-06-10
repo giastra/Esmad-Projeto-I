@@ -1,3 +1,4 @@
+import {carregarCores,carregarCategorias} from "../controller/taskCategoryController.js"
 /* BOTÕES E ELEMENTOS BASE */
 
 const btnAdd = document.querySelector(".btn-add");
@@ -5,13 +6,14 @@ const middle = document.getElementById("middle");
 const btnDeleteCategorias = document.querySelector(".btn-delete");
 
 let modoEliminarCategoria = false;
-
+carregarCategorias()
 
 /* ABRIR MODAL DE CRIAR CATEGORIA */
 
 btnAdd.addEventListener("click", () => {
     criarModal();
 });
+console.log(carregarCores());
 
 function criarModal() {
     const modal = document.createElement("div");
@@ -23,7 +25,7 @@ function criarModal() {
 
             <label>Título</label>
             <input type="text" id="tituloCategoria" placeholder="Nome da categoria">
-
+            <input type='button' id="" >
             <button id="criarCategoria" class="btn-modal-add">Adicionar</button>
         </div>
     `;
