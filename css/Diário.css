@@ -1,0 +1,272 @@
+/* ============================
+   LAYOUT GERAL
+============================ */
+
+body {
+    background: #f2f2f7;
+}
+
+main {
+    padding-top: 140px;
+    padding-bottom: 80px;
+}
+
+main h1 {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 25px auto;
+    font-size: 32px;
+    color: #000;
+}
+
+/* ============================
+   WRAPPER PRINCIPAL
+============================ */
+
+.diario-wrapper {
+    display: flex;
+    gap: 25px;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ============================
+   SIDEBAR
+============================ */
+
+.diario-sidebar {
+    width: 30%;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    height: calc(100vh - 220px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* CABEÇALHO ANO + MÊS (MODERNO) */
+.nav-ano,
+.nav-mes {
+    width: 100%;
+    padding: 12px 16px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+
+    margin-bottom: 12px;
+
+
+}
+
+/* Texto (ano e mês) */
+.nav-ano span,
+.nav-mes span {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1f1f1f;
+    letter-spacing: 0.5px;
+}
+
+/* Botões */
+.btn-nav {
+    background: linear-gradient(135deg, #ffb347, #ff9d00);
+    border: none;
+    color: #1f1f1f;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+    cursor: pointer;
+
+    font-weight: bold;
+    font-size: 16px;
+
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 8px rgba(255, 157, 0, 0.25);
+}
+
+/* Hover */
+.btn-nav:hover {
+    transform: translateY(-2px) scale(1.05);
+    background: linear-gradient(135deg, #ff9d00, #e68a00);
+    box-shadow: 0 6px 14px rgba(255, 157, 0, 0.35);
+}
+
+/* Click */
+.btn-nav:active {
+    transform: translateY(0px) scale(0.98);
+}
+
+/* ============================
+   LISTA DE ENTRADAS
+============================ */
+/* Lista com scroll */
+#lista-diarios {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 600px; 
+    overflow-y: auto;
+    padding-right: 8px;
+}
+
+/* Scrollbar moderna */
+#lista-diarios::-webkit-scrollbar {
+    width: 8px;
+}
+
+#lista-diarios::-webkit-scrollbar-thumb {
+    background: #e68a00;
+    border-radius: 20px;
+}
+
+
+
+/* Cada entrada */
+#lista-diarios .entrada-item {
+    background: #ffffff;
+    border: 1px solid #ffa600;
+    border-radius: 14px;
+    padding: 18px 18px; 
+    margin: 0 4px; 
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+#lista-diarios .entrada-item:hover {
+    background: #ffd375;
+    border-color: #ffe46c;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(108,140,255,0.18);
+}
+/* ============================
+   EDITOR
+============================ */
+
+.diario-editor {
+    width: 70%;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    height: calc(100vh - 220px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Toolbar */
+#editor-toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.btn-formato {
+    background: #ff9d00;
+    border: none;
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+.btn-formato:hover {
+    background: #e68a00;
+}
+
+/* Área do editor */
+#editor-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#editor-titulo {
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 8px;
+    outline: none;
+    color: #000;
+}
+
+#editor-subtitulo {
+    font-size: 14px;
+    color: #444 !important;
+}
+
+#editor-conteudo {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 15px;
+    outline: none;
+    overflow-y: auto;
+    font-size: 15px;
+    color: #000;
+    background: #fafafa;
+}
+
+#editor-conteudo:focus {
+    border-color: #ff9d00;
+    box-shadow: 0 0 8px rgba(255, 157, 0, 0.4);
+    background: #fff;
+}
+
+/* Footer */
+#editor-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+#btn-guardar-entrada {
+    background: #ff9d00;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+}
+
+#btn-guardar-entrada:hover {
+    background: #e68a00;
+}
+
+#btn-apagar-entrada {
+    border-radius: 12px;
+    color: #000;
+}
+
+/* ============================
+   RESPONSIVO
+============================ */
+
+@media (max-width: 900px) {
+
+    .diario-wrapper {
+        flex-direction: column;
+    }
+
+    .diario-sidebar,
+    .diario-editor {
+        width: 100%;
+        height: auto;
+    }
+}
