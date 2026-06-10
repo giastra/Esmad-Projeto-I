@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Edição</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/EdiçãoAdmim.css">
+    <link rel="stylesheet" href="../css/Acessibilidade.css">
+</head>
+<body>
+
+    <!-- NAVBAR ADMIN -->
+        <nav class="navbar navbar-admin">
+        <div class="logo">
+            <a class="logo-link">
+                <img src="../images/logo principal.png" alt="STAD TO DO">
+                <span class="logo-text">STAD TO DO</span>
+                <span class="admin-text">Administrador</span>
+            </a>
+        </div>
+
+        <ul class="nav-links nav-group">
+            <li><a href="Admim-Contactos.html" class="link">Contactos</a></li>
+            <li><a href="EdiçãoAdmim.html" class="link active">Edição</a></li>
+            <li><a href="../html/Perfil.html" class="link sair">Sair</a></li>
+        </ul>
+
+       <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+
+    <main class="admin-colors-container">
+
+        <!-- FORMULÁRIO -->
+        <section class="color-form-section compact-box">
+            <h2>Adicionar Cor</h2>
+
+            <form id="form-color" class="color-form">
+
+                <div class="form-group small-input">
+                    <label for="name">Nome da Cor</label>
+                    <input type="text" id="name" placeholder="Ex: Roxo Primário" required>
+                </div>
+
+                <div class="form-group small-input">
+                    <label for="hex">Código HEX</label>
+                    <input type="color" id="hex" value="#000000">
+                </div>
+
+                <button type="submit" class="btn-add-color small-btn">Adicionar</button>
+            </form>
+        </section>
+
+        <!-- LISTA DE CORES -->
+        <section class="color-list-section">
+            <h2>Cores Existentes</h2>
+            <div id="colorList" class="color-list"></div>
+        </section>
+
+        <!-- SECÇÃO 1 — ALTERAR NÚMEROS -->
+        <section class="settings-box">
+            <h2>Configurações</h2>
+
+            <div class="settings-grid">
+
+                <div class="setting-item">
+                    <label for="foco">Foco (min)</label>
+                    <input id="foco" type="number" value="25" min="1">
+                </div>
+
+                <div class="setting-item">
+                    <label for="pausa-curta">Pausa Curta (min)</label>
+                    <input id="pausa-curta" type="number" value="5" min="1">
+                </div>
+
+                <div class="setting-item">
+                    <label for="pausa-longa">Pausa Longa (min)</label>
+                    <input id="pausa-longa" type="number" value="15" min="1">
+                </div>
+
+                <div class="setting-item">
+                    <label for="ciclos">Ciclos</label>
+                    <input id="ciclos" type="number" value="4" min="1">
+                </div>
+
+            </div>
+
+            <button class="btn-alterar">Alterar</button>
+        </section>
+
+        <!-- SECÇÃO 2 — PESQUISA + LISTA -->
+        <section class="users-box">
+            <h2>Utilizadores</h2>
+
+            <label for="pesquisa">Pesquisar</label>
+            <input id="pesquisa" type="text" class="search-input" placeholder="Pesquisar utilizador...">
+
+            <label>Lista de Utilizadores</label>
+            <div class="users-list">
+                <!-- Aqui vão aparecer utilizadores futuramente -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BOTÃO DE ACESSIBILIDADE -->
+    <div class="acessibilidade-btn">
+        <img src="../images/Icone-acessibilidade.png" alt="Acessibilidade">
+    </div>
+
+    <div class="tdha-rect-overlay"></div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-left">
+            <span>© 2026 GRUPO 2</span>
+        </div>
+
+        <div class="footer-center">
+            <a href="Sobre_nós.html">SOBRE NÓS</a>
+            <a href="https://www.esmad.ipp.pt/">ESMAD</a>
+            <a href="https://www.esmad.ipp.pt/cursos/licenciatura/663">CURSO</a>
+            <a href="Contatos.html">CONTACTOS</a>
+        </div>
+
+        <div class="footer-right">
+            <img src="../images/logo fother.png" alt="Logotipo preto">
+        </div>
+    </footer>
+
+    <script type="module" src="../js/view/edicaoAdminView.js"></script>
+    <script src="../js/view/Acessibilidade.js"></script>
+</body>
+</html>

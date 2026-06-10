@@ -3,37 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <!--Bootstrap-->
+    <title>Diário</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link rel="stylesheet" href="../css/Diário.css">
     <link rel="stylesheet" href="../css/Geral.css">
     <link rel="stylesheet" href="../css/Acessibilidade.css">
-    <link rel="stylesheet" href="../css/Pomodoro.css">
 </head>
 <body>
 
     <!--NAVBAR-->
-
     <nav class="navbar">
       <div class="logo">
-           <a class="logo-link">
-             <img src="../images/logo principal.png" alt="STAD TO DO">
-            <span class="logo-text">STAD TO DO</span>
-           </a>
-       </div>
-  
+        <a class="logo-link">
+          <img src="../images/logo principal.png" alt="STAD TO DO">
+          <span class="logo-text">STAD TO DO</span>
+        </a>
+      </div>
       <ul class="nav-links">
           <li><a href="Home.html" class="link">Início</a></li>
           <li><a href="Categorias.html" class="link">Categorias</a></li>
           <li><a href="Tarefas.html" class="link">Tarefas</a></li>
           <li><a href="Calendário.html" class="link">Calendário</a></li>
           <li><a href="Diário.html" class="link active">Diário</a></li>
-          <li><a href="Pomodoro.html" class="link">Pomodoro</a></li>
+          <li><a id="btn-pomodoro" class="link">Pomodoro</a></li>
           <li><a href="Perfil.html" class="link">Perfil</a></li>
       </ul>
-
       <div class="hamburger">
         <span></span>
         <span></span>
@@ -49,25 +43,124 @@
     <!-- OVERLAY DO MODO TDAH -->
     <div class="tdha-rect-overlay"></div>
 
-    <!--FOOTER-->
+    <!-- CONTEÚDO PRINCIPAL -->
+<main class="container my-4">
 
+    <div id="mensagem"></div>
+
+    <h1>Diário</h1>
+
+    <div class="diario-wrapper">
+
+        <!-- SIDEBAR -->
+        <div class="diario-sidebar">
+
+            <div class="nav-ano">
+                <button id="btn-ano-anterior" class="btn-nav">&lt;</button>
+                <span id="ano-atual"></span>
+                <button id="btn-ano-seguinte" class="btn-nav">&gt;</button>
+            </div>
+
+            <div class="nav-mes">
+                <button id="btn-mes-anterior" class="btn-nav">&lt;</button>
+                <span id="mes-atual"></span>
+                <button id="btn-mes-seguinte" class="btn-nav">&gt;</button>
+            </div>
+
+            <hr>
+
+            <div id="lista-diarios">
+                <p class="text-muted">A carregar...</p>
+            </div>
+
+        </div>
+
+        <!-- EDITOR -->
+        <div class="diario-editor">
+
+            <div id="editor-toolbar">
+
+                <button class="btn-formato" data-cmd="bold">
+                    <strong>N</strong>
+                </button>
+
+                <button class="btn-formato" data-cmd="italic">
+                    <em>I</em>
+                </button>
+
+                <button class="btn-formato" data-cmd="underline">
+                    <u>S</u>
+                </button>
+
+            </div>
+
+            <div id="editor-area">
+
+                <input
+                    type="text"
+                    id="editor-titulo"
+                    placeholder="Título"
+                >
+
+                <div
+                    id="editor-subtitulo"
+                    class="text-muted"
+                >
+                    O teu dia em poucas palavras. Começa aqui...
+                </div>
+
+                <div
+                    id="editor-conteudo"
+                    contenteditable="true"
+                ></div>
+
+            </div>
+
+            <div id="editor-footer">
+
+                <button
+                    id="btn-apagar-entrada"
+                    class="btn btn-outline-danger"
+                    style="display:none"
+                >
+                    Apagar
+                </button>
+
+                <button
+                    id="btn-guardar-entrada"
+                    class="btn btn-primary"
+                >
+                    Guardar
+                </button>
+
+            </div>
+
+            <input type="hidden" id="entrada-id">
+
+        </div>
+
+    </div>
+
+</main>
+
+    <!--FOOTER-->
     <footer class="footer">
         <div class="footer-left">
             <span>© 2026 GRUPO 2</span>
         </div>
-
         <div class="footer-center">
             <a href="Sobre_nós.html">SOBRE NÓS</a>
             <a href="https://www.esmad.ipp.pt/">ESMAD</a>
             <a href="https://www.esmad.ipp.pt/cursos/licenciatura/663">CURSO</a>
             <a href="Contatos.html">CONTACTOS</a>
         </div>
-
         <div class="footer-right">
           <img src="../images/logo fother.png" alt="Logotipo preto">
         </div>
     </footer>
-    <script type="module" src="../js/view/pomodoroView.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../js/view/diaryView.js"></script>
     <script src="../js/view/Acessibilidade.js"></script>
 </body>
 </html>
