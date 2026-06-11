@@ -38,28 +38,31 @@ initCriarCor();
 
 
 
-// POMODORO DEFAULT (LOCALSTORAGE)
 
 
-document.querySelector(".btn-alterar").addEventListener("click", () => {
-    const foco = Number(document.getElementById("foco").value);
-    const pausaCurta = Number(document.getElementById("pausa-curta").value);
-    const pausaLonga = Number(document.getElementById("pausa-longa").value);
-    const ciclos = Number(document.getElementById("ciclos").value);
+// POMODORO DEFAULT
 
-    const novoDefault = {
-        focusTime: foco,
-        shortBreak: pausaCurta,
-        longBreak: pausaLonga,
-        cycles: ciclos
-    };
+import { carregarPomodoroDefault, atualizarPomodoroDefault } from '../controller/pomodoroController.js';
 
-    localStorage.setItem("pomodoroDefault", JSON.stringify(novoDefault));
-
-    alert("Configurações guardadas com sucesso!");
+carregarPomodoroDefault((data) => {
+  document.getElementById("pomo-name").value = data.name || "Classic Pomodoro";
+  document.getElementById("foco").value = data.focusTime;
+  document.getElementById("pausa-curta").value = data.shortBreak;
+  document.getElementById("pausa-longa").value = data.longBreak;
+  document.getElementById("ciclos").value = data.cycles;
 });
 
+document.querySelector(".btn-alterar").addEventListener("click", async () => {
+  const dados = {
+    name: document.getElementById("pomo-name").value,
+    focusTime: Number(document.getElementById("foco").value),
+    shortBreak: Number(document.getElementById("pausa-curta").value),
+    longBreak: Number(document.getElementById("pausa-longa").value),
+    cycles: Number(document.getElementById("ciclos").value)
+  };
 
+  await atualizarPomodoroDefault(dados);
+});
 
 // LISTAR UTILIZADORES 
 

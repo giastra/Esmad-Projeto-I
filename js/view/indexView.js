@@ -138,3 +138,91 @@ document.getElementById('ir-para-login')?.addEventListener('click', (e) => {
   fecharModais();
   abrirModalLogin();
 });
+
+// =========================
+// POMODORO DEFAULT
+// =========================
+
+import { carregarPomodoroDefault } from '../controller/pomodoroController.js';
+
+let pomodoroDefault = { focusTime: 25, shortBreak: 5, longBreak: 15, cycles: 4 };
+let currentTime, mode, cycleCount, interval, isRunning;
+
+const timeDisplay = document.getElementById("pomo-time");
+const label = document.getElementById("pomo-label");
+const btnStart = document.getElementById("pomo-start");
+const btnReset = document.getElementById("pomo-reset");
+
+const updateDisplay = () => {
+  const m = Math.floor(currentTime / 60);
+  const s = currentTime % 60;
+  timeDisplay.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+};
+
+const initTimer = (data) => {
+  pomodoroDefault = data;
+  currentTime = data.focusTime * 60;
+  mode = "focus";
+  cycleCount = 0;
+  interval = null;
+  isRunning = false;
+  updateDisplay();
+};
+
+const nextPhase = () => {
+  if (mode === "focus") {
+    cycleCount++;
+    if (cycleCount % pomodoroDefault.cycles === 0) {
+      mode = "long";
+      currentTime = pomodoroDefault.longBreak * 60;
+      label.textContent = "Pausa Longa";
+    } else {
+      mode = "short";
+      currentTime = pomodoroDefault.shortBreak * 60;
+      label.textContent = "Pausa Curta";
+    }
+  } else {
+    mode = "focus";
+    currentTime = pomodoroDefault.focusTime * 60;
+    label.textContent = "Foco";
+  }
+  updateDisplay();
+  startTimer();
+};
+
+const startTimer = () => {
+  if (interval) return;
+  interval = setInterval(() => {
+    currentTime--;
+    updateDisplay();
+    if (currentTime <= 0) {
+      clearInterval(interval);
+      interval = null;
+      isRunning = false;
+      btnStart.textContent = "Iniciar";
+      nextPhase();
+    }
+  }, 1000);
+};
+
+const pauseTimer = () => { clearInterval(interval); interval = null; };
+
+const resetTimer = () => {
+  pauseTimer();
+  mode = "focus";
+  currentTime = pomodoroDefault.focusTime * 60;
+  label.textContent = "Foco";
+  updateDisplay();
+  btnStart.textContent = "Iniciar";
+  isRunning = false;
+};
+
+btnStart.addEventListener("click", () => {
+  if (!isRunning) { startTimer(); btnStart.textContent = "Pausar"; isRunning = true; }
+  else { pauseTimer(); btnStart.textContent = "Iniciar"; isRunning = false; }
+});
+
+btnReset.addEventListener("click", resetTimer);
+
+// Carrega o default da API e inicializa o timer
+carregarPomodoroDefault(initTimer);
