@@ -63,7 +63,7 @@ export function rendCategorias() {
     }
 }
 else{
-    criarCard('n','n','n','n','n')
+    criarCard('n','n','n','n','n','n')
 }
 
 }
