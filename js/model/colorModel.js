@@ -19,7 +19,7 @@ export const getColorById = (id) => fetch(`${BASE_URL}/${id}`, {
 }).then(r => r.json());
 
 // Criar cor (admin)
-export const criar = (data) => fetch(BASE_URL, {
+export const criarCor = (data) => fetch(BASE_URL, {
   method: 'POST',
   headers: headers(),
   body: JSON.stringify(data)
@@ -37,3 +37,4 @@ export const apagar = (id) => fetch(`${BASE_URL}/${id}`, {
   method: 'DELETE',
   headers: headers()
 }).then(r => r.json());
+

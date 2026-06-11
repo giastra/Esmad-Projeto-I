@@ -182,12 +182,19 @@ body {
   background-color: #c6c6c6;
   height: 400px;
   gap: 10px;
+  overflow-y: auto;          
+  overflow-x: hidden;
+  scrollbar-width: none
 }
 
 .categorias {
   gap: 10px;
   grid-area: categorias;
   background-color: #c6c6c6;
+  height: 400px;
+  overflow-y: auto;          
+  overflow-x: hidden;
+  scrollbar-width: none
 }
 
 .btn-link {
@@ -312,8 +319,8 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
+  margin-top: -30px;
 }
 
 .banner-content {
@@ -357,10 +364,10 @@ body {
    MAIN
 ============================ */
 
-main {
+#main {
   min-height: 100vh;
   padding-top: 120px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 .hero-sobre {
@@ -414,12 +421,29 @@ main {
     }
 }
 
+/* ^categorias */
+.card{
+  width: 100%; 
+  border-radius: 12px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
 
 /* ============================
    TAREFAS
 ============================ */
 .coluna {
     flex: 1;
+}
+
+.tarefa:hover{
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  cursor: pointer;
 }
 
 /* Caixa geral */

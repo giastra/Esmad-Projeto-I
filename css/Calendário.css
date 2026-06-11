@@ -54,3 +54,39 @@ main {
     margin-bottom: 20px;
 }
 
+        .cal-root { padding: 2rem 40px 60px; }
+        .cal-root h1 { font-size: 2rem; font-weight: 700; margin-bottom: 1.5rem; }
+
+        .cal-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+        .cal-nav button { background: none; border: 1px solid #ccc; border-radius: 10px; padding: 6px 16px; cursor: pointer; font-size: 1.1rem; }
+        .cal-nav button:hover { background: #f0f0f0; }
+        .cal-title { font-size: 1.4rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        .cal-ano { background: #333; color: #fff; border: none; border-radius: 20px; padding: 5px 16px; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); border-left: 1px solid #ddd; border-top: 1px solid #ddd; border-radius: 12px; overflow: hidden; background: #e8e8e8; }
+        .cal-dow { text-align: center; padding: 10px 0; font-size: 0.78rem; font-weight: 600; color: #666; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; background: #e8e8e8; }
+        .cal-cell { min-height: 90px; padding: 4px 6px; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; cursor: pointer; background: #f5f5f5; transition: background .12s; display: flex; flex-direction: column; gap: 2px; }
+        .cal-cell:hover { background: #ede9ff; }
+        .cal-cell.outro-mes { background: #e8e8e8; opacity: .5; cursor: default; }
+        .cal-cell.outro-mes:hover { background: #e8e8e8; }
+        .cal-cell-num { font-size: 0.78rem; color: #666; text-align: right; margin-bottom: 2px; }
+        .cal-cell.hoje .cal-cell-num span { background: #a78bfa; color: #fff; border-radius: 50%; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; }
+
+        .cal-tag { border-radius: 4px; padding: 2px 5px; font-size: 0.68rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.6; }
+        .cal-tag.alta   { background: #f87171; color: #4A1B0C; }
+        .cal-tag.normal { background: #a78bfa; color: #fff; }
+        .cal-tag.baixa  { background: #6ee7b7; color: #04342C; }
+        .cal-tag.mais   { background: none; color: #888; font-size: 0.65rem; }
+
+        .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.4); z-index: 9999; align-items: center; justify-content: center; }
+        .modal-bg.open { display: flex; }
+        .modal-box { background: #fff; border-radius: 14px; padding: 1.5rem; width: 360px; max-width: 92vw; max-height: 70vh; overflow-y: auto; position: relative; }
+        .modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+        .modal-head h3 { font-size: 1rem; font-weight: 700; margin: 0; text-transform: capitalize; }
+        .modal-close { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: #888; }
+        .modal-tarefa { border-radius: 8px; padding: 8px 12px; margin-bottom: 8px; font-size: 0.85rem; }
+        .modal-tarefa strong { display: block; font-weight: 600; margin-bottom: 2px; }
+        .modal-tarefa span { font-size: 0.78rem; opacity: .8; }
+        .modal-vazio { color: #aaa; font-size: 0.85rem; text-align: center; padding: 1rem 0; }
+
+        .cal-loading { text-align: center; padding: 2rem; color: #aaa; font-size: 0.9rem; }
