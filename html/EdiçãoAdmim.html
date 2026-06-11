@@ -15,7 +15,7 @@
 <body>
 
     <!-- NAVBAR ADMIN -->
-        <nav class="navbar navbar-admin">
+    <nav class="navbar navbar-admin">
         <div class="logo">
             <a class="logo-link">
                 <img src="../images/logo principal.png" alt="STAD TO DO">
@@ -30,7 +30,7 @@
             <li><a href="../html/Perfil.html" class="link sair">Sair</a></li>
         </ul>
 
-       <div class="hamburger">
+        <div class="hamburger">
             <span></span>
             <span></span>
             <span></span>
@@ -45,7 +45,6 @@
             <h2>Adicionar Cor</h2>
 
             <form id="form-color" class="color-form">
-
                 <div class="form-group small-input">
                     <label for="name">Nome da Cor</label>
                     <input type="text" id="name" placeholder="Ex: Roxo Primário" required>
@@ -66,43 +65,87 @@
             <div id="colorList" class="color-list"></div>
         </section>
 
-        <!-- SECÇÃO 1 — ALTERAR NÚMEROS -->
+        <!-- POMODORO -->
         <section class="settings-box">
             <h2>Configurações</h2>
 
             <div class="settings-grid">
+                <div class="setting-item">
+                    <label for="pomo-name">Nome</label>
+                    <input id="pomo-name" type="text" value="Classic Pomodoro">
+                </div>
 
-            <div class="setting-item">
-                <label for="pomo-name">Nome</label>
-                <input id="pomo-name" type="text" value="Classic Pomodoro">
-            </div>
+                <div class="setting-item">
+                    <label for="foco">Foco (min)</label>
+                    <input id="foco" type="number" value="25" min="1">
+                </div>
 
-            <div class="setting-item">
-                <label for="foco">Foco (min)</label>
-                <input id="foco" type="number" value="25" min="1">
-            </div>
+                <div class="setting-item">
+                    <label for="pausa-curta">Pausa Curta (min)</label>
+                    <input id="pausa-curta" type="number" value="5" min="1">
+                </div>
 
-            <div class="setting-item">
-                <label for="pausa-curta">Pausa Curta (min)</label>
-                <input id="pausa-curta" type="number" value="5" min="1">
-            </div>
+                <div class="setting-item">
+                    <label for="pausa-longa">Pausa Longa (min)</label>
+                    <input id="pausa-longa" type="number" value="15" min="1">
+                </div>
 
-            <div class="setting-item">
-                <label for="pausa-longa">Pausa Longa (min)</label>
-                <input id="pausa-longa" type="number" value="15" min="1">
-            </div>
-
-            <div class="setting-item">
-                <label for="ciclos">Ciclos</label>
-                <input id="ciclos" type="number" value="4" min="1">
-            </div>
-
+                <div class="setting-item">
+                    <label for="ciclos">Ciclos</label>
+                    <input id="ciclos" type="number" value="4" min="1">
+                </div>
             </div>
 
             <button class="btn-alterar">Alterar</button>
         </section>
 
-        <!-- SECÇÃO 2 — PESQUISA + LISTA -->
+        <!-- PROPS (GAMIFICAÇÃO) -->
+        <section class="settings-box">
+            <h2>Props de Gamificação</h2>
+
+            <!-- Formulário de criação -->
+            <form id="prop-criar-form" class="color-form">
+                <div class="form-group small-input">
+                    <label for="prop-name">Nome do Prop</label>
+                    <input type="text" id="prop-name" placeholder="Ex: Predio 4 andares" required>
+                </div>
+
+                <div class="form-group small-input">
+                    <label for="prop-img">Imagem</label>
+                    <input type="file" id="prop-img" accept="image/*" required>
+                    <img id="prop-criar-preview" src="" alt="Preview" style="display:none; width:60px; height:60px; object-fit:cover; margin-top:8px; border-radius:8px;">
+                </div>
+
+                <button type="submit" class="btn-add-color small-btn">Adicionar</button>
+            </form>
+
+            <!-- Formulário de edição (hidden por default) -->
+            <div id="prop-edit-form" style="display:none; flex-direction:column; gap:10px; margin-top:16px; padding:12px; border:1px solid #ccc; border-radius:8px;">
+                <h3>Editar Prop</h3>
+                <input type="hidden" id="prop-edit-id">
+
+                <div class="form-group small-input">
+                    <label for="prop-edit-name">Nome</label>
+                    <input type="text" id="prop-edit-name">
+                </div>
+
+                <div class="form-group small-input">
+                    <label for="prop-edit-img">Nova Imagem (opcional)</label>
+                    <input type="file" id="prop-edit-img" accept="image/*">
+                    <img id="prop-edit-preview" src="" alt="Preview" style="display:none; width:60px; height:60px; object-fit:cover; margin-top:8px; border-radius:8px;">
+                </div>
+
+                <div style="display:flex; gap:8px;">
+                    <button id="prop-edit-guardar" class="btn-add-color small-btn">Guardar</button>
+                    <button id="prop-edit-cancelar" class="btn-alterar">Cancelar</button>
+                </div>
+            </div>
+
+            <!-- Lista de props -->
+            <div id="props-list" class="color-list" style="margin-top:16px;"></div>
+        </section>
+
+        <!-- UTILIZADORES -->
         <section class="users-box">
             <h2>Utilizadores</h2>
 
@@ -110,9 +153,7 @@
             <input id="pesquisa" type="text" class="search-input" placeholder="Pesquisar utilizador...">
 
             <label>Lista de Utilizadores</label>
-            <div class="users-list">
-                <!-- Aqui vão aparecer utilizadores futuramente -->
-            </div>
+            <div class="users-list"></div>
         </section>
 
     </main>

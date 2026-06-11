@@ -145,3 +145,132 @@ document.getElementById("pesquisa").addEventListener("input", (e) => {
 
 // Inicializar utilizadores
 carregarUtilizadores();
+
+// PROPS (Gamificação)
+
+import { getProps, criarProp, atualizarProp, apagarProp } from '../controller/propController.js';
+
+let propsCache = [];
+
+async function carregarProps() {
+  const res = await getProps();
+
+  if (Array.isArray(res)) {
+    propsCache = res;
+  } else if (res.success && Array.isArray(res.data)) {
+    propsCache = res.data;
+  } else {
+    alert("Erro ao carregar props");
+    return;
+  }
+
+  renderProps(propsCache);
+}
+
+function renderProps(lista) {
+  const container = document.getElementById('props-list');
+  container.innerHTML = "";
+
+  lista.forEach(prop => {
+    const div = document.createElement('div');
+    div.className = 'prop-item';
+    div.dataset.id = prop._id;
+
+    div.innerHTML = `
+      <img src="${prop.img}" alt="${prop.name}" class="prop-img" />
+
+      <div class="prop-info">
+        <strong>${prop.name}</strong>
+      </div>
+
+      <div class="prop-actions">
+        <button class="btn-editar-prop">Editar</button>
+        <button class="btn-apagar-prop">Eliminar</button>
+      </div>
+    `;
+
+    // Eliminar
+    div.querySelector('.btn-apagar-prop').addEventListener('click', async () => {
+      if (!confirm(`Eliminar "${prop.name}"?`)) return;
+      const res = await apagarProp(prop._id);
+      if (res.message) {
+        carregarProps();
+      } else {
+        alert("Erro ao eliminar prop");
+      }
+    });
+
+    // Editar — preenche o formulário com os dados atuais
+    div.querySelector('.btn-editar-prop').addEventListener('click', () => {
+      document.getElementById('prop-edit-id').value = prop._id;
+      document.getElementById('prop-edit-name').value = prop.name;
+      document.getElementById('prop-edit-preview').src = prop.img;
+      document.getElementById('prop-edit-preview').style.display = 'block';
+      document.getElementById('prop-edit-form').style.display = 'flex';
+    });
+
+    container.appendChild(div);
+  });
+}
+
+// Criar novo prop
+document.getElementById('prop-criar-form').addEventListener('submit', async (e) => {
+  
+
+  const name = document.getElementById('prop-name').value.trim();
+  const imgFile = document.getElementById('prop-img').files[0];
+
+  if (!name || !imgFile) return alert("Nome e imagem são obrigatórios");
+
+  const res = await criarProp(name, imgFile);
+
+  if (res._id) {
+    document.getElementById('prop-criar-form').reset();
+    carregarProps();
+  } else {
+    alert("Erro ao criar prop");
+  }
+});
+
+// Preview da imagem ao criar
+document.getElementById('prop-img').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const preview = document.getElementById('prop-criar-preview');
+  preview.src = URL.createObjectURL(file);
+  preview.style.display = 'block';
+});
+
+// Atualizar prop existente
+document.getElementById('prop-edit-guardar').addEventListener('click', async (e) => {
+  
+
+  const id = document.getElementById('prop-edit-id').value;
+  const name = document.getElementById('prop-edit-name').value.trim();
+  const imgFile = document.getElementById('prop-edit-img').files[0] || null;
+
+  const res = await atualizarProp(id, name, imgFile);
+
+  if (res._id) {
+    document.getElementById('prop-edit-form').style.display = 'none';
+    carregarProps();
+  } else {
+    alert("Erro ao atualizar prop");
+  }
+});
+
+// Cancelar edição
+document.getElementById('prop-edit-cancelar').addEventListener('click', () => {
+  document.getElementById('prop-edit-form').style.display = 'none';
+});
+
+// Preview da imagem ao editar
+document.getElementById('prop-edit-img').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const preview = document.getElementById('prop-edit-preview');
+  preview.src = URL.createObjectURL(file);
+  preview.style.display = 'block';
+});
+
+carregarProps();
