@@ -43,6 +43,7 @@
     margin: 0 0 10px 0;
     font-size: 18px;
 }
+
 .close-modal {
     position: absolute;
     top: 8px;
@@ -52,6 +53,7 @@
     font-size: 18px;
     cursor: pointer;
 }
+
 /* ---------------- TOGGLE SWITCH ---------------- */
 .switch {
     position: relative;
@@ -98,6 +100,61 @@ input:checked + .slider:before {
     font-size: 16px;
 }
 
+/* ---------------- CONTROLO TAMANHO DA FONTE ---------------- */
+.font-size-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.font-size-control button {
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: #ff7b00;
+    color: white;
+    font-size: 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.font-size-control button:hover {
+    background: #e56f00;
+}
+
+.font-size-control input {
+    width: 32px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #f5f5f5;
+    font-size: 15px;
+}
+
+/* ---------------- NÍVEIS DE TAMANHO DA FONTE ---------------- */
+.font-size-0 { font-size: 100%; }
+.font-size-1 { font-size: 110%; }
+.font-size-2 { font-size: 120%; }
+.font-size-3 { font-size: 130%; }
+.font-size-4 { font-size: 140%; }
+.font-size-5 { font-size: 150%; }
+
+/* NÃO aumentar navbar e footer */
+.font-size-1 nav,
+.font-size-2 nav,
+.font-size-3 nav,
+.font-size-4 nav,
+.font-size-5 nav,
+.font-size-1 footer,
+.font-size-2 footer,
+.font-size-3 footer,
+.font-size-4 footer,
+.font-size-5 footer {
+    font-size: inherit !important;
+}
+
 /* ---------------- MODO TDAH ---------------- */
 :root {
     --mouse-y: 50%;
@@ -122,17 +179,12 @@ input:checked + .slider:before {
         );
 }
 
-
-
-/* ------------- MODO DARK GLOBAL ---------------- */
-
-
+/* ---------------- MODO DARK ---------------- */
 body.dark-mode {
-    background-color: #1d1d1d!important;
+    background-color: #1d1d1d !important;
     color: inherit !important;
 }
 
-/* FOOTER */
 body.dark-mode footer {
     background-color: #1d1d1d !important;
     color: #ffffff !important;
@@ -141,38 +193,15 @@ body.dark-mode footer {
 body.dark-mode footer * {
     color: #ffffff !important;
 }
-/* CONTACTOS */
+
 body.dark-mode main {
     background-color: #1d1d1d !important;
     background-image: none !important;
 }
 
-/* HERO — texto branco no modo dark */
 body.dark-mode .hero-sobre h1,
 body.dark-mode .hero-sobre h2,
 body.dark-mode .hero-sobre p,
-body.dark-mode .hero-sobre span{
+body.dark-mode .hero-sobre span {
     color: #ffffff !important;
 }
-
-
-/* ------------- AUMENTAR LETRAS GLOBAL ------------- */
-
-body.font-large main,
-body.font-large section p,
-body.font-large .hero,
-body.font-large .hero-sobre,
-body.font-large .middle-section,
-body.font-large .container,
-body.font-large .content {
-    font-size: 1.20rem !important;
-    line-height: 1.6 !important;
-}
-
-/* NÃO aumentar navbar e footer */
-body.font-large nav,
-body.font-large footer {
-    font-size: inherit !important;
-}
-
-
