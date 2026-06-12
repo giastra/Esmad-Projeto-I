@@ -1,6 +1,6 @@
 import {abrirModalDetalhes,criarTarefa,criarCard} from "../view/homeView.js"
 import { getMinhasCategorias } from '../model/taskCategoryModel.js';
-import { getMinhasTarefas } from '../model/taskModel.js';
+import { getMinhasTarefas,atualizar } from '../model/taskModel.js';
 
 // pega as categorias e as tarefas da API
 const res = await getMinhasCategorias();
@@ -33,12 +33,12 @@ export function rendTarefas() {
             tipo = 'green'
         }
 
-        criarTarefa(tas.name,tas.description,tipo)
+        criarTarefa(tas._id,tas.name,tas.description,tipo)
     }  
     }
     }   
     else{
-        criarTarefa('n','n','n','n')
+        criarTarefa('n','n','n','n','n')
              
     }
     
@@ -63,21 +63,27 @@ export function rendCategorias() {
     }
 }
 else{
-    criarCard('n','n','n','n','n')
+    criarCard('n','n','n','n','n','n')
 }
 
 }
 
 
 // função altera diretamente na base e recebe o nome da tarefa para fazer a procura
-export function marcaConcluido(nome){
+export function marcaConcluido(id){
     for (const tas of tasks) {
-        if (tas.name == nome){
+        if (tas._id == id){
             if (tas.status=="por_fazer"){
-            tas.status="concluida"
+                tas.status='concluida'
+            atualizar(id,tas)
+            console.log('talvez funciona');
+            
         }
             else {
                 tas.status="por_fazer"
+                atualizar(id,tas)
+                console.log('funciona');
+                
             }
             break
         }

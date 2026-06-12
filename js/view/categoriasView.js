@@ -49,6 +49,8 @@ function criarModal() {
     modal.querySelector("#criarCategoria").addEventListener("click", () => {
         const titulo = modal.querySelector("#tituloCategoria").value.trim();
         const cor = ''
+        console.log(titulo);
+        
         if (titulo === "") return;
         // criar categoria recebe (titulo da tarefa,cor)
         if (CorSelecionada != '') {criarCategoria(titulo,CorSelecionada)}
