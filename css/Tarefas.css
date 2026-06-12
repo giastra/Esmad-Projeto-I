@@ -286,6 +286,8 @@ main {
 }
 
 .yellow { background: #ffb347; }
+.red { background: #c90404; }
+.green { background: #1bb60a; }
 
 /*CheckBox*/
 .check {

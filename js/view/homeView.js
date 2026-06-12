@@ -5,13 +5,13 @@ const porFazer = document.getElementById("por-fazer");
 
 /* CRIAR TAREFA */
 // recebe 4 proriedades (o titulo da tarefa, a dercrição da tarefa, a prioridade da tarefa ('green','yellow' ou 'red'),se existe tarefa na lista(s/n))
-export function criarTarefa(titulo, descricao, prioridade='green',temTarefa='s') {
+export function criarTarefa(id,titulo, descricao, prioridade='green',temTarefa='s') {
     if (temTarefa=='s'){
     const tarefa = document.createElement("div");
     tarefa.classList.add("tarefa");
 
     tarefa.innerHTML = `
-        <input type="checkbox" class="check" id='tarefas' name="${titulo}">
+        <input type="checkbox" class="check" id='${id}'>
         <div class="texto titulo-tarefa">${titulo}</div>
         <span class="dot ${prioridade}"></span>
     `;
@@ -24,8 +24,7 @@ export function criarTarefa(titulo, descricao, prioridade='green',temTarefa='s')
     });
 
    tarefa.querySelector(".check").addEventListener("click", () => {
-         let ev=(event.target.getAttribute('name'));
-         marcaConcluido(ev)
+         marcaConcluido(id)
 
     });
 

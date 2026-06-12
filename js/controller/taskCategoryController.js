@@ -53,6 +53,9 @@ export function carregarCores(){
 
 export function apagarCategoria(id){
   apagar(id)
+  if (localStorage.getItem('categoria') == id){
+    localStorage.setItem('categoria') = 'prioridade'
+  }
 }
 
 // Liga os eventos aos botões da lista

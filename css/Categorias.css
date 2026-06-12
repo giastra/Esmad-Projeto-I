@@ -191,6 +191,7 @@ main {
   padding: 2px;
   margin: 5px;
   height: 90px;
+  width: 32%;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 

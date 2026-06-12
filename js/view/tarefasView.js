@@ -1,3 +1,5 @@
+import {gerarTarefas,salvarTarefa,statuTarefa,CategoriaName,ApagarTarefa} from "../controller/taskController.js"
+
 const btnAdd = document.querySelector(".btn-add");
 const porFazer = document.getElementById("por-fazer");
 const concluido = document.getElementById("concluido");
@@ -6,6 +8,14 @@ const concluido = document.getElementById("concluido");
 btnAdd.addEventListener("click", () => {
     criarModal();
 });
+
+const data = new Date()
+let mes = data.getMonth()+1
+const ano = data.getYear()+1900
+const dia = data.getDate()
+// const DataHoje = (`${ano}-${mes}-${dia}`)''
+// console.log(DataHoje);
+
 
 /* MODAL DE CRIAÇÃO */
 function criarModal() {
@@ -20,6 +30,17 @@ function criarModal() {
             <label>Nome da Tarefa</label>
             <input type="text" id="tituloTarefa">
 
+            <label>Data de inicio</label>
+            <input type="date" id='startDate' value='${ano}-0${mes}-${dia}'>
+
+            <label>Data de fim</label>
+            <input type="date" id='endDate' value='${ano}-0${mes}-${dia}'>
+
+            <label>Prioridade</label>
+            <input type='button' class='prioridade' value='alta' ">
+            <input type='button' class='prioridade' value='normal' ">
+            <input type='button' class='prioridade' value='baixa' ">
+
             <label>Descrição</label>
             <textarea id="descricaoTarefa"></textarea>
 
@@ -31,14 +52,38 @@ function criarModal() {
 
     document.body.appendChild(modal);
     modal.style.display = "flex";
+    
+    const top =modal.querySelectorAll(".prioridade")
+    for (const prio of top){
+        prio.addEventListener('click',()=>{
+            let evento = event.target.value;
+             if ('alta' == evento){
+                priority = 'alta'
+            }
+            else if ('normal' == evento){
+                priority = 'normal'
+            }
+            else {
+                priority='baixa'
+            }
+            console.log(priority);
+        })
+    }
+    
 
     modal.querySelector("#btnCriar").addEventListener("click", () => {
         const titulo = modal.querySelector("#tituloTarefa").value.trim();
         const descricao = modal.querySelector("#descricaoTarefa").value.trim();
-
+        const startDate = modal.querySelector("#startDate").value;
+        console.log(startDate);
+        
+        const endDate = modal.querySelector("#endDate").value;
+        if (startDate == null){endDate=Date.now()}
+        
         if (titulo === "") return;
 
-        criarTarefa(titulo, descricao);
+        // cria a tarefa 
+        salvarTarefa(titulo, descricao,startDate,endDate,priority)
         modal.remove();
     });
 
@@ -48,14 +93,23 @@ function criarModal() {
 }
 
 /* CRIAR TAREFA */
-function criarTarefa(titulo, descricao) {
+export function criarTarefa(id,titulo,descricao,startDate,endDate,priority,status) {
+    // cor do ponto
+    let pontoCor = 'green'      
+    if (priority == 'alta'){
+        pontoCor ='red'
+    }
+    else if (priority == 'normal'){
+        pontoCor = 'yellow'
+    }
+
     const tarefa = document.createElement("div");
     tarefa.classList.add("tarefa");
 
     tarefa.innerHTML = `
-        <input type="checkbox" class="check">
-        <div class="texto titulo-tarefa">${titulo}</div>
-        <span class="dot yellow"></span>
+        <input type="checkbox" class="check" id='${id}'>
+        <div class="texto titulo-tarefa" >${titulo}</div>
+        <span class="dot ${pontoCor}"></span>
     `;
 
     tarefa.dataset.descricao = descricao;
@@ -69,8 +123,15 @@ function criarTarefa(titulo, descricao) {
     tarefa.querySelector(".check").addEventListener("click", (e) => {
         if (modoEliminarTarefa) e.stopPropagation();
     });
-
+    
+    // verifica se a tarefa foi feita ou não
+    if (status == 'por_fazer'){
     porFazer.appendChild(tarefa);
+    document.getElementById(id).checked=false 
+    }
+    else if (status == 'concluida') {concluido.appendChild(tarefa)
+         document.getElementById(id).checked=true     
+    }
 }
 
 /* MODAL DE DETALHES */
@@ -102,11 +163,16 @@ document.addEventListener("change", (e) => {
     if (!e.target.classList.contains("check")) return;
 
     const tarefa = e.target.closest(".tarefa");
-
+    let id = e.target.getAttribute('id')
+    
     if (e.target.checked) {
         concluido.appendChild(tarefa);
+        statuTarefa(id)
+
     } else {
         porFazer.appendChild(tarefa);
+        statuTarefa(id)
+
     }
 });
 
@@ -141,8 +207,19 @@ document.addEventListener("click", (e) => {
     if (!tarefa) return;
 
     tarefa.remove();
+    let id = tarefa.querySelector('input').getAttribute('id') 
+    ApagarTarefa(id)
 
     // Desligar modo eliminar depois de apagar
     modoEliminarTarefa = false;
     btnDelete.classList.remove("ativo");
 });
+
+
+
+// init
+document.getElementById('topo').innerHTML=`Tarefas de ${await CategoriaName()}`
+
+
+let priority = 'baixa'
+gerarTarefas()
