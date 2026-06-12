@@ -1,5 +1,5 @@
-import { getMeus, criar, atualizar, apagar, ativar } from '../model/pomodoroModel.js';
-import { requireAuth } from '../utils/helpers.js';
+import { getMeus, criar, atualizar, apagar, ativar, getDefault, atualizarDefault } from '../model/pomodoroModel.js';
+import { requireAuth, requireAdmin } from '../utils/helpers.js';
 
 //MENSAGENS
 
@@ -25,7 +25,7 @@ export const limparMensagens = () => {
   el.className = '';
 };
 
-//CARREGAR POMODOROS
+//CARREGAR POMODOROS (utilizadores autenticados)
 
 export const carregarPomodoros = async (onRender) => {
   requireAuth();
@@ -37,7 +37,31 @@ export const carregarPomodoros = async (onRender) => {
   }
 };
 
-//AÇÕES 
+// CARREGAR POMODORO DEFAULT (público, sem autenticação)
+
+export const carregarPomodoroDefault = async (onRender) => {
+  const res = await getDefault();
+  if (res.success) {
+    onRender(res.data);
+  } else {
+    renderErro(res.message || 'Erro ao carregar pomodoro default.');
+  }
+};
+
+// ATUALIZAR POMODORO DEFAULT (admin)
+
+export const atualizarPomodoroDefault = async (dados) => {
+  requireAdmin();
+  const res = await atualizarDefault(dados);
+  if (res.success) {
+    renderSucesso('Pomodoro default atualizado com sucesso.');
+  } else {
+    renderErro(res.message || 'Erro ao atualizar pomodoro default.');
+  }
+  return res;
+};
+
+//AÇÕES
 
 export const ativarPomodoro = async (id) => {
   return await ativar(id);
@@ -54,7 +78,6 @@ export const criarPomodoro = async (dados) => {
 export const atualizarPomodoro = async (id, dados) => {
   return await atualizar(id, dados);
 };
-
 
 export const initPomodoroController = (onRender) => {
   carregarPomodoros(onRender);

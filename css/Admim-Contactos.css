@@ -202,7 +202,23 @@ main {
   font-size: 30px;
   margin-bottom: 10px;
 }
+/* botão delete normal */
+.btn-delete {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
 
+/* hover normal (fora do modo delete) */
+.btn-delete:hover {
+    background: #ff8b8b;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(80, 14, 14, 0.15);
+}
 
 /* WRAPPER */
 .email-layout {
@@ -274,6 +290,8 @@ main {
 }
 
 .contacto-item {
+    position: relative; 
+    padding-top: 40px;  
     background: #ffffff;
     border-radius: 12px;
     cursor: pointer;
@@ -281,6 +299,31 @@ main {
     border: 1px solid #e6e6e6;
     padding: 15px;
     margin: 5px;
+}
+
+/* botão delete dentro do contacto-item */
+.contacto-item .btn-delete {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.contacto-item .btn-delete:hover {
+    background: #ff8b8b;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(80, 14, 14, 0.15);
+}
+
+/* remover margem do botão dentro da div */
+.contacto-item button {
+    margin: 0;
 }
 
 .contacto-item:hover {

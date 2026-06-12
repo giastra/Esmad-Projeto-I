@@ -1,4 +1,4 @@
-import { getColors, criar, apagar } from '../model/colorModel.js';
+import { getColors, criarCor, apagar } from '../model/colorModel.js';
 import { requireAdmin } from '../utils/helpers.js';
 import { renderCores, renderErro, renderSucesso } from '../view/edicaoAdminView.js';
 
@@ -42,7 +42,7 @@ export const initCriarCor = () => {
     const name = document.getElementById('name').value;
     const hex = document.getElementById('hex').value;
 
-    const res = await criar({ name, hex });
+    const res = await criarCor({ name, hex }); // ✅ era `criar`, deve ser `criarCor`
 
     if (res.success) {
       renderSucesso('Cor criada com sucesso.');
