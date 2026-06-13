@@ -260,11 +260,53 @@ main h1 {
 
 @media (max-width: 900px) {
 
+    /* Wrapper já fica em coluna */
     .diario-wrapper {
         flex-direction: column;
     }
 
-    .diario-sidebar,
+    /* Sidebar continua vertical, mas sem altura fixa */
+    .diario-sidebar {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        padding-bottom: 10px;
+    }
+
+    /* Ano e mês mais pequenos */
+    .nav-ano span,
+    .nav-mes span {
+        font-size: 14px;
+    }
+
+    .btn-nav {
+        width: 28px;
+        height: 28px;
+        font-size: 14px;
+    }
+
+    /* LISTA DAS ENTRADAS — scroll horizontal */
+    #lista-diarios {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+
+        overflow-x: auto;  
+        overflow-y: hidden;
+
+        white-space: nowrap;
+        padding: 10px 0;
+        max-height: none;
+        width: 100%;
+    }
+
+    /* Cada entrada vira um cartão horizontal */
+    #lista-diarios .entrada-item {
+        min-width: 220px;
+        flex-shrink: 0;
+    }
+
+    /* Editor continua normal */
     .diario-editor {
         width: 100%;
         height: auto;

@@ -201,4 +201,92 @@ main {
   cursor: pointer;
 }
 
+/* ============================
+   RESPONSIVIDADE MAIN
+============================ */
 
+@media (max-width: 1130px) {
+
+  /* HERO SOBRE */
+  .hero-sobre {
+    width: 90%;
+  }
+
+  /* FILTROS */
+  .filtros {
+    width: 90%;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .btn-filtro {
+    padding: 8px 16px;
+    font-size: 15px;
+  }
+
+  .acoes {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  /* MIDDLE */
+  #middle {
+    width: 90%;
+  }
+
+  /* CATEGORY CARDS — 2 por linha */
+  .category-card {
+    width: 48%;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  /* HERO SOBRE */
+  .hero-sobre h1 {
+    font-size: 26px;
+  }
+
+  .hero-sobre h2 {
+    font-size: 16px;
+  }
+
+  /* FILTROS */
+  .filtros {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 92%;
+    gap: 12px;
+  }
+
+  .btn-filtro {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .acoes {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+
+  .btn-add,
+  .btn-delete {
+    flex: 1;
+    text-align: center;
+  }
+
+  /* MIDDLE */
+  #middle {
+    width: 92%;
+    padding: 15px;
+  }
+
+  /* CATEGORY CARDS — 1 por linha */
+  .category-card {
+    width: 100%;
+    height: 90px;
+  }
+}

@@ -42,15 +42,30 @@ const segundosDaFase = (fase, cfg) => ({
 })[fase];
 
 const atualizarUITimer = () => {
-  document.getElementById('pomo-time').textContent = formatarTempo(timer.segundosRestantes);
-  document.getElementById('pomo-label').textContent = timer.config
+  const timeEl = document.getElementById('pomo-time');
+  const labelEl = document.getElementById('pomo-label');
+  const ciclosEl = document.getElementById('pomo-ciclos');
+
+  // Atualiza textos
+  timeEl.textContent = formatarTempo(timer.segundosRestantes);
+  labelEl.textContent = timer.config
     ? `${labelFase[timer.fase]} — ${timer.config.name}`
     : labelFase[timer.fase];
-  const ciclosEl = document.getElementById('pomo-ciclos');
+
   if (ciclosEl && timer.config) {
     ciclosEl.textContent = `Ciclo ${timer.cicloAtual} / ${timer.config.cycles}`;
   }
+
+  const isDark = document.body.classList.contains("dark-mode");
+
+  [timeEl, labelEl, ciclosEl].forEach(el => {
+    if (!el) return;
+    if (isDark) el.classList.add("white");
+    else el.classList.remove("white");
+  });
 };
+
+
 
 const proximaFase = () => {
   if (timer.fase === 'foco') {

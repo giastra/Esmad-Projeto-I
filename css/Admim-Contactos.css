@@ -375,3 +375,138 @@ main {
         font-size: 12px;
     }
 }
+
+/* ============================
+   RESPONSIVIDADE MAIN
+============================ */
+
+@media (max-width: 1130px) {
+
+    /* Hero mais compacto */
+    .hero-sobre {
+        width: 90%;
+        margin: 140px auto 20px auto;
+    }
+
+    /* Mantém layout lado a lado */
+    .email-layout {
+        width: 90%;
+        flex-direction: row; 
+        height: auto;
+        margin-top: 30px;
+    }
+
+    /* Mantém proporções */
+    .email-list {
+        width: 30%;
+        height: auto;
+        border-right: 2px solid #d1d1d1;
+        border-bottom: none;
+    }
+
+    .email-content {
+        width: 70%;
+        height: auto;
+        padding: 25px;
+    }
+
+    .contacto-item {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    }
+
+    .contacto-item h4,
+    .contacto-item p,
+    .contacto-item span {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Hero ainda mais compacto */
+    .hero-sobre {
+        width: 92%;
+        margin: 130px auto 15px auto;
+    }
+
+    /* Layout passa para coluna */
+    .email-layout {
+        flex-direction: column;
+        width: 92%;
+        gap: 15px;
+        height: auto;
+    }
+
+    /* LISTA — scroll horizontal */
+    .email-list {
+        width: 100%;
+        height: auto;
+        padding: 15px;
+
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+
+        overflow-x: auto;   
+        overflow-y: hidden;
+
+        white-space: nowrap;
+        border-right: none;
+        border-bottom: 2px solid #d1d1d1;
+    }
+
+    /* Cada contacto vira cartão horizontal */
+    .contacto-item {
+        min-width: 220px;
+        flex-shrink: 0;
+        padding: 12px;
+    }
+
+    .contacto-item .btn-delete {
+        top: 6px;
+        right: 6px;
+        padding: 4px 8px;
+    }
+
+    /* Conteúdo por baixo */
+    .email-content {
+        width: 100%;
+        padding: 18px;
+        height: auto;
+    }
+
+    /* Texto menor */
+    .email-content h2,
+    .email-content p {
+        font-size: 15px;
+    }
+
+      /* Cada cartão no scroll horizontal */
+    .contacto-item {
+        min-width: 220px;
+        max-width: 260px;   
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        padding: 12px;
+    }
+
+    .contacto-item h4 {
+        font-size: 16px;
+    }
+
+    .contacto-item p,
+    .contacto-item span {
+        font-size: 14px;
+    }
+
+    /* Botão delete ajustado */
+    .contacto-item .btn-delete {
+        top: 6px;
+        right: 6px;
+        padding: 4px 8px;
+    }
+}

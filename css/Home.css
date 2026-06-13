@@ -546,3 +546,112 @@ body {
     border: 1px solid #ddd;
     line-height: 1.4;
 }
+
+
+/* ============================
+   RESPONSIVIDADE MAIN
+============================ */
+
+@media (max-width: 1130px) {
+
+  /* GRID PRINCIPAL */
+  .container {
+    grid-template-areas:
+      "tarefas"
+      "categorias"
+      "ferramentas";
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 90%;
+    margin-top: 120px;
+  }
+
+  .tarefas,
+  .categorias {
+    height: auto;
+    min-height: 300px;
+  }
+
+  .ferramentas {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .ferramentas a {
+    height: 130px;
+  }
+
+  /* BANNER */
+  .banner-extensao {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .banner-content {
+    width: 90%;
+    padding: 25px;
+  }
+
+  .banner-content h2 {
+    font-size: 26px;
+  }
+
+  .banner-content p {
+    font-size: 14px;
+  }
+
+  .btn-banner {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+
+
+  /* GRID */
+  .container {
+    width: 92%;
+    gap: 15px;
+    margin-top: 100px;
+  }
+
+  .box {
+    padding: 15px;
+  }
+
+  .btn-link {
+    font-size: 16px;
+    padding: 8px 15px;
+  }
+
+  /* FERRAMENTAS */
+  .ferramentas a {
+    height: 100px;
+  }
+
+  .ferramentas button {
+    font-size: 15px;
+  }
+
+  /* BANNER */
+  .banner-content {
+    padding: 20px;
+  }
+
+  .banner-content h2 {
+    font-size: 22px;
+  }
+
+  .banner-content p {
+    font-size: 13px;
+  }
+
+  .btn-banner {
+    font-size: 14px;
+    padding: 8px 18px;
+  }
+}
+
+
+ 

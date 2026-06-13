@@ -199,6 +199,7 @@ body.dark-mode main {
     background-image: none !important;
 }
 
+body.dark-mode .white,
 body.dark-mode .hero-sobre h1,
 body.dark-mode .hero-sobre h2,
 body.dark-mode .hero-sobre p,
