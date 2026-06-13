@@ -409,3 +409,95 @@ h2{
         font-size: 12px;
     }
 }
+
+/* Evita overflow do input file */
+input[type="file"] {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+
+/* ============================
+   RESPONSIVIDADE MAIN
+============================ */
+
+
+@media (max-width: 1130px) {
+
+    .admin-colors-container {
+        width: 90%;
+        margin: 120px auto 40px auto;
+    }
+
+    /* Caixas continuam lado a lado mas sem largura fixa */
+    .compact-box,
+    .settings-box,
+    .users-box,
+    .color-list-section {
+        width: 100%;
+        max-width: 100%;
+        min-width: unset; 
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .admin-colors-container {
+        width: 92%;
+        margin: 100px auto 30px auto;
+        gap: 15px;
+    }
+
+    /* Caixas 100% largura e sem limites */
+    .compact-box,
+    .settings-box,
+    .users-box,
+    .color-list-section {
+        width: 100%;
+        max-width: 100%;
+        min-width: unset; /* 🔥 obrigatório */
+        padding: 18px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    /* Inputs e grids mais compactos */
+    .color-form,
+    .settings-grid {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .small-input,
+    .setting-item {
+        width: 100%;
+        min-width: unset;
+    }
+
+    /* Lista de cores */
+    .color-item {
+        flex-direction: row;
+        gap: 10px;
+        padding: 12px;
+    }
+
+    /* Utilizadores */
+    .users-list {
+        height: 200px;
+    }
+
+    input[type="file"] {
+        font-size: 14px;
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+}
+

@@ -414,8 +414,10 @@ main {
     background-image: url("../images/Fundo-teste1.jpg");
     background-size: cover;
     background-position: center;
-    min-height: 100vh;
-    padding: 120px 0 120px;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    
+    padding: 120px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -441,6 +443,20 @@ main {
     font-weight: 600;
 }
 
+@media (max-width: 900px) {
+    .video-container {
+        height: 380px;
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    .video-container {
+        height: 260px;
+        font-size: 16px;
+    }
+}
+
 /* ============================
    INFO BOX
 ============================ */
@@ -453,16 +469,16 @@ main {
     background: white;
     border-radius: 20px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
-
-    /* altura fixa para não mudar de tamanho ao trocar tab */
     min-height: 320px;
-
     display: grid;
     grid-template-columns: 260px 1fr;
     overflow: hidden;
 }
 
-/* Coluna das tabs (esquerda) */
+/* ============================
+   TABS
+============================ */
+
 .tabs-col {
     background: #f9f9f9;
     border-right: 1px solid #efefef;
@@ -484,9 +500,8 @@ main {
     transition: background 0.2s, border-color 0.2s;
 }
 
-
 .tab-name {
-    font-family: 'HelveticaCustom', 'Helvetica Neue', sans-serif;
+    font-family: 'HelveticaCustom', sans-serif;
     font-size: 15px;
     font-weight: 600;
     color: #aaa;
@@ -497,10 +512,6 @@ main {
 .tab.active {
     border-left-color: #ff7b00;
     background: white;
-}
-
-.tab.active .tab-num {
-    color: #ff7b00;
 }
 
 .tab.active .tab-name {
@@ -515,7 +526,10 @@ main {
     color: #555;
 }
 
-/* Coluna do conteúdo (direita) */
+/* ============================
+   INFOBOX — CONTEÚDO
+============================ */
+
 .conteudo-col {
     padding: 48px 54px;
     display: flex;
@@ -555,7 +569,7 @@ main {
     margin-bottom: 100px;
 }
 
-/* TIMER (esquerda) */
+/* TIMER */
 .pomodoro-container {
     background: white;
     border-radius: 20px;
@@ -610,16 +624,22 @@ main {
     color: white;
     flex: 1;
 }
-#pomo-start:hover { background: #e06d00; }
+
+#pomo-start:hover {
+    background: #e06d00;
+}
 
 #pomo-reset {
     background: #f2f2f2;
     color: #555;
     padding: 14px 24px;
 }
-#pomo-reset:hover { background: #e5e5e5; }
 
-/* INFO POMODORO (direita) */
+#pomo-reset:hover {
+    background: #e5e5e5;
+}
+
+/* INFO */
 .pomo-info {
     background: white;
     border-radius: 20px;
@@ -655,7 +675,7 @@ main {
 }
 
 /* ============================
-   RESPONSIVIDADE
+   RESPONSIVIDADE MAIN
 ============================ */
 
 @media (max-width: 900px) {
@@ -665,6 +685,7 @@ main {
         gap: 60px;
     }
 
+    /* INFOBOX */
     .info-box {
         grid-template-columns: 1fr;
         min-height: unset;
@@ -689,15 +710,21 @@ main {
 
     .tab.active {
         border-bottom-color: #ff7b00;
-        border-left-color: transparent;
     }
 
     .conteudo-col {
-        padding: 30px 28px;
+        padding: 30px 20px; 
     }
 
+    /* POMODORO */
     .pomodoro-section {
         grid-template-columns: 1fr;
+        padding: 0 20px; 
+    }
+
+    .pomodoro-container,
+    .pomo-info {
+        padding: 40px 30px; 
     }
 
     #pomo-time {
@@ -708,6 +735,45 @@ main {
         font-size: 44px;
     }
 }
+
+@media (max-width: 600px) {
+
+    .conteudo-titulo {
+        font-size: 28px;
+    }
+
+    .conteudo-texto {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    /* POMODORO */
+    .pomodoro-section {
+        padding: 0 15px; 
+    }
+
+    .pomodoro-container,
+    .pomo-info {
+        padding: 30px 20px; 
+    }
+
+    #pomo-time {
+        font-size: 58px;
+    }
+
+    .pomo-info h2 {
+        font-size: 36px;
+    }
+
+    .pomo-sub {
+        font-size: 16px;
+    }
+
+    .pomo-text {
+        font-size: 14px;
+    }
+}
+
 /* ============================
    EXTENSÃO
 ============================ */
@@ -786,7 +852,7 @@ main {
    RESPONSIVIDADE GERAL
 ============================ */
 
-@media (max-width: 950px) {
+@media (max-width: 1130px) {
 
     /* HERO */
     .hero h1 {
@@ -814,6 +880,7 @@ main {
     .extension-content h2 {
         font-size: 48px;
         color: rgb(43, 42, 42);
+        padding-top: 20px;
     }
 
     .extension-content p {
@@ -869,24 +936,16 @@ main {
         padding: 8px 12px;
         margin-right: 10px;
     }
-
-    /*MIDDLE*/
-    .middle {
-        background: none !important;
-        height: auto;
-        padding: 60px 0;
-    }
-
     /* EXTENSÃO */
     .extension {
-        padding: 40px 20px;
+        padding: 10px 20px;
         min-height: auto;
         background-position: top;
     }
 
     .extension-content h2 {
         font-size: 32px;
-        padding-top: 40px;
+        padding-top: 20px;
     }
 
     .extension-content p {
@@ -921,7 +980,7 @@ main {
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6); /* fundo escuro */
+  background: rgba(0, 0, 0, 0.6); 
   display: flex;
   align-items: center;
   justify-content: center;
@@ -933,6 +992,6 @@ main {
   border-radius: 12px;
   padding: 2rem;
   width: 100%;
-  max-width: 420px; /* tamanho da modal */
+  max-width: 420px; 
   position: relative;
 }
