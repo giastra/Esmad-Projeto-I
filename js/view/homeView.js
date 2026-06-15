@@ -74,7 +74,7 @@ export function criarCard(id,titulo,color,ncomp=0,ntotal=0,temCategoria='s') {
     }
 
     const card = document.createElement("div");
-    card.classList.add("category-card",id);
+    card.classList.add("category-card");
 
     card.innerHTML = `
     <div class="card p-4 mb-3" id='categoria' name="${id}">
@@ -82,9 +82,9 @@ export function criarCard(id,titulo,color,ncomp=0,ntotal=0,temCategoria='s') {
 
         <div class="d-flex align-items-center gap-2">
             <div class="progress flex-grow-1" style="height: 8px; border-radius: 10px;">
-                <div class="progress-bar" role="progressbar" style="width: ${porcenta}%; background:${color};"></div>
+                <div class="progress-bar" role="progressbar" style="width: ${porcenta}%; background:${color};" id='p ${id}'></div>
             </div>
-            <span style="font-size: 12px; font-weight: 600;">${ncomp}/${ntotal}</span>
+            <span style="font-size: 12px; font-weight: 600;" id="${id}">${ncomp}/${ntotal}</span>
         </div>
     </div>
     `;
@@ -113,5 +113,16 @@ else{
 }
 
 
+// export function atualizarCard(id,n){
+//     let cad = document.getElementById(id).innerHTML
+//     cad = (cad.split('/'))
+//     let res = (Number(cad[0])+n);
+//     let ter = (cad[1])
+    
+//     document.getElementById(id).innerHTML = `${res}/${ter}`
+//     document.getElementById(id) 
+// }
+
+// init
 rendTarefas()
 rendCategorias()

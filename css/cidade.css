@@ -1,0 +1,76 @@
+
+/* Contêiner para manter as imagens alinhadas */
+  .c {
+    position: block;
+  width: 100%;
+    height: 100%;
+   } 
+
+  /* Imagem de fundo */
+  .fundo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    
+  }
+
+  /* Imagem sobreposta */
+  .sobreposta {
+    position: absolute; /* Permite posicionar livremente dentro do contêiner */
+    top: 200px;  /* Distância do topo */
+    left: 100px; /* Distância da esquerda */
+    width: 20px;
+    opacity: 1; /* Transparência opcional */
+  }
+
+  .cidade-btn{
+    position: fixed;
+    left: 85%;
+    top: 70%;
+  }
+
+  #fechar{
+    position: relative;
+    left: 75%;
+  }
+  
+  .cidade-modal{
+    position: fixed;
+    bottom: 25%;
+    left: 13%;
+    width: 74%;
+    height: 58%;
+    padding: 0;
+    background: white;
+    border-radius: 0px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    z-index: 99999;
+    display: none;
+  }
+
+  /* ---------------- BOTÃO FIXO ---------------- */
+.cidade-btn {
+    position: fixed;
+    bottom: 0px;
+    left:  20px;
+    width: 60px;
+    height: 60px;
+    background: #0b9c06;
+    border-radius: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 99999;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: 0.2s;
+}
+
+.cidade-btn img {
+    width: 55px;
+    height: 55px;
+}
+
+.cidade-btn:hover {
+    transform: scale(1.1);
+}

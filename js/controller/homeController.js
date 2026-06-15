@@ -8,6 +8,8 @@ const cat = res.data
 const rs = await getMinhasTarefas()
 const tasks = rs.data
 
+let audio = new Audio("../images/SomTarefaCompleta.mp3");
+
 // renderiza as tarefas quando pedida
 export function rendTarefas() {
     // verifica se existe tarefa
@@ -76,14 +78,16 @@ export function marcaConcluido(id){
             if (tas.status=="por_fazer"){
                 tas.status='concluida'
             atualizar(id,tas)
-            console.log('talvez funciona');
+            audio.play()
+            // atualizarCard(tas.category._id,1);
+           
             
         }
             else {
                 tas.status="por_fazer"
                 atualizar(id,tas)
-                console.log('funciona');
-                
+                // atualizarCard(tas.category._id,-1);
+
             }
             break
         }
