@@ -4,8 +4,8 @@
 ## subtitulo
 # endpoints
 ## subtitulo
-** negrito **
-* italico *
+
+*italico*
 ``` colocar codigo aqui ```
 ---
 
