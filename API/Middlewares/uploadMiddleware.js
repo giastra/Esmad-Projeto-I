@@ -2,7 +2,8 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const dir = 'uploads/props';
+// Caminho absoluto para a pasta de uploads
+const dir = path.join(__dirname, '..', 'uploads', 'props');
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
 const storage = multer.diskStorage({
