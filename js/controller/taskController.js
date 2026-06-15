@@ -2,6 +2,7 @@ import { getMinhasTarefas,getTarefaById ,criar,atualizar,apagar} from '../model/
 import {criarTarefa} from "../view/tarefasView.js"
 import { getCategoriaById} from "../model/taskCategoryModel.js"
 
+let audio = new Audio("../images/SomTarefaCompleta.mp3");
 
 const rs = await getMinhasTarefas()
 const tasks = rs.data
@@ -46,6 +47,7 @@ export async function statuTarefa(id) {
     
     if (t.data.status == 'por_fazer'){
         t.data.status = 'concluida'
+        audio.play()
     }
     else {
         t.data.status = 'por_fazer'
