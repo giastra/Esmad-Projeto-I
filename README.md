@@ -2,13 +2,13 @@
 
 
 **Stad to do** é projeto desenvolvido no âmbito da unidade curricular  Tecnologias e Sistemas de Informação para Web (TSIW) – 2º Semestre (2025/2026)** da ESMAD – P.PORTO.
-Tinhamos o objetovo de criar um site que pusse auxiliar pessoas com TDAH e possoas com problema de organização de uma maneira gemificada
+Tinhamos o objetovo de criar um site que pusse auxiliar pessoas com TDAH e possoas com problema de organização de uma maneira gemificada.
 
 ---
 
 ## Sobre o Projeto
 
- A crescente necessidade de ferramentas de produtividade que não sejam apenas funcionais, mas sim neurodivergentes por design. Ao contrário dos gestores de tarefas convencionais, esta solução foca-se na clareza visual, na estruturação de rotinas e na gamificação .
+ A crescente necessidade de ferramentas de produtividade que não sejam apenas funcionais, mas sim neurodivergentes por design. Ao contrário dos gestores de tarefas convencionais, esta solução foca-se na clareza visual, na estruturação de rotinas e na gamificação.
 
 ## Objetivos
 
@@ -33,7 +33,7 @@ Tinhamos o objetovo de criar um site que pusse auxiliar pessoas com TDAH e posso
 - Ligação à API para registar sessões  
 - Feedback visual e sonoro  
 
-## **Diario**
+### **Diario**
 - Criar e escrever pensamentos 
 - Organizado por dia 
 - Ligação a API para persistência de dados
@@ -61,28 +61,12 @@ Tinhamos o objetovo de criar um site que pusse auxiliar pessoas com TDAH e posso
 | **JSON** | Troca de dados |
 | **GitHub Actions** | CI com Node.js para testes |
 
----
-
-## **Estrutura do Projeto**
-
-Esmad-Projeto-I/
-│
-├── html/          # Páginas principais
-├── css/           # Estilos e responsividade
-├── js/            # Lógica da interface e ligação à API
-├── API/           # API
-├── images/        # Imagens e ícones
-├── fonts/         # Tipografias
-├── extentsao/     # Extensão
-├── index.html     # O ponto de partida do site
-├── .gitignore     # Para evitar arquivos indesejados
-└── README.md
 
 ## **Credencias**
 
 É possivel criar a sua propria credencial, mas pode-se utilizar as seguites:
 
-## Perfil de Utilizador
+### Perfil de Utilizador
 * **Email** bryan101012ale@gmail.com
 * **Senha** 1234567
 
@@ -90,12 +74,12 @@ Esmad-Projeto-I/
 * **Email** giancarlo@gmail.com
 * **Senha** 1234
 
-``só é possivel ter acesso ao site se a API estiver ligada, para ver como faz isso vá para [API](https://github.com/giastra/Esmad-Projeto-I/tree/develop/API) e leia seu README.md``   
+``só é possivel ter acesso ao site se a API estiver ligada, para ver como faz isso vá para ``[API](https://github.com/giastra/Esmad-Projeto-I/tree/develop/API)`` e leia seu README.md``   
 
 ## **Autores**
-* Giancarlo Stracquadanio [giastra]
-* Bernardo Moreira [BernaCM]
-* Filipe Cardoso Gonçalves [filipecardosogoncalves-sketch]
+* Giancarlo Stracquadanio [giastra](https://github.com/giastra)
+* Bernardo Moreira [BernaCM](https://github.com/BernaCM)
+* Filipe Cardoso Gonçalves [filipecardosogoncalves-sketch](https://github.com/filipecardosogoncalves-sketch)
 
 ## Agradecimentos
 
