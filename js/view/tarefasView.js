@@ -103,9 +103,15 @@ export function criarTarefa(id,titulo,descricao,startDate,endDate,priority,statu
         pontoCor = 'yellow'
     }
 
+    // dia simplificado
+    startDate = startDate.split('T')[0]
+    endDate = endDate.split('T')[0]
+
     const tarefa = document.createElement("div");
     tarefa.classList.add("tarefa");
-
+    tarefa.dataset.inicio= startDate
+    tarefa.dataset.fim=endDate
+    tarefa.dataset.prioridade = priority
     tarefa.innerHTML = `
         <input type="checkbox" class="check" id='${id}'>
         <div class="texto titulo-tarefa" >${titulo}</div>
@@ -132,6 +138,8 @@ export function criarTarefa(id,titulo,descricao,startDate,endDate,priority,statu
     else if (status == 'concluida') {concluido.appendChild(tarefa)
          document.getElementById(id).checked=true     
     }
+    console.log(tarefa);
+    
 }
 
 /* MODAL DE DETALHES */
@@ -223,3 +231,70 @@ document.getElementById('topo').innerHTML=`Tarefas de ${await CategoriaName()}`
 
 let priority = 'baixa'
 gerarTarefas()
+
+// filtro
+ const botoesFiltro = document.querySelectorAll(".btn-filtro");
+ const tarefas = document.querySelectorAll(".tarefa");
+
+botoesFiltro.forEach(botao => {
+    botao.addEventListener("click", () => {
+        const filtro = botao.dataset.filter;
+
+        tarefas.forEach(tarefa => {
+            const DMYi = tarefa.dataset.inicio
+            let Di = Number(DMYi.split('-')[2])
+            let Mi = Number(DMYi.split('-')[1])
+            let Yi = Number(DMYi.split('-')[0])
+           
+            const DMYf = tarefa.dataset.fim
+            let Df = Number(DMYf.split('-')[2])
+            let Mf = Number(DMYf.split('-')[1])
+            let Yf = Number(DMYf.split('-')[0])
+            
+            
+            const prioridade = tarefa.dataset.prioridade;
+            
+            // Mostrar todas
+            if (filtro == "todas") {
+                tarefa.style.display = "flex";
+                return;
+            }
+
+            // Filtrar por prioridade
+            if (filtro == 'prioridade') {
+                if(prioridade == 'alta'){
+                tarefa.style.display = "flex";
+                return;}
+            }
+
+            // Filtrar por Hoje
+            if (filtro == 'hoje') {
+                if (Di <= dia && Mi <= mes && Yi <= ano && Df >= dia && Mf >= mes && Yf >= ano ){
+                tarefa.style.display = "flex";
+                return;}
+            }
+
+            // Filtrar pela semana 
+            if (filtro == 'semana') {
+                if (Di <= dia+7 && Mi <= mes && Yi <= ano && Df >= dia-7 && Mf >= mes && Yf >= ano ){
+                tarefa.style.display = "flex";
+                return;}
+            }
+
+            // Caso não corresponda ao filtro → esconder
+            tarefa.style.display = "none";
+        });
+        tarefas.forEach(tarefa => {  
+            const prioridade = tarefa.dataset.prioridade;
+            // Filtrar por prioridade
+            if (filtro == 'prioridade') {
+                if(prioridade == 'normal'){
+                tarefa.style.display = "flex";
+                return;}
+            }
+            // Caso não corresponda ao filtro → esconder
+            if (prioridade !='normal' && prioridade != 'alta' && filtro=='prioridade'){
+            tarefa.style.display = "none";}
+        });
+    });
+});
