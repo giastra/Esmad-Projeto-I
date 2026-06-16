@@ -299,7 +299,6 @@ Filtros disponíveis via query string: `?category=<id>`, `?status=<valor>`, `?pr
 ├── Middlewares/
 │   ├── authMiddleware.js
 │   └── uploadMiddleware.js
-├── Validation/
 │   ├── colorValidation.js
 │   └── userValidation.js
 ├── utils/
