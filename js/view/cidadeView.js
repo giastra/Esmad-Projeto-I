@@ -1,41 +1,41 @@
 import { inicializarMapa } from '../controller/gameController.js';
 
 /* ELEMENTOS */
-const asdrfghj = document.querySelector(".cidade-btn");
+const btnCidade = document.querySelector(".cidade-btn");
 
-let dfgh = null;
+let modalCidade = null;
 let mapaInicializado = false;
 
 /* MODAL */
-function criarModalAcessibilidade() {
-  dfgh = document.createElement("div");
-  dfgh.classList.add("cidade-modal");
+function criarModalCidade() {
+  modalCidade = document.createElement("div");
+  modalCidade.classList.add("cidade-modal");
 
-  dfgh.innerHTML = `
+  modalCidade.innerHTML = `
     <button class="close-modal">✖</button>
     <div class="c" id="sdfv">
       <img src="../images/fundo-cidade.png" class="fundo">
     </div>
   `;
 
-  document.body.appendChild(dfgh);
+  document.body.appendChild(modalCidade);
 
-  const closeBtn = dfgh.querySelector(".close-modal");
-  closeBtn.addEventListener("click", () => {
-    dfgh.style.display = "none";
+  const btnFechar = modalCidade.querySelector(".close-modal");
+  btnFechar.addEventListener("click", () => {
+    modalCidade.style.display = "none";
   });
 }
 
-criarModalAcessibilidade();
+criarModalCidade();
 
 /* ABRIR / FECHAR MODAL */
-asdrfghj.addEventListener("click", () => {
-  if (!dfgh) return;
+btnCidade.addEventListener("click", () => {
+  if (!modalCidade) return;
 
-  const isVisible = dfgh.style.display === "block";
+  const isVisible = modalCidade.style.display === "block";
 
   if (!isVisible) {
-    dfgh.style.display = "block";
+    modalCidade.style.display = "block";
 
     // espera modal estar visível para offsetWidth/Height serem correctos
     requestAnimationFrame(() => {
@@ -45,6 +45,6 @@ asdrfghj.addEventListener("click", () => {
       }
     });
   } else {
-    dfgh.style.display = "none";
+    modalCidade.style.display = "none";
   }
 });
