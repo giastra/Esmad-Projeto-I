@@ -2,7 +2,11 @@ export const API = 'http://localhost:5000/api'
 
 // duracao do foco do pomodoro, em segundos.
 // 25 min e o valor por omissao do PomodoroModel (focusTime).
-export const POMO_DURATION = 25 * 60
+
+// Ver pomodoro default (público)
+const getDefault = () => fetch(`${API}/pomodoro/default`).then(r => r.json());
+ const pomodoroDefalt = (await getDefault()).data
+export const POMO_DURATION = pomodoroDefalt.focusTime
 
 // entidade Task
 // a classe junta os DADOS de uma tarefa e o COMPORTAMENTO proprio dela
