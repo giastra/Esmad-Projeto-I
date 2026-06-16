@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <!-- nota: extensoes nao precisam de viewport; o side panel tem largura variavel (ver popup.css) -->
+  <link rel="stylesheet" href="popup.css">
+  <title>Stad to Do</title>
+</head>
+<body>
+
+  <!-- cabecalho sempre visivel (gradiente laranja -> roxo) -->
+  <header class="topbar">
+    <img src="icons/Logo.png" alt="" class="logo">
+  </header>
+
+  <!-- seccao de login: começa hidden; init() decide qual mostrar depois do storage check -->
+  <section id="login-section" class="panel" hidden>
+    <p class="hint">Entra com a tua conta para ver as tarefas.</p>
+    <input type="email" id="email" placeholder="Email" autocomplete="username">
+    <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+    <button id="login-btn" class="primary">Entrar</button>
+    <p id="login-error" class="error" hidden></p>
+  </section>
+
+  <!-- seccao de tarefas: visivel quando ja temos sessao -->
+  <section id="tasks-section" class="panel" hidden>
+
+    <div class="tasks-header">
+      <span id="greeting" class="greeting"></span>
+      <button id="logout-btn" class="link">Sair</button>
+    </div>
+
+    <!-- pomodoro: o estado vive no service worker, aqui so se mostra -->
+    <div class="pomodoro">
+      <div class="pomo-row">
+        <span class="pomo-label">Pomodoro</span>
+        <span id="pomo-time" class="pomo-time">25:00</span>
+        <div class="pomo-controls">
+          <button id="pomo-toggle" class="pomo-btn" title="Iniciar / Pausar">▶</button>
+          <button id="pomo-reset" class="pomo-btn" title="Reiniciar">↺</button>
+        </div>
+      </div>
+      <div class="pomo-bar"><div id="pomo-fill" class="pomo-fill"></div></div>
+    </div>
+
+    <!-- filtros -->
+    <div id="filters" class="filters">
+      <button class="filter active" data-filter="todas">Todas</button>
+      <button class="filter" data-filter="prioridade">Prioridade</button>
+      <button class="filter" data-filter="hoje">Hoje</button>
+      <button class="filter" data-filter="semana">Esta Semana</button>
+    </div>
+
+    <ul id="task-list" class="task-list"></ul>
+
+    <p id="empty-state" class="empty" hidden>Sem tarefas para mostrar aqui.</p>
+    <p id="tasks-error" class="error" hidden></p>
+  </section>
+
+  <!-- type="module" e automaticamente deferido: DOM esta pronto quando controller.js executa -->
+  <script type="module" src="./js/controller.js"></script>
+</body>
+</html>
