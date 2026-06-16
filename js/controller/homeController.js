@@ -76,6 +76,7 @@ export function marcaConcluido(id){
             if (tas.status=="por_fazer"){
                 tas.status='concluida'
             atualizar(id,tas)
+            audio.volume = Number(localStorage.getItem('audioLevel'))
             audio.play()
             // atualizarCard(tas.category._id,1);
            

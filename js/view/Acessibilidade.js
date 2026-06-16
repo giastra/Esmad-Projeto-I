@@ -83,6 +83,16 @@ function criarModalAcessibilidade() {
                 <button id="font-plus">+</button>
             </div>
         </div>
+
+        <div class="opcao">
+            <span class="switch-text">Volume da aplicação</span>
+
+            <div class="audio-control">
+                <button id="audio-minus">-</button>
+                <input type="text" id="audio-level" value="0" readonly>
+                <button id="audio-plus">+</button>
+            </div>
+        </div>
     `;
 
     document.body.appendChild(modal);
@@ -198,3 +208,29 @@ hamburger.addEventListener('click', () => {
 });
 
 
+
+/*--------------------- AUDIO CONTROL ----------------- */
+let audioLevel = parseInt(localStorage.getItem("audioLevel")) || 0;
+const maxAudioLevel = 1;
+
+const audioInput = modal.querySelector("#audio-level");
+    const btnAudioPlus = modal.querySelector("#audio-plus");
+    const btnAudioMinus = modal.querySelector("#audio-minus");
+
+    audioInput.value = audioLevel;
+
+    btnAudioPlus.addEventListener("click", () => {
+        if (audioLevel < maxAudioLevel) {
+            audioLevel=audioLevel+0.1;
+            audioInput.value = audioLevel;
+            localStorage.setItem("audioLevel", audioLevel);
+        }
+    });
+
+    btnAudioMinus.addEventListener("click", () => {
+        if (audioLevel > 0) {
+            audioLevel=audioLevel-0.1;
+            audioInput.value = audioLevel;
+            localStorage.setItem("audioLevel", audioLevel);
+        }
+    });

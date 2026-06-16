@@ -44,6 +44,7 @@ export async function statuTarefa(id) {
 
     if (t.data.status == 'por_fazer') {
         t.data.status = 'concluida'
+        audio.volume = Number(localStorage.getItem('audioLevel'))
         audio.play()
         await onTarefaConcluida(id);
     } else {
