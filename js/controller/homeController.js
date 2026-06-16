@@ -49,25 +49,23 @@ export function rendTarefas() {
 
 // função puxa as listas de categorias e de tarefas para renderiar na home pg
 export function rendCategorias() {
-    if (cat.length>0){
-    for (const tas of cat) {
-           let nconclu = 0
-           let ntotal = 0
-        for (const taf of tasks){   
-            if (taf.category.name == tas.name){
-                ntotal++
-                if (taf.status == 'concluida'){
-                    nconclu ++
+    if (cat.length > 0) {
+        for (const tas of cat) {
+            let nconclu = 0;
+            let ntotal = 0;
+            for (const taf of tasks) {
+                if (taf.category?.name == tas.name) {
+                    ntotal++;
+                    if (taf.status == 'concluida') nconclu++;
                 }
             }
+            // fix: passar o hex em vez do objeto
+            const hex = tas.color?.hex ?? '#cccccc';
+            criarCard(tas._id, tas.name, hex, nconclu, ntotal);
         }
-        criarCard(tas._id,tas.name,tas.color,nconclu,ntotal)
+    } else {
+        criarCard('n', 'n', 'n', 'n', 'n', 'n');
     }
-}
-else{
-    criarCard('n','n','n','n','n','n')
-}
-
 }
 
 

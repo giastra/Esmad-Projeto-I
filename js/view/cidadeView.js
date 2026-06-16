@@ -4,6 +4,7 @@ import { inicializarMapa } from '../controller/gameController.js';
 const asdrfghj = document.querySelector(".cidade-btn");
 
 let dfgh = null;
+let mapaInicializado = false;
 
 /* MODAL */
 function criarModalAcessibilidade() {
@@ -19,7 +20,6 @@ function criarModalAcessibilidade() {
 
   document.body.appendChild(dfgh);
 
-  /* FECHAR MODAL */
   const closeBtn = dfgh.querySelector(".close-modal");
   closeBtn.addEventListener("click", () => {
     dfgh.style.display = "none";
@@ -36,7 +36,14 @@ asdrfghj.addEventListener("click", () => {
 
   if (!isVisible) {
     dfgh.style.display = "block";
-    inicializarMapa(); 
+
+    // espera modal estar visível para offsetWidth/Height serem correctos
+    requestAnimationFrame(() => {
+      if (!mapaInicializado) {
+        inicializarMapa();
+        mapaInicializado = true;
+      }
+    });
   } else {
     dfgh.style.display = "none";
   }

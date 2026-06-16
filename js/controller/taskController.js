@@ -7,13 +7,12 @@ let audio = new Audio("../images/SomTarefaCompleta.mp3");
 
 const rs = await getMinhasTarefas()
 const tasks = rs.data
-console.log(tasks);
 let categoria = localStorage.getItem('categoria')
 
 export function gerarTarefas() {
     if (categoria != 'prioriade') {
         for (const t of tasks) {
-            if (t.category._id == categoria) {
+            if (t.category?._id == categoria) {
                 criarTarefa(t._id, t.name, t.description, t.startDate, t.endDate, t.priority, t.status)
             }
         }

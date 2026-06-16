@@ -31,14 +31,20 @@ async function renderizarCasas() {
 // Chamado quando uma tarefa é marcada como concluída
 export async function onTarefaConcluida(tarefaId) {
   try {
-    const x = getRandomInt(110, 500);
-    const y = getRandomInt(10, 360);
+    const container = document.getElementById('sdfv');
+    if (!container) {
+      await criar({ x: getRandomInt(0, 480), y: getRandomInt(0, 340) });
+      return;
+    }
+
+    const maxX = container.offsetHeight - 20;
+    const maxY = container.offsetWidth - 20;
+
+    const x = getRandomInt(0, maxX);
+    const y = getRandomInt(0, maxY);
 
     const nova = await criar({ x, y });
-
-    if (nova._id) {
-      await renderizarCasas();
-    }
+    if (nova._id) await renderizarCasas();
   } catch (err) {
     console.error('Erro ao adicionar casa:', err);
   }
