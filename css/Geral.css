@@ -61,7 +61,7 @@ body {
 .nav-links {
   display: flex;
   list-style: none;
-  gap: 20px;
+  gap: 0.5%;
   align-items: center;
   margin: 0 ; 
   cursor: pointer !important;
