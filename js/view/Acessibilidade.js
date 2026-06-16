@@ -222,7 +222,7 @@ const audioInput = modal.querySelector("#audio-level");
     btnAudioPlus.addEventListener("click", () => {
         if (audioLevel < maxAudioLevel) {
             audioLevel=audioLevel+0.1;
-            audioInput.value = audioLevel;
+            audioInput.value = audioLevel*10;
             localStorage.setItem("audioLevel", audioLevel);
         }
     });
@@ -230,7 +230,7 @@ const audioInput = modal.querySelector("#audio-level");
     btnAudioMinus.addEventListener("click", () => {
         if (audioLevel > 0) {
             audioLevel=audioLevel-0.1;
-            audioInput.value = audioLevel;
+            audioInput.value = audioLevel*10;
             localStorage.setItem("audioLevel", audioLevel);
         }
     });

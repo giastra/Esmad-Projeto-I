@@ -2,6 +2,9 @@ import {rendTarefas,marcaConcluido,rendCategorias} from "../controller/homeContr
 
 const middle = document.getElementById("middle");
 const porFazer = document.getElementById("por-fazer");
+const usu = JSON.parse(localStorage.getItem('user'))
+
+document.getElementById('nome').innerHTML=usu.name
 
 /* CRIAR TAREFA */
 // recebe 4 proriedades (o titulo da tarefa, a dercrição da tarefa, a prioridade da tarefa ('green','yellow' ou 'red'),se existe tarefa na lista(s/n))
