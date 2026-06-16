@@ -2,7 +2,8 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const dir = 'uploads/props';
+// Caminho absoluto para a pasta de uploads
+const dir = path.join(__dirname, '..', 'uploads', 'props');
 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
 const storage = multer.diskStorage({
@@ -14,9 +15,9 @@ const storage = multer.diskStorage({
 });
 
 const fileFilter = (req, file, cb) => {
+  console.log('[Upload] mimetype recebido:', file.mimetype);
   const allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'];
   if (allowed.includes(file.mimetype)) return cb(null, true);
   cb(new Error('Formato de imagem não suportado. Use JPEG, PNG, WEBP ou SVG.'));
 };
-
 module.exports = multer({ storage, fileFilter });

@@ -2,6 +2,8 @@ const Prop = require('../Models/PropModel');
 const fs = require('fs');
 const path = require('path');
 
+const uploadsDir = path.join(__dirname, '..', 'uploads', 'props');
+
 
 // GET /api/props
 exports.getProps = async (req, res) => {
@@ -32,6 +34,9 @@ exports.getPropById = async (req, res) => {
 // ADMIN
 exports.criar = async (req, res) => {
   try {
+    console.log('[PropController] criar — body:', req.body);
+    console.log('[PropController] criar — file:', req.file);
+
     const { name } = req.body;
 
     if (!req.file)
@@ -42,7 +47,7 @@ exports.criar = async (req, res) => {
     res.status(201).json({ success: true, data: prop });
   } catch (err) {
     if (req.file)
-      fs.unlinkSync(path.join('uploads/props', req.file.filename));
+      fs.unlinkSync(path.join(uploadsDir, req.file.filename));
 
     res.status(400).json({ success: false, message: err.message });
   }
@@ -53,6 +58,9 @@ exports.criar = async (req, res) => {
 // ADMIN
 exports.atualizar = async (req, res) => {
   try {
+    console.log('[PropController] atualizar — body:', req.body);
+    console.log('[PropController] atualizar — file:', req.file);
+
     const prop = await Prop.findById(req.params.id);
     if (!prop)
       return res.status(404).json({ success: false, message: 'Objeto não encontrado.' });
@@ -60,7 +68,7 @@ exports.atualizar = async (req, res) => {
     if (req.body.name) prop.name = req.body.name;
 
     if (req.file) {
-      const oldPath = path.join('uploads/props', prop.img);
+      const oldPath = path.join(uploadsDir, prop.img);
       if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
 
       prop.img = req.file.filename;
@@ -70,7 +78,7 @@ exports.atualizar = async (req, res) => {
     res.json({ success: true, data: prop });
   } catch (err) {
     if (req.file)
-      fs.unlinkSync(path.join('uploads/props', req.file.filename));
+      fs.unlinkSync(path.join(uploadsDir, req.file.filename));
 
     res.status(400).json({ success: false, message: err.message });
   }
@@ -85,7 +93,7 @@ exports.apagar = async (req, res) => {
     if (!prop)
       return res.status(404).json({ success: false, message: 'Objeto não encontrado.' });
 
-    const oldPath = path.join('uploads/props', prop.img);
+    const oldPath = path.join(uploadsDir, prop.img);
     if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
 
     res.json({ success: true, message: 'Objeto eliminado com sucesso.' });

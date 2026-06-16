@@ -4,7 +4,7 @@ const btnAdd = document.querySelector(".btn-add");
 const porFazer = document.getElementById("por-fazer");
 const concluido = document.getElementById("concluido");
 
-/* ABRIR MODAL DE CRIAÇÃ */
+/* ABRIR MODAL DE CRIAÇÃO */
 btnAdd.addEventListener("click", () => {
     criarModal();
 });
@@ -13,9 +13,6 @@ const data = new Date()
 let mes = data.getMonth()+1
 const ano = data.getYear()+1900
 const dia = data.getDate()
-// const DataHoje = (`${ano}-${mes}-${dia}`)''
-// console.log(DataHoje);
-
 
 /* MODAL DE CRIAÇÃO */
 function criarModal() {
@@ -45,7 +42,6 @@ function criarModal() {
             <textarea id="descricaoTarefa"></textarea>
 
             <button class="btn-modal-add" id="btnCriar">Concluir</button>
-            
 
         </div>
     `;
@@ -53,11 +49,11 @@ function criarModal() {
     document.body.appendChild(modal);
     modal.style.display = "flex";
     
-    const top =modal.querySelectorAll(".prioridade")
+    const top = modal.querySelectorAll(".prioridade")
     for (const prio of top){
         prio.addEventListener('click',()=>{
             let evento = event.target.value;
-             if ('alta' == evento){
+            if ('alta' == evento){
                 priority = 'alta'
             }
             else if ('normal' == evento){
@@ -69,7 +65,6 @@ function criarModal() {
             console.log(priority);
         })
     }
-    
 
     modal.querySelector("#btnCriar").addEventListener("click", () => {
         const titulo = modal.querySelector("#tituloTarefa").value.trim();
@@ -82,7 +77,6 @@ function criarModal() {
         
         if (titulo === "") return;
 
-        // cria a tarefa 
         salvarTarefa(titulo, descricao,startDate,endDate,priority)
         modal.remove();
     });
@@ -94,7 +88,6 @@ function criarModal() {
 
 /* CRIAR TAREFA */
 export function criarTarefa(id,titulo,descricao,startDate,endDate,priority,status) {
-    // cor do ponto
     let pontoCor = 'green'      
     if (priority == 'alta'){
         pontoCor ='red'
@@ -120,23 +113,21 @@ export function criarTarefa(id,titulo,descricao,startDate,endDate,priority,statu
 
     tarefa.dataset.descricao = descricao;
 
-    // abrir modal de detalhes ao clicar no título
     tarefa.querySelector(".titulo-tarefa").addEventListener("click", () => {
         if (!modoEliminarTarefa) abrirModalDetalhes(titulo, descricao);
     });
 
-    // impedir que checkbox apague tarefa no modo eliminar
     tarefa.querySelector(".check").addEventListener("click", (e) => {
         if (modoEliminarTarefa) e.stopPropagation();
     });
     
-    // verifica se a tarefa foi feita ou não
     if (status == 'por_fazer'){
-    porFazer.appendChild(tarefa);
-    document.getElementById(id).checked=false 
+        porFazer.appendChild(tarefa);
+        document.getElementById(id).checked=false 
     }
-    else if (status == 'concluida') {concluido.appendChild(tarefa)
-         document.getElementById(id).checked=true     
+    else if (status == 'concluida') {
+        concluido.appendChild(tarefa)
+        document.getElementById(id).checked=true     
     }
     console.log(tarefa);
     
@@ -167,7 +158,7 @@ function abrirModalDetalhes(titulo, descricao) {
 }
 
 /* MOVER ENTRE COLUNAS */
-document.addEventListener("change", (e) => {
+document.addEventListener("change", async (e) => {  
     if (!e.target.classList.contains("check")) return;
 
     const tarefa = e.target.closest(".tarefa");
@@ -175,39 +166,32 @@ document.addEventListener("change", (e) => {
     
     if (e.target.checked) {
         concluido.appendChild(tarefa);
-        statuTarefa(id)
+        await statuTarefa(id)  
 
     } else {
         porFazer.appendChild(tarefa);
-        statuTarefa(id)
-
+        await statuTarefa(id)  
     }
 });
 
-/* MODO ELIMINAR*/
+/* MODO ELIMINAR */
 let modoEliminarTarefa = false;
 
 const btnDelete = document.querySelector(".btn-delete");
 
-// Toggle do modo eliminar
 btnDelete.addEventListener("click", () => {
-
-    // Se já está ativo → desativa
     if (modoEliminarTarefa) {
         modoEliminarTarefa = false;
         btnDelete.classList.remove("ativo");
         return;
     }
 
-    // Se não está ativo → ativa
     modoEliminarTarefa = true;
     btnDelete.classList.add("ativo");
 
-    // Fechar qualquer modal aberta
     document.querySelectorAll(".modal").forEach(m => m.remove());
 });
 
-// Eliminar tarefa ao clicar
 document.addEventListener("click", (e) => {
     if (!modoEliminarTarefa) return;
 
@@ -218,16 +202,12 @@ document.addEventListener("click", (e) => {
     let id = tarefa.querySelector('input').getAttribute('id') 
     ApagarTarefa(id)
 
-    // Desligar modo eliminar depois de apagar
     modoEliminarTarefa = false;
     btnDelete.classList.remove("ativo");
 });
 
-
-
 // init
 document.getElementById('topo').innerHTML=`Tarefas de ${await CategoriaName()}`
-
 
 let priority = 'baixa'
 gerarTarefas()

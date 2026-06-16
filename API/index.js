@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 
@@ -14,7 +15,9 @@ if (!process.env.MONGO_URI) {
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/uploads', express.static('uploads'));
+
+// Caminho absoluto para servir ficheiros estáticos
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Rotas
 app.use('/api/users',           require('./Routes/UserRoutes'));
@@ -44,9 +47,20 @@ app.use((req, res) => {
   res.status(404).json({ success: false, message: 'Rota não encontrada.' });
 });
 
-// Erro global
+// Erro global — também apanha erros do multer (fileFilter, limites, etc.)
 app.use((err, req, res, next) => {
   console.error(err.stack);
+
+  // Erros específicos do multer
+  if (err.name === 'MulterError') {
+    return res.status(400).json({ success: false, message: `Erro de upload: ${err.message}` });
+  }
+
+  // Erro do fileFilter (formato não suportado)
+  if (err.message && err.message.includes('Formato de imagem')) {
+    return res.status(400).json({ success: false, message: err.message });
+  }
+
   res.status(500).json({ success: false, message: 'Erro interno do servidor.' });
 });
 
