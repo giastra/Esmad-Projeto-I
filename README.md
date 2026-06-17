@@ -88,13 +88,13 @@ Tínhamos o objetivo de criar um site que pudesse auxiliar pessoas com TDAH e pe
 
 
 ### Perfil de Utilizador
-* **Email** bryan101012ale@gmail.com
-* **Senha** 1234567
+* **Email** utilizadorbase@professores.com
+* **Senha** 123456789
 
 
 ### Perfil de Administrador
-* **Email** giancarlo@gmail.com
-* **Senha** 1234
+* **Email** admin@professores.com
+* **Senha** 123456789
 
 
 ``só é possivel ter acesso ao site se a API estiver ligada, para ver como faz isso vá para ``[API](https://github.com/giastra/Esmad-Projeto-I/tree/develop/API)`` e leia seu README.md``  
