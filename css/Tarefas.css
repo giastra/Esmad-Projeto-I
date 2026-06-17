@@ -264,6 +264,43 @@ main {
     cursor: pointer;
     margin-top: 5px;
 }
+.prioridade-container {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0 20px 0;
+}
+
+.prioridade {
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    transition: 0.2s;
+    font-family: 'HelveticaCustom', sans-serif;
+}
+
+.prioridade.alta {
+    background-color: #ff3b30;
+}
+
+.prioridade.normal {
+    background-color: #ff9500;
+}
+
+.prioridade.baixa {
+    background-color: #34c759;
+}
+
+.prioridade:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.prioridade.selecionada {
+    outline: 3px solid black;
+}
 
 /* ============================
    RESPONSIVIDADE MAIN

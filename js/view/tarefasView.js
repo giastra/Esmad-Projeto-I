@@ -33,10 +33,12 @@ function criarModal() {
             <label>Data de fim</label>
             <input type="date" id='endDate' value='${ano}-0${mes}-${dia}'>
 
-            <label>Prioridade</label>
-            <input type='button' class='prioridade' value='alta' ">
-            <input type='button' class='prioridade' value='normal' ">
-            <input type='button' class='prioridade' value='baixa' ">
+           <label>Prioridade</label>
+            <div class="prioridade-container">
+                <button class="prioridade alta">Alta</button>
+                <button class="prioridade normal">Normal</button>
+                <button class="prioridade baixa">Baixa</button>
+            </div>
 
             <label>Descrição</label>
             <textarea id="descricaoTarefa"></textarea>
@@ -51,17 +53,20 @@ function criarModal() {
     
     const top = modal.querySelectorAll(".prioridade")
     for (const prio of top){
-        prio.addEventListener('click',()=>{
-            let evento = event.target.value;
-            if ('alta' == evento){
-                priority = 'alta'
+        prio.addEventListener('click',(event)=>{
+            // ✅ parte corrigida
+            const texto = event.target.textContent.toLowerCase();
+
+            if (texto === 'alta'){
+                priority = 'alta';
             }
-            else if ('normal' == evento){
-                priority = 'normal'
+            else if (texto === 'normal'){
+                priority = 'normal';
             }
             else {
-                priority='baixa'
+                priority = 'baixa';
             }
+
             console.log(priority);
         })
     }
