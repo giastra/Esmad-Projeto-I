@@ -1,6 +1,4 @@
-Stad To Do  
-
-
+# Stad To Do  
 
 
 **Stad To Do** é projeto desenvolvido no âmbito da unidade curricular  Tecnologias e Sistemas de Informação para Web (TSIW) – 2º Semestre (2025/2026) da ESMAD – P.PORTO.
