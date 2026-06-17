@@ -1,9 +1,9 @@
-Stad to do  
+Stad To Do  
 
 
 
 
-**Stad to do** é projeto desenvolvido no âmbito da unidade curricular  Tecnologias e Sistemas de Informação para Web (TSIW) – 2º Semestre (2025/2026) da ESMAD – P.PORTO.
+**Stad To Do** é projeto desenvolvido no âmbito da unidade curricular  Tecnologias e Sistemas de Informação para Web (TSIW) – 2º Semestre (2025/2026) da ESMAD – P.PORTO.
 Tínhamos o objetivo de criar um site que pudesse auxiliar pessoas com TDAH e pessoas com problema de organização de uma maneira gamificada.
 
 

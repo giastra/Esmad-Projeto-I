@@ -121,7 +121,7 @@ input:checked + .slider:before {
 }
 
 .font-size-control button:hover {
-    background: #e56f00;
+    background: #6d3501 ;
 }
 
 .font-size-control input {
@@ -229,7 +229,7 @@ body.dark-mode .hero-sobre span {
 }
 
 .audio-control button:hover {
-    background: #e56f00;
+    background: #6d3501;
 }
 
 .audio-control input {

@@ -1,4 +1,4 @@
-# Extensão de Browser - Stad to Do
+# Extensão de Browser - Stad To Do
 
 ## 1. O que é, afinal, uma extensão de browser
 
@@ -41,7 +41,7 @@ Mínimo absoluto para funcionar: `manifest.json` + `popup.html` + um script de l
 ```json
 {
   "manifest_version": 3,
-  "name": "Stad to Do",
+  "name": "Stad To Do",
   "version": "1.0.0",
   "description": "Ve e conclui as tuas tarefas sem abrir o site.",
   "side_panel": {

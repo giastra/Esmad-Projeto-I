@@ -53,21 +53,61 @@ function criarModal() {
     
     const top = modal.querySelectorAll(".prioridade")
     for (const prio of top){
+
         prio.addEventListener('click',(event)=>{
             // ✅ parte corrigida
             const texto = event.target.textContent.toLowerCase();
-
             if (texto === 'alta'){
                 priority = 'alta';
+                for (let index = 0; index < top.length; index++) {
+                     if (prio == top[index]){
+                        prio.classList.add('selecionada')
+                        
+                        for (let i = 0; i < top.length  ; i++) {
+                            if ( top[i] != top[index]){
+                            top[i].classList.remove('selecionada')
+                            }
+                        }
+                        break
+                    }
+                    
+                }
+               
             }
             else if (texto === 'normal'){
                 priority = 'normal';
+                 for (let index = 0; index < top.length; index++) {
+                     if (prio == top[index]){
+                        prio.classList.add('selecionada')
+                   
+                        for (let i = 0; i < top.length  ; i++) {
+                            if ( top[i] != top[index]){
+                            top[i].classList.remove('selecionada')
+                            }
+                        }
+                        break
+                    }
+                   
+                    
+                }
             }
             else {
                 priority = 'baixa';
+                 for (let index = 0; index < top.length; index++) {
+                     if (prio == top[index]){
+                        prio.classList.add('selecionada')
+                        
+                        for (let i = 0; i < top.length  ; i++) {
+                            if ( top[i] != top[index]){
+                            top[i].classList.remove('selecionada')
+                            }
+                        }
+                        break
+                    }
+                    
+                }
             }
 
-            console.log(priority);
         })
     }
 
@@ -75,7 +115,6 @@ function criarModal() {
         const titulo = modal.querySelector("#tituloTarefa").value.trim();
         const descricao = modal.querySelector("#descricaoTarefa").value.trim();
         const startDate = modal.querySelector("#startDate").value;
-        console.log(startDate);
         
         const endDate = modal.querySelector("#endDate").value;
         if (startDate == null){endDate=Date.now()}
