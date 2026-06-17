@@ -432,7 +432,6 @@ main {
     width: 100%;
     max-width: 1100px;
     height: 550px;
-    background-color: #ff7b00;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -441,6 +440,14 @@ main {
     font-size: 20px;
     color: white;
     font-weight: 600;
+}
+
+/* VIDEO DENTRO DA DIV */
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
 }
 
 @media (max-width: 900px) {
