@@ -173,9 +173,10 @@ const init = async () => {
   calGrid.style.display = 'grid';
   render(); // mostra já o calendário vazio
 
-  const res = await getMinhasTarefas();
-  if (res.success) tarefas = res.data;
-  render(); // re-renderiza com as tarefas
-};
+const res = await getMinhasTarefas();
 
+if (res.success) {
+  tarefas = res.data.filter(t => t.status !== 'concluida');
+}
+}
 init();
