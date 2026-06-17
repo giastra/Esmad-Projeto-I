@@ -40,8 +40,24 @@ function criarModal() {
     }
     let CorSelecionada=""
     document.getElementById('cores').addEventListener("click",function(){
-        console.log(event.target.getAttribute('name'));
          CorSelecionada=event.target.getAttribute('name')
+        
+         // serve para pegar todos os botões de cores e fazelos serem reativos  
+         const botao = document.querySelectorAll('.cor-btn')
+         botao.forEach(btt => {
+            
+            btt.addEventListener('click', () => {
+                
+            // Remove destaque de todos
+            botao.forEach(b => b.classList.remove('selecionada'));
+
+            // Destaca o clicado
+            btt.classList.add('selecionada');
+            
+            });
+        
+        });
+
     })
 
 

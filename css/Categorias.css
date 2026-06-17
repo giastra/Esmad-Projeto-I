@@ -167,6 +167,11 @@
     box-shadow: 0 0 0 3px black, 0 6px 14px rgba(0,0,0,0.35);
 }
 
+#cores{
+  display: grid;
+  grid-template-columns: repeat(4, 60px);
+  gap: 10px;
+}
 
 /* ============================
    MAIN
