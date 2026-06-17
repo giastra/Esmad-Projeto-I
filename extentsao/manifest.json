@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Stad to Do",
+  "name": "Stad To Do",
   "version": "1.0.0",
   "description": "Ve e conclui as tuas tarefas sem abrir o site.",
 
@@ -9,7 +9,7 @@
   },
 
   "action": {
-    "default_title": "Stad to Do",
+    "default_title": "Stad To Do",
     "default_icon": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
