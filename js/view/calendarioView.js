@@ -168,14 +168,15 @@ calAno.addEventListener('change', e => { ano = Number(e.target.value); render();
 //INIT 
 const init = async () => {
   preencherAnos();
-  
-  loading.style.display = 'none';
-  calGrid.style.display = 'grid';
-  render(); // mostra já o calendário vazio
 
   const res = await getMinhasTarefas();
-  if (res.success) tarefas = res.data;
-  render(); // re-renderiza com as tarefas
-};
 
+  if (res.success) {
+    tarefas = res.data.filter(t => t.status !== 'concluida');
+  }
+
+  loading.style.display = 'none';
+  calGrid.style.display = 'grid';
+  render();
+}
 init();

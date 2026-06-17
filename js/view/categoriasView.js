@@ -35,7 +35,7 @@ function criarModal() {
     // carrega as opções de cores 
     for (const cor of carregarCores()){ 
     document.getElementById('cores').innerHTML+=`
-        <input type="button" style="background-color: ${cor.hex};" name="${cor._id}">
+        <input type="button" class="cor-btn" style="background-color: ${cor.hex};" name="${cor._id}">
     `
     }
     let CorSelecionada=""

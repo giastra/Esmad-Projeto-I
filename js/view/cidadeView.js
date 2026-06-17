@@ -14,7 +14,6 @@ function criarModalCidade() {
   modalCidade.innerHTML = `
     <button class="close-modal">✖</button>
     <div class="c" id="sdfv">
-      <img src="../images/fundo-cidade.png" class="fundo">
     </div>
   `;
 
