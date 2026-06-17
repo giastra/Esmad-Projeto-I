@@ -121,7 +121,7 @@ function criarModalAcessibilidade() {
     });
 
     /* ---------------- CONTROLO TAMANHO DA FONTE ---------------- */
-    let fontLevel = parseInt(localStorage.getItem("fontLevel")) || 0;
+    let fontLevel = Number(localStorage.getItem("fontLevel")) || 0;
     const maxLevel = 5;
 
     const fontInput = modal.querySelector("#font-level");
@@ -210,18 +210,25 @@ hamburger.addEventListener('click', () => {
 
 
 /*--------------------- AUDIO CONTROL ----------------- */
-let audioLevel = parseInt(localStorage.getItem("audioLevel")) || 0;
+
+let audioLevel = Number(localStorage.getItem("audioLevel")) ;
+const factor = Math.pow(10, 1);
+
 const maxAudioLevel = 1;
 
+
 const audioInput = modal.querySelector("#audio-level");
+
     const btnAudioPlus = modal.querySelector("#audio-plus");
     const btnAudioMinus = modal.querySelector("#audio-minus");
 
-    audioInput.value = audioLevel;
+    audioInput.value =audioLevel*10;
 
     btnAudioPlus.addEventListener("click", () => {
         if (audioLevel < maxAudioLevel) {
-            audioLevel=audioLevel+0.1;
+            audioLevel=(audioLevel+0.1);
+            audioLevel = Math.round(audioLevel * factor) / factor
+            
             audioInput.value = audioLevel*10;
             localStorage.setItem("audioLevel", audioLevel);
         }
@@ -230,6 +237,7 @@ const audioInput = modal.querySelector("#audio-level");
     btnAudioMinus.addEventListener("click", () => {
         if (audioLevel > 0) {
             audioLevel=audioLevel-0.1;
+            audioLevel = Math.round(audioLevel * factor) / factor
             audioInput.value = audioLevel*10;
             localStorage.setItem("audioLevel", audioLevel);
         }
