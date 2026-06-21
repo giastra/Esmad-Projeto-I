@@ -33,7 +33,7 @@ export const atualizar = (id, data) => fetch(`${BASE_URL}/${id}`, {
 }).then(r => r.json());
 
 // Eliminar categoria
-export const apagar = (id) => fetch(`${BASE_URL}/${id}`, {
+export const DeletarCat = (id) => fetch(`${BASE_URL}/${id}`, {
   method: 'DELETE',
   headers: headers()
 }).then(r => r.json());
