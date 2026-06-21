@@ -1,7 +1,7 @@
-import { getMinhasCategorias, criar, apagar } from '../model/taskCategoryModel.js';
+import { getMinhasCategorias, criar, DeletarCat } from '../model/taskCategoryModel.js';
 import { getColors, criarCor } from '../model/colorModel.js';
 import { criarCard } from "../view/categoriasView.js";
-import { getMinhasTarefas } from '../model/taskModel.js';
+import { getMinhasTarefas, apagar } from '../model/taskModel.js';
 
 const cores = await getColors();
 if ((cores.data).length == 0) {
@@ -44,7 +44,13 @@ export function carregarCores() {
 }
 
 export function apagarCategoria(id) {
-  apagar(id);
+  tasks.forEach(tas => {
+    if (tas.category._id == id) {
+      apagar(tas._id)
+    }
+  })
+  
+  DeletarCat(id);
   // fix: sintaxe errada, setItem recebe 2 argumentos
   if (localStorage.getItem('categoria') == id) {
     localStorage.setItem('categoria', 'prioridade');

@@ -23,6 +23,13 @@ export const renderPerfil = (user) => {
   if (nome) nome.textContent = user.name;
   if (email) email.textContent = user.email;
 
+  // remove o butão de adm se não for o adm
+  if (user.roles[1] == 'admin'){
+    document.getElementById('btn-admin').classList.remove('hidden')
+  }
+
+  
+
   // Placeholders dos inputs com os dados atuais
   const inputNome = document.getElementById('novo-nome');
   const inputEmail = document.getElementById('novo-email');

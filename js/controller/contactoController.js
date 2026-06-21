@@ -37,3 +37,4 @@ export const marcarComoLida = (id) =>
     method: 'PATCH',
     headers: headersJson()
   }).then(r => r.json());
+  
