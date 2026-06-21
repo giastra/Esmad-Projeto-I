@@ -51,3 +51,4 @@ export const apagarProp = (id) =>
     method: 'DELETE',
     headers: headersJson()
   }).then(r => r.json());
+  
